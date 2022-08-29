@@ -109,7 +109,7 @@ removeAllNext
 / aDivisor
 	((self > aDivisor) not or: [self - aDivisor < aDivisor]) and: [^I].
 	
-	^I + ((self - aDivisor) / aDivisor).! !
+	^I + (self - aDivisor / aDivisor).! !
 
 
 !II class methodsFor: 'order' stamp: 'TD 8/29/2022 18:02:02'!

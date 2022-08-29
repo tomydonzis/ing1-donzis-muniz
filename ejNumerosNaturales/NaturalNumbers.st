@@ -105,8 +105,14 @@ removeAllNext
 	
 	^self previous - subtrahend previous! !
 
+!II class methodsFor: 'operations' stamp: 'TD 8/29/2022 18:14:18'!
+/ aDivisor
+	((self > aDivisor) not or: [self - aDivisor < aDivisor]) and: [^I].
+	
+	^I + ((self - aDivisor) / aDivisor).! !
 
-!II class methodsFor: 'order' stamp: 'TD 8/28/2022 23:53:01'!
+
+!II class methodsFor: 'order' stamp: 'TD 8/29/2022 18:02:02'!
 < aComparer
 	^(aComparer isNotEqualTo: I) and: [self previous < aComparer previous].! !
 
@@ -115,7 +121,7 @@ removeAllNext
 	^aComparer < self.! !
 
 
-!II class methodsFor: '--** private fileout/in **--' stamp: 'TD 8/29/2022 00:06:56'!
+!II class methodsFor: '--** private fileout/in **--' stamp: 'TD 8/29/2022 18:17:51'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 

@@ -27,16 +27,16 @@ next
 
 	^anAdder next! !
 
-!I class methodsFor: 'operations' stamp: 'TD 8/30/2022 00:17:59'!
+!I class methodsFor: 'operations' stamp: 'TD 9/2/2022 19:09:10'!
 - subtrahend
 
-	^self error: 'negativeNumbersNotSupportedErrorDescription'! !
+	^self error: self negativeNumbersNotSupportedErrorDescription! !
 
-!I class methodsFor: 'operations' stamp: 'TD 8/30/2022 00:14:43'!
+!I class methodsFor: 'operations' stamp: 'TD 9/2/2022 19:14:08'!
 / aDivisor
 	aDivisor = I ifTrue: [^self].
 
-	^self error: 'canNotDivideByBiggerNumberErrorDescription'.! !
+	^aDivisor error: aDivisor canNotDivideByBiggerNumberErrorDescription.! !
 
 
 !I class methodsFor: 'order' stamp: 'TD 8/30/2022 00:05:01'!
@@ -55,6 +55,11 @@ subtractFrom: aMinuend
 
 	^aMinuend previous.! !
 
+
+!I class methodsFor: 'errors' stamp: 'TD 9/2/2022 19:13:23'!
+negativeNumbersNotSupportedErrorDescription
+	^'subtrahend cannot be larger than minuend'.! !
+
 
 !classDefinition: #II category: 'NaturalNumbers'!
 DenotativeObject subclass: #II
@@ -72,7 +77,7 @@ II class
 !II class methodsFor: 'next & previous' stamp: 'TD 8/30/2022 00:03:17'!
 nameOfNext
 
-	(self name endsWith:'CMDCCCCIX') ifTrue: [^(self name withoutSuffix:'CMXCIX'), 'M'].
+	(self name endsWith:'CMDCCCCIX') ifTrue: [^(self name withoutSuffix:'CMDCCCCIX'), 'M'].
 	(self name endsWith:'DCCCXCIX') ifTrue: [^(self name withoutSuffix:'DCCCXCIX'), 'CM'].
 	(self name endsWith:'CDXCIX') ifTrue: [^(self name withoutSuffix:'CDXCIX'), 'D'].
 	(self name endsWith:'CCCXCIX') ifTrue: [^(self name withoutSuffix:'CCCXCIX'), 'CD'].
@@ -132,10 +137,10 @@ removeAllNext
 
 	^subtrahend subtractFrom: self! !
 
-!II class methodsFor: 'operations' stamp: 'TD 8/30/2022 00:18:07'!
+!II class methodsFor: 'operations' stamp: 'TD 9/2/2022 19:08:42'!
 / aDivisor
 	
-	(self < aDivisor) and: [^self error: 'canNotDivideByBiggerNumberErrorDescription'].
+	(self < aDivisor) and: [^self error: self canNotDivideByBiggerNumberErrorDescription].
 
 	((self > aDivisor) not or: [self - aDivisor < aDivisor]) and: [^I].
 	
@@ -159,7 +164,12 @@ subtractFrom: aMinuend
 	^aMinuend previous - self previous.! !
 
 
-!II class methodsFor: '--** private fileout/in **--' stamp: 'TD 8/30/2022 00:20:55'!
+!II class methodsFor: 'errors' stamp: 'TD 9/2/2022 19:09:46'!
+canNotDivideByBiggerNumberErrorDescription
+	^'divisor cannot be larger than dividend'.! !
+
+
+!II class methodsFor: '--** private fileout/in **--' stamp: 'TD 9/2/2022 19:17:36'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -180,7 +190,7 @@ II subclass: #III
 III class
 	instanceVariableNames: ''!
 
-!III class methodsFor: '--** private fileout/in **--' stamp: 'TD 8/30/2022 00:20:56'!
+!III class methodsFor: '--** private fileout/in **--' stamp: 'TD 9/2/2022 19:17:36'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -201,7 +211,7 @@ II subclass: #IV
 IV class
 	instanceVariableNames: ''!
 
-!IV class methodsFor: '--** private fileout/in **--' stamp: 'TD 8/30/2022 00:20:57'!
+!IV class methodsFor: '--** private fileout/in **--' stamp: 'TD 9/2/2022 19:17:36'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 

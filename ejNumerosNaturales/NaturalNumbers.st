@@ -72,7 +72,7 @@ II class
 !II class methodsFor: 'next & previous' stamp: 'TD 8/30/2022 00:03:17'!
 nameOfNext
 
-	(self name endsWith:'CMDCCCCIX') ifTrue: [^(self name withoutSuffix:'CMDCCCCIX'), 'M'].
+	(self name endsWith:'CMDCCCCIX') ifTrue: [^(self name withoutSuffix:'CMXCIX'), 'M'].
 	(self name endsWith:'DCCCXCIX') ifTrue: [^(self name withoutSuffix:'DCCCXCIX'), 'CM'].
 	(self name endsWith:'CDXCIX') ifTrue: [^(self name withoutSuffix:'CDXCIX'), 'D'].
 	(self name endsWith:'CCCXCIX') ifTrue: [^(self name withoutSuffix:'CCCXCIX'), 'CD'].

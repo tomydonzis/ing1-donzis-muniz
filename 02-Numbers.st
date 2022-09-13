@@ -364,44 +364,43 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 00:36:04'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 20:32:34'!
 * aMultiplier 
 
-	^aMultiplier multiplicarPorEntero: self.! !
+	^aMultiplier multiplyByInteger: self.! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 00:43:41'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 20:33:21'!
 + anAdder 
 
-	^anAdder sumarEntero: self.
+	^anAdder addInteger: self.
 ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 00:45:52'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 20:32:57'!
 - aSubtrahend 
 	
-	^aSubtrahend restarleAEntero: self.! !
+	^aSubtrahend subtractToInteger: self.! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 00:37:29'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 20:32:02'!
 / aDivisor 
 	
-	^aDivisor dividirEntero: self! !
+	^aDivisor divideInteger: self! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:55'!
 // aDivisor 
 	
 	^self class with: value // aDivisor integerValue! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:55:02'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 21:18:49'!
 fibonacci
 	
-	| one two |
+	"| one two |"
 	
-	one := Entero with: 1.
-	two := Entero with: 2.
+	"one := Entero with: 1.
+	two := Entero with: 2."
 	
-	self isNegative ifTrue: [self error: Entero negativeFibonacciErrorDescription ].	
-	(self isZero or: [self isOne]) ifTrue: [^one].
+	^(Entero withForFibonacci: value) fibonacci.
 	
-	^ (self - one) fibonacci + (self - two) fibonacci! !
+	"^ (self - one) fibonacci + (self - two) fibonacci"! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:00'!
 greatestCommonDivisorWith: anEntero 
@@ -456,45 +455,45 @@ isZero
 	^value = 0! !
 
 
-!Entero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 01:01:25'!
-dividirEntero: aDividend
+!Entero methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:55:32'!
+addFraction: aFractionAdder
 
-	^Fraccion with: aDividend over: self.! !
+	^Fraccion with: (aFractionAdder denominator * self + aFractionAdder numerator) over: aFractionAdder denominator.! !
 
-!Entero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 01:11:40'!
-dividirPorFraccion: aDividend
+!Entero methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:55:42'!
+addInteger: anEnteroAdder
 
-	^Fraccion with: (aDividend numerator) over: (aDividend denominator * self).! !
+	^self class with: value + anEnteroAdder integerValue.! !
 
-!Entero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 00:50:31'!
-multiplicarPorEntero: aMultiplier
+!Entero methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:55:54'!
+divideByFraction: aFraccionDividend
 
-	^self class with: value*aMultiplier integerValue.! !
+	^Fraccion with: (aFraccionDividend numerator) over: (aFraccionDividend denominator * self).! !
 
-!Entero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 00:52:21'!
-multiplicarPorFraccion: aMultiplier
+!Entero methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:56:05'!
+divideInteger: anEnteroDividend
+
+	^Fraccion with: anEnteroDividend over: self.! !
+
+!Entero methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:56:14'!
+multiplyByFraction: aFraccionMultiplier
 	
-	^Fraccion with: (aMultiplier numerator * self) over: aMultiplier denominator.! !
+	^Fraccion with: (aFraccionMultiplier numerator * self) over: aFraccionMultiplier denominator.! !
 
-!Entero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 00:50:25'!
-restarleAEntero: aMinuend
+!Entero methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:56:21'!
+multiplyByInteger: anEnteroMultiplier
 
-	^self class with: aMinuend integerValue - value.! !
+	^self class with: value*anEnteroMultiplier integerValue.! !
 
-!Entero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 01:03:23'!
-restarleAFraccion: aMinuend
+!Entero methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:56:29'!
+subtractToFraction: aFraccionMinuend
 	
-	^Fraccion with: (aMinuend numerator - (self * aMinuend denominator)) over: aMinuend denominator.! !
+	^Fraccion with: (aFraccionMinuend numerator - (self * aFraccionMinuend denominator)) over: aFraccionMinuend denominator.! !
 
-!Entero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 00:44:11'!
-sumarEntero: anAdder
+!Entero methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:56:35'!
+subtractToInteger: anEnteroMinuend
 
-	^self class with: value + anAdder integerValue.! !
-
-!Entero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 01:07:02'!
-sumarPorFraccion: anAdder
-
-	^Fraccion with: (anAdder denominator * self + anAdder numerator) over: anAdder denominator.! !
+	^self class with: anEnteroMinuend integerValue - value.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -506,17 +505,26 @@ Entero class
 negativeFibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
-!Entero class methodsFor: 'instance creation' stamp: 'fm 9/12/2022 02:04:08'!
+!Entero class methodsFor: 'instance creation' stamp: 'TD 9/12/2022 21:21:18'!
 with: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
-	
-	"aValue isNegative ifTrue: [^Negativo new initalizeWith: aValue]."
-	"aValue isZero ifTrue: [^Cero new initializeWith: 0]."
-	"aValue isOne ifTrue: [^Uno new initializeWith: 1]."
-	
 	^self new initalizeWith: aValue! !
+
+!Entero class methodsFor: 'instance creation' stamp: 'TD 9/12/2022 21:04:15'!
+withForFibonacci: aValue 
+	
+	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	
+	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
+	[Entero isKindOf: self class] value ifTrue:[
+		aValue < 0 ifTrue: [^Negativo with: aValue].
+		aValue = 0 ifTrue: [^Cero with: 0.].
+		aValue = 1 ifTrue: [^Uno with: 1].
+	].	
+	^PositivoMayorQueUno with: aValue! !
 
 
 !classDefinition: #Cero category: 'Numero-Exercise'!
@@ -526,7 +534,7 @@ Entero subclass: #Cero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Cero methodsFor: 'as yet unclassified' stamp: 'fm 9/12/2022 01:37:40'!
+!Cero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 20:15:02'!
 fibonacci
 	^Entero with: 1.! !
 
@@ -538,9 +546,21 @@ Entero subclass: #Negativo
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Negativo methodsFor: 'as yet unclassified' stamp: 'fm 9/12/2022 01:36:14'!
+!Negativo methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 20:23:51'!
 fibonacci
-	self error: Entero negativeFibonacciErrorDescription! !
+	^self error: Entero negativeFibonacciErrorDescription.! !
+
+
+!classDefinition: #PositivoMayorQueUno category: 'Numero-Exercise'!
+Entero subclass: #PositivoMayorQueUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!PositivoMayorQueUno methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:18:38'!
+fibonacci
+	^(Entero withForFibonacci: (value - 1)) fibonacci + (Entero withForFibonacci: (value - 2)) fibonacci.! !
 
 
 !classDefinition: #Uno category: 'Numero-Exercise'!
@@ -550,7 +570,7 @@ Entero subclass: #Uno
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Uno methodsFor: 'as yet unclassified' stamp: 'fm 9/12/2022 01:38:11'!
+!Uno methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 20:15:11'!
 fibonacci
 	^Entero with: 1.! !
 
@@ -562,76 +582,25 @@ Numero subclass: #Fraccion
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 00:38:20'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 20:32:46'!
 * aMultiplier 
 	
-	^aMultiplier multiplicarPorFraccion: self.
+	^aMultiplier multiplyByFraction: self.
 	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:25:19'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 20:33:57'!
 + anAdder 
 	
-	^anAdder sumarPorFraccion: self.! !
+	^anAdder addFraction: self.! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:26:27'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 20:33:11'!
 - aSubtrahend 
-	^aSubtrahend restarleAFraccion: self.! !
+	^aSubtrahend subtractToFraction: self.! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:30:43'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 20:32:19'!
 / aDivisor 
 	
-	^aDivisor dividirPorFraccion: self.! !
-
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:22:35'!
-dividirEntero: aDividend
-
-	^self class with: (denominator * aDividend) over: numerator.! !
-
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:30:55'!
-dividirPorFraccion: aDividend
-
-	^self class with: (denominator * aDividend numerator) over: (numerator * aDividend denominator).! !
-
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:20:51'!
-multiplicarPorEntero: aMultiplier
-
-	^self class with: (numerator * aMultiplier) over: denominator.! !
-
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:24:52'!
-multiplicarPorFraccion: aMultiplier
-
-	^self class with: (aMultiplier numerator * numerator) over: (aMultiplier denominator * denominator).! !
-
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:32:54'!
-restarleAEntero: aMinuend
-
-	^self class with: (denominator * aMinuend) - numerator over: denominator.! !
-
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:31:17'!
-restarleAFraccion: aMinuend
-
-	| newNumerator newDenominator |
-	
-	
-	newNumerator := (denominator * aMinuend numerator) - (numerator * aMinuend denominator).
-	newDenominator := denominator * aMinuend denominator.
-	
-	^newNumerator / newDenominator ! !
-
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:21:58'!
-sumarEntero: anAdder
-
-	^self class with: (anAdder * denominator) + numerator over: denominator.! !
-
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fm 9/12/2022 01:31:05'!
-sumarPorFraccion: anAdder
-
-	| newNumerator newDenominator |
-	
-	newNumerator := (numerator * anAdder denominator) + (denominator * anAdder numerator).
-	newDenominator := denominator * anAdder denominator.
-	
-	^newNumerator / newDenominator.! !
+	^aDivisor divideByFraction: self.! !
 
 
 !Fraccion methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 20:42'!
@@ -690,6 +659,58 @@ printOn: aStream
 		print: numerator;
 		nextPut: $/;
 		print: denominator ! !
+
+
+!Fraccion methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:57:43'!
+addFraction: aFraccionAdder
+
+	| newNumerator newDenominator |
+	
+	newNumerator := (numerator * aFraccionAdder denominator) + (denominator * aFraccionAdder numerator).
+	newDenominator := denominator * aFraccionAdder denominator.
+	
+	^newNumerator / newDenominator.! !
+
+!Fraccion methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:57:48'!
+addInteger: anEnteroAdder
+
+	^self class with: (anEnteroAdder * denominator) + numerator over: denominator.! !
+
+!Fraccion methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:57:55'!
+divideByFraction: aFraccionDividend
+
+	^self class with: (denominator * aFraccionDividend numerator) over: (numerator * aFraccionDividend denominator).! !
+
+!Fraccion methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:58:02'!
+divideInteger: anEnteroDividend
+
+	^self class with: (denominator * anEnteroDividend) over: numerator.! !
+
+!Fraccion methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:58:11'!
+multiplyByFraction: aFraccionMultiplier
+
+	^self class with: (aFraccionMultiplier numerator * numerator) over: (aFraccionMultiplier denominator * denominator).! !
+
+!Fraccion methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:58:20'!
+multiplyByInteger: anEnteroMultiplier
+
+	^self class with: (numerator * anEnteroMultiplier) over: denominator.! !
+
+!Fraccion methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:58:27'!
+subtractToFraction: aFraccionMinuend
+
+	| newNumerator newDenominator |
+	
+	
+	newNumerator := (denominator * aFraccionMinuend numerator) - (numerator * aFraccionMinuend denominator).
+	newDenominator := denominator * aFraccionMinuend denominator.
+	
+	^newNumerator / newDenominator ! !
+
+!Fraccion methodsFor: 'polymorphism' stamp: 'TD 9/12/2022 20:58:36'!
+subtractToInteger: anEnteroMinuend
+
+	^self class with: (denominator * anEnteroMinuend) - numerator over: denominator.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 

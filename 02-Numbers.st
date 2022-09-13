@@ -390,7 +390,7 @@ Numero subclass: #Entero
 	
 	^self class with: value // aDivisor integerValue! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 21:18:49'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'TD 9/12/2022 21:46:35'!
 fibonacci
 	
 	"| one two |"
@@ -398,7 +398,7 @@ fibonacci
 	"one := Entero with: 1.
 	two := Entero with: 2."
 	
-	^(Entero withForFibonacci: value) fibonacci.
+	^(Entero selectSubclassWith: value) fibonacci.
 	
 	"^ (self - one) fibonacci + (self - two) fibonacci"! !
 
@@ -505,16 +505,8 @@ Entero class
 negativeFibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
-!Entero class methodsFor: 'instance creation' stamp: 'TD 9/12/2022 21:21:18'!
-with: aValue 
-	
-	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
-	
-	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
-	^self new initalizeWith: aValue! !
-
-!Entero class methodsFor: 'instance creation' stamp: 'TD 9/12/2022 21:04:15'!
-withForFibonacci: aValue 
+!Entero class methodsFor: 'instance creation' stamp: 'TD 9/12/2022 21:46:34'!
+selectSubclassWith: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	
@@ -526,6 +518,14 @@ withForFibonacci: aValue
 	].	
 	^PositivoMayorQueUno with: aValue! !
 
+!Entero class methodsFor: 'instance creation' stamp: 'TD 9/12/2022 21:21:18'!
+with: aValue 
+	
+	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	
+	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
+	^self new initalizeWith: aValue! !
+
 
 !classDefinition: #Cero category: 'Numero-Exercise'!
 Entero subclass: #Cero
@@ -533,6 +533,14 @@ Entero subclass: #Cero
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
+
+!Cero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:43:32'!
+asDenominator
+	self error: 'un denominador no puede ser 0'! !
+
+!Cero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:43:23'!
+asNumerator
+	self error: 'una fraccion no puede ser cero'! !
 
 !Cero methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 20:15:02'!
 fibonacci
@@ -546,6 +554,14 @@ Entero subclass: #Negativo
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!Negativo methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:43:32'!
+asDenominator
+	^Entero with: value.! !
+
+!Negativo methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:43:23'!
+asNumerator
+	^Entero with: value.! !
+
 !Negativo methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 20:23:51'!
 fibonacci
 	^self error: Entero negativeFibonacciErrorDescription.! !
@@ -558,9 +574,17 @@ Entero subclass: #PositivoMayorQueUno
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!PositivoMayorQueUno methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:18:38'!
+!PositivoMayorQueUno methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:43:32'!
+asDenominator
+	^Entero with: value.! !
+
+!PositivoMayorQueUno methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:43:23'!
+asNumerator
+	^Entero with: value.! !
+
+!PositivoMayorQueUno methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:46:35'!
 fibonacci
-	^(Entero withForFibonacci: (value - 1)) fibonacci + (Entero withForFibonacci: (value - 2)) fibonacci.! !
+	^(Entero selectSubclassWith: (value - 1)) fibonacci + (Entero selectSubclassWith: (value - 2)) fibonacci.! !
 
 
 !classDefinition: #Uno category: 'Numero-Exercise'!
@@ -569,6 +593,14 @@ Entero subclass: #Uno
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
+
+!Uno methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:43:32'!
+asDenominator
+	 self error: 'una fraccion no puede tener denominador 1 porque sino es un entero'! !
+
+!Uno methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 21:43:23'!
+asNumerator
+	^Entero with: value.! !
 
 !Uno methodsFor: 'as yet unclassified' stamp: 'TD 9/12/2022 20:15:11'!
 fibonacci
@@ -625,15 +657,18 @@ numerator
 	^ numerator! !
 
 
-!Fraccion methodsFor: 'initialization' stamp: 'HernanWilkinson 5/7/2016 22:54'!
+!Fraccion methodsFor: 'initialization' stamp: 'TD 9/12/2022 21:46:35'!
 initializeWith: aNumerator over: aDenominator
 
 	"Estas precondiciones estan por si se comenten errores en la implementacion - Hernan"
-	aNumerator isZero ifTrue: [ self error: 'una fraccion no puede ser cero' ].
+	"aNumerator isZero ifTrue: [ self error: 'una fraccion no puede ser cero' ].
 	aDenominator isOne ifTrue: [ self error: 'una fraccion no puede tener denominador 1 porque sino es un entero' ].
 	
 	numerator := aNumerator.
-	denominator := aDenominator ! !
+	denominator := aDenominator "
+	
+	numerator := (Entero selectSubclassWith: (aNumerator integerValue)) asNumerator.
+	denominator := (Entero selectSubclassWith: (aDenominator integerValue)) asDenominator.! !
 
 
 !Fraccion methodsFor: 'testing' stamp: 'NR 9/23/2018 23:41:38'!

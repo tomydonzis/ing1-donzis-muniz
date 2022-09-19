@@ -24,7 +24,7 @@ test02PushAddElementsToTheStack
 	
 	self deny: stack isEmpty! !
 
-!OOStackTest methodsFor: 'test' stamp: 'NR 5/13/2020 13:30:01'!
+!OOStackTest methodsFor: 'test' stamp: 'TD 9/16/2022 01:16:59'!
 test03PopRemovesElementsFromTheStack
 
 	| stack |
@@ -35,7 +35,7 @@ test03PopRemovesElementsFromTheStack
 	
 	self assert: stack isEmpty! !
 
-!OOStackTest methodsFor: 'test' stamp: 'NR 5/13/2020 13:30:09'!
+!OOStackTest methodsFor: 'test' stamp: 'TD 9/16/2022 01:17:03'!
 test04PopReturnsLastPushedObject
 
 	| stack pushedObject |
@@ -46,7 +46,7 @@ test04PopReturnsLastPushedObject
 	
 	self assert: stack pop = pushedObject! !
 
-!OOStackTest methodsFor: 'test' stamp: 'NR 9/16/2021 17:40:17'!
+!OOStackTest methodsFor: 'test' stamp: 'TD 9/16/2022 01:17:11'!
 test05StackBehavesLIFO
 
 	| stack firstPushedObject secondPushedObject |
@@ -63,7 +63,7 @@ test05StackBehavesLIFO
 	self assert: stack isEmpty 
 	! !
 
-!OOStackTest methodsFor: 'test' stamp: 'NR 5/13/2020 13:30:20'!
+!OOStackTest methodsFor: 'test' stamp: 'TD 9/16/2022 01:21:23'!
 test06TopReturnsLastPushedObject
 
 	| stack pushedObject |
@@ -73,10 +73,10 @@ test06TopReturnsLastPushedObject
 	
 	stack push: pushedObject.
 	
-	self assert: stack top = pushedObject.
+	self assert: stack value = pushedObject.
 	! !
 
-!OOStackTest methodsFor: 'test' stamp: 'NR 5/13/2020 13:30:24'!
+!OOStackTest methodsFor: 'test' stamp: 'TD 9/16/2022 01:21:23'!
 test07TopDoesNotRemoveObjectFromStack
 
 	| stack pushedObject |
@@ -87,11 +87,11 @@ test07TopDoesNotRemoveObjectFromStack
 	stack push: pushedObject.
 	
 	self assert: stack size = 1.
-	stack top.
+	stack value.
 	self assert: stack size = 1.
 	! !
 
-!OOStackTest methodsFor: 'test' stamp: 'HAW 4/14/2017 22:48:26'!
+!OOStackTest methodsFor: 'test' stamp: 'TD 9/16/2022 01:17:17'!
 test08CanNotPopWhenThereAreNoObjectsInTheStack
 
 	| stack  |
@@ -105,7 +105,7 @@ test08CanNotPopWhenThereAreNoObjectsInTheStack
 		
 ! !
 
-!OOStackTest methodsFor: 'test' stamp: 'NR 5/13/2020 13:30:31'!
+!OOStackTest methodsFor: 'test' stamp: 'TD 9/16/2022 01:17:25'!
 test09CanNotPopWhenThereAreNoObjectsInTheStackAndTheStackHadObjects
 
 	| stack  |
@@ -122,14 +122,14 @@ test09CanNotPopWhenThereAreNoObjectsInTheStackAndTheStackHadObjects
 		
 ! !
 
-!OOStackTest methodsFor: 'test' stamp: 'HAW 4/14/2017 22:48:44'!
+!OOStackTest methodsFor: 'test' stamp: 'TD 9/16/2022 01:17:31'!
 test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 	| stack  |
 	
 	stack := OOStack new.
 	self
-		should: [ stack top ]
+		should: [ stack pop ]
 		raise: Error - MessageNotUnderstood 
 		withExceptionDo: [ :anError |
 			self assert: anError messageText = OOStack stackEmptyErrorDescription ]
@@ -145,51 +145,103 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	category: 'Stack-Exercise'!
 
 
-!classDefinition: #OOStack category: 'Stack-Exercise'!
-Object subclass: #OOStack
-	instanceVariableNames: 'elements stackEmptyStateManager'
+!classDefinition: #Element category: 'Stack-Exercise'!
+Object subclass: #Element
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'push&pop' stamp: 'TD 9/15/2022 21:42:55'!
-pop
-	|top|
-	
-	top := self top.
-	elements removeLast.
-	
-	(self size = 0) ifTrue: [stackEmptyStateManager := true.].
-	
-	^top.! !
+!Element methodsFor: 'getters' stamp: 'TD 9/16/2022 01:22:32'!
+value
+	^self subclassResponsibility.! !
 
-!OOStack methodsFor: 'push&pop' stamp: 'TD 9/15/2022 21:42:55'!
-push: aString
+
+!classDefinition: #Base category: 'Stack-Exercise'!
+Element subclass: #Base
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
 
-	stackEmptyStateManager := false.
-	elements addLast: aString.! !
+!Base methodsFor: 'as yet unclassified' stamp: 'TD 9/16/2022 01:21:22'!
+value
+	^self error: OOStack stackEmptyErrorDescription.! !
 
+
+!classDefinition: #ValuedElement category: 'Stack-Exercise'!
+Element subclass: #ValuedElement
+	instanceVariableNames: 'value previous string previousElement'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'stack operations' stamp: 'TD 9/15/2022 20:46:35'!
-size
-	^elements size.! !
-
-!OOStack methodsFor: 'stack operations' stamp: 'TD 9/15/2022 21:55:46'!
-top
-	(self isEmpty) ifTrue: [^self error: self class stackEmptyErrorDescription].
-	
-	^elements last.! !
-
-
-!OOStack methodsFor: 'initialization' stamp: 'TD 9/15/2022 21:42:55'!
-initialize
-	elements := OrderedCollection new.
-	stackEmptyStateManager := true.! !
+!ValuedElement methodsFor: 'initialization' stamp: 'TD 9/16/2022 01:09:30'!
+initializeWithValue: aString andPrev: aPreviousElement 
+	value := aString.
+	previous := aPreviousElement.! !
 
 
-!OOStack methodsFor: 'topology' stamp: 'TD 9/15/2022 21:42:55'!
+!ValuedElement methodsFor: 'getters' stamp: 'TD 9/16/2022 01:13:11'!
+previous
+	^previous! !
+
+!ValuedElement methodsFor: 'getters' stamp: 'TD 9/16/2022 01:21:23'!
+value
+	^value.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ValuedElement class' category: 'Stack-Exercise'!
+ValuedElement class
+	instanceVariableNames: ''!
+
+!ValuedElement class methodsFor: 'instance creation' stamp: 'TD 9/16/2022 01:08:54'!
+withValue: aString andPrev: aPreviousElement
+	^self new initializeWithValue: aString andPrev: aPreviousElement ! !
+
+
+!classDefinition: #OOStack category: 'Stack-Exercise'!
+Object subclass: #OOStack
+	instanceVariableNames: 'top size'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!OOStack methodsFor: 'topology' stamp: 'TD 9/16/2022 01:03:56'!
 isEmpty
-	^stackEmptyStateManager.! !
+	^size = 0.! !
+
+!OOStack methodsFor: 'topology' stamp: 'TD 9/16/2022 01:19:52'!
+size
+	^size.! !
+
+
+!OOStack methodsFor: 'initialization' stamp: 'TD 9/16/2022 01:05:01'!
+initialize
+	top := Base new.
+	size := 0.! !
+
+
+!OOStack methodsFor: 'push&pop' stamp: 'TD 9/16/2022 01:21:23'!
+pop
+	|popResult|
+	size := size - 1.
+	popResult := top value.
+	top := top previous.
+	^popResult.! !
+
+!OOStack methodsFor: 'push&pop' stamp: 'TD 9/16/2022 01:10:00'!
+push: aString 
+	| newTop |
+	newTop := ValuedElement withValue: aString andPrev: top.
+	top := newTop.
+	size := size + 1.! !
+
+
+!OOStack methodsFor: 'stack operations' stamp: 'TD 9/16/2022 01:21:23'!
+value
+	^top value.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -205,14 +257,6 @@ stackEmptyErrorDescription
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
 Object subclass: #SentenceFinderByPrefix
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Stack-Exercise'!
-
-
-!classDefinition: #StackState category: 'Stack-Exercise'!
-Object subclass: #StackState
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''

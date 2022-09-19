@@ -165,92 +165,136 @@ test00StackEmptyReturnsEmptyCollection
 	sentenceFinder := SentenceFinderByPrefix withStack: OOStack new andPrefix: 'Pepe'.
 	self assertNoSentencesWereFoundWithPrefixBy: sentenceFinder.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'TD 9/19/2022 00:37:27'!
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'FM 9/19/2022 00:45:16'!
 test01StackWithNoMatchesReturnsEmptyCollection
 	|sentenceFinder stack|
 	
-	"Si bien algunas frases se repiten, preferimos que sea transparente el contenido del stack desde un comienzo, por lo que este sería el único 'código repetido' que dejamos a drede"
+	"Si bien algunas frases se repiten, preferimos que sea transparente el contenido del stack desde un comienzo, por lo que este sera el  unico codigo repetido que dejamos adrede"
 	stack := self createStackFromACollectionOfSentences: 
 				(OrderedCollection 
-					with: 'Pepe estuvo aquí' 
-					with: 'No se nos ocurre qué poner').
+					with: 'Pepe estuvo aqui'
+					with: 'No se nos ocurre que poner').
 	
 	sentenceFinder := SentenceFinderByPrefix withStack: stack andPrefix: 'Wilki'.
 	self assertNoSentencesWereFoundWithPrefixBy: sentenceFinder.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'TD 9/19/2022 00:35:58'!
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'FM 9/19/2022 00:57:48'!
 test02StackWithMatchesReturnsMatchedCollection
 	|sentenceFinder stack finderResult |
 	
 	stack := self createStackFromACollectionOfSentences: 
 				(OrderedCollection 
-					with: 'Pepe estuvo aquí'
+					with: 'Pepe estuvo aqui'
 					with: 'Wilki es un capo... ahora seguro nos aprueban'
-					with: 'No se nos ocurre qué poner').
+					with: 'No se nos ocurre que poner').
 	
 	sentenceFinder := SentenceFinderByPrefix withStack: stack andPrefix: 'Wilki'.
 	finderResult := sentenceFinder findPrefix.
 	self assert: finderResult size equals: 1.
-	self assert: finderResult first equals: 'Wilki es un capo... ahora seguro nos aprueban'.! !
+	self assert: finderResult includes: 'Wilki es un capo... ahora seguro nos aprueban'.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'TD 9/19/2022 00:37:27'!
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'FM 9/19/2022 00:44:31'!
 test03StackWithCaseInsensitiveMatchesReturnsEmptyCollection
 	|sentenceFinder stack |
 	
 	stack := self createStackFromACollectionOfSentences: 
 				(OrderedCollection 
-					with: 'Pepe estuvo aquí'
+					with: 'Pepe estuvo aqui'
 					with: 'Wilki es un capo... ahora seguro nos aprueban'
-					with: 'No se nos ocurre qué poner').
+					with: 'No se nos ocurre que poner').
 	
 	sentenceFinder := SentenceFinderByPrefix withStack: stack andPrefix: 'wilki'.
 	self assertNoSentencesWereFoundWithPrefixBy: sentenceFinder.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'TD 9/19/2022 00:37:27'!
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'FM 9/19/2022 00:44:18'!
 test04StackWithMidSentenceMatchesReturnsEmptyCollection
 	|sentenceFinder stack |
 	
 	stack := self createStackFromACollectionOfSentences: 
 				(OrderedCollection 
-					with: 'Pepe estuvo aquí'
+					with: 'Pepe estuvo aqui'
 					with: 'Wilki es un capo... ahora seguro nos aprueban'
-					with: 'Bueno está bien, los demás docentes también son capos'
-					with: 'No se nos ocurre qué poner').
+					with: 'Bueno esta bien, los demas docentes tambien son capos'
+					with: 'No se nos ocurre que poner').
 	
 	sentenceFinder := SentenceFinderByPrefix withStack: stack andPrefix: 'docentes'.
 	self assertNoSentencesWereFoundWithPrefixBy: sentenceFinder.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'TD 9/19/2022 00:29:01'!
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'FM 9/19/2022 00:44:59'!
 test05EmptyStringFinderThrowsError
 	|stack |
 	
 	stack := self createStackFromACollectionOfSentences: 
 				(OrderedCollection 
-					with: 'Pepe estuvo aquí'
+					with: 'Pepe estuvo aqui'
 					with: 'Wilki es un capo... ahora seguro nos aprueban'
-					with: 'Bueno está bien, los demás docentes también son capos'
-					with: 'No se nos ocurre qué poner').
+					with: 'Bueno esta bien, los demas docentes tambien son capos'
+					with: 'No se nos ocurre que poner').
 	
 	self 
 		should: [	SentenceFinderByPrefix withStack: stack andPrefix: ''.] 
 		raise: Error 
 		withMessageText: SentenceFinderByPrefix invalidPrefixError.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'TD 9/19/2022 00:29:34'!
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'FM 9/19/2022 00:45:50'!
 test06SpaceCharSentenceFinderThrowsError
 	|stack|
 	
 	stack := self createStackFromACollectionOfSentences: 
 				(OrderedCollection 
-					with: 'Pepe estuvo aquí'
+					with: 'Pepe estuvo aqui'
 					with: 'Wilki es un capo... ahora seguro nos aprueban'
-					with: 'Bueno está bien, los demás docentes también son capos'
-					with: 'No se nos ocurre qué poner').
+					with: 'Bueno esta bien, los demas docentes tambien son capos'
+					with: 'No se nos ocurre que poner').
 	
 	self 
-		should: [SentenceFinderByPrefix withStack: stack andPrefix: 'Bueno está'.] 
+		should: [SentenceFinderByPrefix withStack: stack andPrefix: 'Bueno est '.] 
 		raise: Error
 		withMessageText: SentenceFinderByPrefix invalidPrefixError.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'FM 9/19/2022 00:59:11'!
+test07StackWithMultipleMatchesReturnsMultipleMatchedCollection
+	|sentenceFinder stack finderResult|
+	
+	stack := self createStackFromACollectionOfSentences: 
+				(OrderedCollection 
+					with: 'Pepe estuvo aqui'
+					with: 'Wikipedia sirve para buscar'
+					with: 'Wilki es un capo... ahora seguro nos aprueban'
+					with: 'Bueno esta bien, los demas docentes tambien son capos'
+					with: 'No se nos ocurre que poner, Wiiii!!'
+					with: 'Wii Sports').
+	
+	sentenceFinder := SentenceFinderByPrefix withStack: stack andPrefix: 'Wi'.
+	finderResult := sentenceFinder findPrefix.
+	self assert: finderResult size equals: 3.
+	self assert: finderResult includes: 'Wikipedia sirve para buscar'.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'FM 9/19/2022 01:09:14'!
+test08StackPreservesOrder
+	|sentenceFinder stack stackClone|
+	
+	stack := self createStackFromACollectionOfSentences: 
+				(OrderedCollection 
+					with: 'Pepe estuvo aqui'
+					with: 'Wikipedia sirve para buscar'
+					with: 'Buenas noches America').
+					
+	"Entendemos que este clon sigue respetando el enunciado, ya que es para el test y no para la logica de la busqueda."
+	stackClone :=  self createStackFromACollectionOfSentences: 
+				(OrderedCollection 
+					with: 'Pepe estuvo aqui'
+					with: 'Wikipedia sirve para buscar'
+					with: 'Buenas noches America'
+					).
+					
+	sentenceFinder := SentenceFinderByPrefix withStack: stack andPrefix: 'Wi'.
+	sentenceFinder findPrefix.
+	
+	[stackClone isEmpty not] whileTrue: [
+			self assert: stackClone pop = stack pop.
+		].
+	! !
 
 
 !classDefinition: #Element category: 'Stack-Exercise'!
@@ -403,7 +447,7 @@ Sentence class
 
 !Sentence class methodsFor: 'instance creation' stamp: 'TD 9/19/2022 00:05:45'!
 withValue: aSentence forAMatchingPrefix: aPrefix
-	"Acá sí usamos el matamosquitos"
+	"Ac  s  usamos el matamosquitos"
 	
 	self subclasses detect: [:aSubclass | aSubclass isPrefixed = (aSentence beginsWith: aPrefix)]
 	ifFound: [:aSubclass | ^aSubclass initializeSentenceFor: aSentence]
@@ -487,14 +531,20 @@ initializeWithStack: anOOStack andPrefix: aPrefix
 	prefixToFind := aPrefix.! !
 
 
-!SentenceFinderByPrefix methodsFor: 'find' stamp: 'TD 9/19/2022 00:14:37'!
+!SentenceFinderByPrefix methodsFor: 'find' stamp: 'FM 9/19/2022 01:10:00'!
 findPrefix
-	|resultingCollection |
+	|resultingCollection stackBackup|
 	resultingCollection := OrderedCollection new.
+	stackBackup := OOStack new.
 	
 	[sentenceStack isEmpty not] whileTrue: [
+		stackBackup push: sentenceStack top.
 		(Sentence withValue:  (sentenceStack pop) forAMatchingPrefix: prefixToFind) 
 			ifContainsPrefixAddTo: resultingCollection.
+	].
+
+	[stackBackup isEmpty not] whileTrue: [
+		sentenceStack push: stackBackup pop.
 	].
 
 	^resultingCollection.! !
@@ -513,7 +563,7 @@ invalidPrefixError
 !SentenceFinderByPrefix class methodsFor: 'instance creation' stamp: 'TD 9/18/2022 23:50:55'!
 withStack: anOOStack andPrefix: aPrefix
 
-	"Preferimos usar ifs encapsulados en la clase que hacer el matamosquitos para hacer la distinción de prefijo válido o inválido"
+	"Preferimos usar ifs encapsulados en la clase que hacer el matamosquitos para hacer la distinci n de prefijo v lido o inv lido"
 	(aPrefix isEmpty or: [aPrefix includesSubString: ' ']) and: [^self error: self invalidPrefixError].
 
 	^self new initializeWithStack: anOOStack andPrefix: aPrefix.! !

@@ -12,27 +12,27 @@ test01emptyPortfolioHasZeroBalance
 	
 	self assert: 0 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TD 10/6/2022 21:59:11'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:16'!
 test02portfolioWith1AccountHasAccountBalance
-	|portfolio account transaction|
+	|portfolio account |
 	
 	account := ReceptiveAccount new.
-	transaction := Deposit register: 50 on: account.
+	Deposit register: 50 on: account.
 	portfolio := Portfolio new.
 	portfolio add: account.
 	
 	self assert: 50 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TD 10/6/2022 21:59:11'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:30'!
 test03portfolioWithManyAccountsHasAccountSumBalance
-	|portfolio account transaction account1 account2 transaction1 transaction2 |
+	|portfolio account account1 account2 |
 	
 	account := ReceptiveAccount new.
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
-	transaction := Deposit register: 50 on: account.
-	transaction1 := Deposit register: 100 on: account1.
-	transaction2 := Withdraw register: 75 on: account2.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
+	Withdraw register: 75 on: account2.
 	portfolio := Portfolio new.
 	portfolio add: account.
 	portfolio add: account1.
@@ -40,16 +40,16 @@ test03portfolioWithManyAccountsHasAccountSumBalance
 	
 	self assert: 75 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TD 10/6/2022 21:59:29'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:38'!
 test04portfolioWithManyAccountsAndPortfoliosHasAccountAndPortfolioSumBalance
-	|portfolio account transaction account1 account2 transaction1 transaction2 portfolio1 |
+	|portfolio account account1 account2 portfolio1 |
 	
 	account := ReceptiveAccount new.
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
-	transaction := Deposit register: 50 on: account.
-	transaction1 := Deposit register: 100 on: account1.
-	transaction2 := Withdraw register: 75 on: account2.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
+	Withdraw register: 75 on: account2.
 	portfolio := Portfolio new.
 	portfolio1 := Portfolio new.
 	portfolio add: account.
@@ -59,7 +59,7 @@ test04portfolioWithManyAccountsAndPortfoliosHasAccountAndPortfolioSumBalance
 	
 	self assert: 75 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TD 10/13/2022 21:32:02'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:59'!
 test05portfolioWithNoAccountsDoesNotHaveATransactionRegistered
 	|portfolio transaction account|
 	
@@ -69,7 +69,7 @@ test05portfolioWithNoAccountsDoesNotHaveATransactionRegistered
 	
 	self assert: false equals: (portfolio hasRegistered: transaction).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TD 10/13/2022 21:19:29'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:53'!
 test06portfolioWithOneAccountHasTheSameTransactionAsTheAccount
 	|portfolio transaction account|
 	
@@ -80,15 +80,15 @@ test06portfolioWithOneAccountHasTheSameTransactionAsTheAccount
 	
 	self assert: true equals: (portfolio hasRegistered: transaction).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TD 10/13/2022 21:21:52'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:16:17'!
 test07portfolioWithManyAccountsHasSomeAccountsTransaction
-	|portfolio transaction account account1 account2 transaction1 transaction2 |
+	|portfolio account account1 account2 transaction2 |
 	
 	account := ReceptiveAccount new.
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
-	transaction := Deposit register: 50 on: account.
-	transaction1 := Deposit register: 100 on: account1.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
 	transaction2 := Withdraw register: 75 on: account2.
 	portfolio := Portfolio new.
 	portfolio add: account.
@@ -97,15 +97,15 @@ test07portfolioWithManyAccountsHasSomeAccountsTransaction
 	
 	self assert: true equals: (portfolio hasRegistered: transaction2)! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TD 10/13/2022 21:27:40'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:16:29'!
 test08portfolioWithManyAccountsAndPortfoliosHasATransactionInsideAPortfolio
-	|portfolio account transaction account1 account2 transaction1 transaction2 portfolio1 |
+	|portfolio account account1 account2 transaction2 portfolio1 |
 	
 	account := ReceptiveAccount new.
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
-	transaction := Deposit register: 50 on: account.
-	transaction1 := Deposit register: 100 on: account1.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
 	transaction2 := Withdraw register: 75 on: account2.
 	portfolio := Portfolio new.
 	portfolio1 := Portfolio new.
@@ -126,16 +126,64 @@ test09portfolioWithNoAccountsDoesNotHaveTransactions
 	
 	self assert: (OrderedCollection new) equals: portfolio transactions.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'TD 10/13/2022 21:36:39'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:16:37'!
 test10portfolioWithOneAccountHasAccountsTransactions
-	|portfolio account transaction |
+	|portfolio account |
 	
 	account := ReceptiveAccount new.
-	transaction := Deposit register: 50 on: account. 
+	Deposit register: 50 on: account. 
 	portfolio := Portfolio new.
 	portfolio add: account.
 	
 	self assert: (account transactions) equals: portfolio transactions.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:16:46'!
+test11portfolioWithManyAccountsHasAccountsTransactionsInAll
+	|portfolio account account1 account2 transactionList |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
+	Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:14:52'!
+test12portfolioWithManyAccountsAndPortfoliosHasAccountsTransactionsInAll
+	|portfolio account account1 account2 transactionList portfolio1 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
+	
+	portfolio := Portfolio new.
+	portfolio1 := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+	
+	Withdraw register: 75 on: account2.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
 
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
@@ -332,6 +380,10 @@ Object subclass: #AccountType
 balance
 	self subclassResponsibility.! !
 
+!AccountType methodsFor: 'balance' stamp: 'FM 10/14/2022 19:18:57'!
+transactions
+	self subclassResponsibility.! !
+
 
 !AccountType methodsFor: 'parent portfolio balance modifier' stamp: 'TD 10/13/2022 21:12:16'!
 updateParentPortfolioBalance: aBalance
@@ -359,10 +411,15 @@ balance
 hasRegistered: aTransaction 
 	^accountsAndPortfolios anySatisfy: [:aMember | aMember hasRegistered: aTransaction].! !
 
-!Portfolio methodsFor: 'information' stamp: 'TD 10/13/2022 21:36:14'!
+!Portfolio methodsFor: 'information' stamp: 'FM 10/14/2022 19:06:08'!
 transactions
-	accountsAndPortfolios isEmpty ifTrue: [^OrderedCollection new.].
-	^(accountsAndPortfolios first) transactions.! !
+	|transactionList|
+	transactionList := OrderedCollection new.
+	accountsAndPortfolios do: [:member | 
+		transactionList addAll: (member transactions)].
+		
+	^transactionList.
+	! !
 
 
 !Portfolio methodsFor: 'accounts - private' stamp: 'TD 10/6/2022 21:59:11'!

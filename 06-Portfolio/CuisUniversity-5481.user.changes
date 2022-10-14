@@ -20032,3 +20032,556 @@ PASSED!
 ----SNAPSHOT----(13 October 2022 21:41:11) CuisUniversity-5481.image priorSource: 7059698!
 
 ----QUIT----(13 October 2022 21:41:15) CuisUniversity-5481.image priorSource: 7104276!
+
+----STARTUP---- (14 October 2022 18:46:27) as C:\Users\Franco\Desktop\UBA2\Ing1\CuisUniversity\CuisUniversity-5466.image!
+
+
+----End fileIn of C:\Users\Franco\Downloads\06-Portfolio.st----!
+
+!testRun: #PortfolioTest #test01emptyPortfolioHasZeroBalance stamp: 'FM 10/14/2022 18:48:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test02portfolioWith1AccountHasAccountBalance stamp: 'FM 10/14/2022 18:48:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03portfolioWithManyAccountsHasAccountSumBalance stamp: 'FM 10/14/2022 18:48:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test04portfolioWithManyAccountsAndPortfoliosHasAccountAndPortfolioSumBalance stamp: 'FM 10/14/2022 18:48:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test05portfolioWithNoAccountsDoesNotHaveATransactionRegistered stamp: 'FM 10/14/2022 18:48:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test06portfolioWithOneAccountHasTheSameTransactionAsTheAccount stamp: 'FM 10/14/2022 18:48:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test07portfolioWithManyAccountsHasSomeAccountsTransaction stamp: 'FM 10/14/2022 18:48:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test08portfolioWithManyAccountsAndPortfoliosHasATransactionInsideAPortfolio stamp: 'FM 10/14/2022 18:48:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test09portfolioWithNoAccountsDoesNotHaveTransactions stamp: 'FM 10/14/2022 18:48:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test10portfolioWithOneAccountHasAccountsTransactions stamp: 'FM 10/14/2022 18:48:43'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 18:51:26'!
+test11portfolioWithManyAccountsHasAccountsTransactionsInAll
+	|portfolio account transaction |
+	
+	account := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account. 
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self assert: (account transactions) equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 18:51:48' prior: 50566400!
+test11portfolioWithManyAccountsHasAccountsTransactionsInAll
+	|portfolio account transaction account1 account2 transaction1 transaction2 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	transaction1 := Deposit register: 100 on: account1.
+	transaction2 := Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	self assert: (account transactions) equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 18:56:27' prior: 50566413!
+test11portfolioWithManyAccountsHasAccountsTransactionsInAll
+	|portfolio account transaction account1 account2 transaction1 transaction2 transactionList |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	transaction1 := Deposit register: 100 on: account1.
+	transaction2 := Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: (account transactions) equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 18:56:46' prior: 50566435!
+test11portfolioWithManyAccountsHasAccountsTransactionsInAll
+	|portfolio account transaction account1 account2 transaction1 transaction2 transactionList |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	transaction1 := Deposit register: 100 on: account1.
+	transaction2 := Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 18:56:50'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 18:56:50'!
+FAILURE!
+!Portfolio methodsFor: 'information' stamp: 'FM 10/14/2022 18:59:25' prior: 50566300!
+transactions
+	
+	accountsAndPortfolios isEmpty ifTrue: [^OrderedCollection new.].
+	
+	^accountsAndPortfolios inject: (OrderedCollection new) into: [:curTransactions :member | curTransactions addAll: (member transactions)].
+	"(accountsAndPortfolios first) transactions."! !
+!Portfolio methodsFor: 'information' stamp: 'FM 10/14/2022 18:59:37' prior: 50566499!
+transactions
+	
+	"accountsAndPortfolios isEmpty ifTrue: [^OrderedCollection new.]."
+	
+	^accountsAndPortfolios inject: (OrderedCollection new) into: [:curTransactions :member | curTransactions addAll: (member transactions)].
+	"(accountsAndPortfolios first) transactions."! !
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 18:59:40'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 18:59:40'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:01:08'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:01:08'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:01:22' prior: 50566463!
+test11portfolioWithManyAccountsHasAccountsTransactionsInAll
+	|portfolio account transaction account1 account2 transaction1 transactionList |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	transaction1 := Deposit register: 100 on: account1.
+	"transaction2 := Withdraw register: 75 on: account2."
+	portfolio := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	"portfolio add: account2."
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	"transactionList addAll: account2 transactions."
+	
+	self assert: transactionList equals: portfolio transactions.! !
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:01:27'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:01:27'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:01:34' prior: 50566539!
+test11portfolioWithManyAccountsHasAccountsTransactionsInAll
+	|portfolio account transaction account1 account2 transaction1 transaction2 transactionList |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	transaction1 := Deposit register: 100 on: account1.
+	transaction2 := Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
+!Portfolio methodsFor: 'information' stamp: 'FM 10/14/2022 19:04:10' prior: 50566511!
+transactions
+	|transactionList|
+	"accountsAndPortfolios isEmpty ifTrue: [^OrderedCollection new.]."
+	transactionList := OrderedCollection new.
+	accountsAndPortfolios do: [:member | 
+		transactionList addAll: (member transactions)].
+		
+	^transactionList.
+	"accountsAndPortfolios inject: (OrderedCollection new) into: [:curTransactions :member | curTransactions addAll: (member transactions)]."
+	"(accountsAndPortfolios first) transactions."! !
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:04:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test03portfolioWithManyAccountsHasAccountSumBalance stamp: 'FM 10/14/2022 19:04:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test10portfolioWithOneAccountHasAccountsTransactions stamp: 'FM 10/14/2022 19:04:30'!
+PASSED!
+!Portfolio methodsFor: 'information' stamp: 'FM 10/14/2022 19:05:49' prior: 50566602!
+transactions
+	|transactionList|
+	"accountsAndPortfolios isEmpty ifTrue: [^OrderedCollection new.]."
+	transactionList := OrderedCollection new.
+	"accountsAndPortfolios do: [:member | 
+		transactionList addAll: (member transactions)].
+		
+	^transactionList."
+	^accountsAndPortfolios inject: transactionList into: [:curTransactions :member | curTransactions addAll: (member transactions)].
+	"(accountsAndPortfolios first) transactions."! !
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:05:51'!
+FAILURE!
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:05:51'!
+FAILURE!
+!Portfolio methodsFor: 'information' stamp: 'FM 10/14/2022 19:06:08' prior: 50566631!
+transactions
+	|transactionList|
+	transactionList := OrderedCollection new.
+	accountsAndPortfolios do: [:member | 
+		transactionList addAll: (member transactions)].
+		
+	^transactionList.
+	! !
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:06:11'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:07:07' prior: 50566575!
+test11portfolioWithManyAccountsHasAccountsTransactionsInAll
+	|portfolio account transaction account1 account2 transaction1 transaction2 transactionList portfolio1 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	transaction1 := Deposit register: 100 on: account1.
+	transaction2 := Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio1 := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:01:34' prior: 50566670!
+test11portfolioWithManyAccountsHasAccountsTransactionsInAll
+	|portfolio account transaction account1 account2 transaction1 transaction2 transactionList |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	transaction1 := Deposit register: 100 on: account1.
+	transaction2 := Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:07:55'!
+test12portfolioWithManyAccountsAndPortfoliosHasAccountsTransactionsInAll
+	|portfolio account transaction account1 account2 transaction1 transaction2 transactionList portfolio1 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	transaction1 := Deposit register: 100 on: account1.
+	transaction2 := Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio1 := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:13:56' prior: 50566727!
+test12portfolioWithManyAccountsAndPortfoliosHasAccountsTransactionsInAll
+	|portfolio account transaction account1 account2 transaction1 transaction2 transactionList portfolio1 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	transaction1 := Deposit register: 100 on: account1.
+	
+	portfolio := Portfolio new.
+	portfolio1 := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+	
+	transaction2 := Withdraw register: 75 on: account2.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
+
+!testRun: #PortfolioTest #test12portfolioWithManyAccountsAndPortfoliosHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:14:00'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:14:20' prior: 50566757!
+test12portfolioWithManyAccountsAndPortfoliosHasAccountsTransactionsInAll
+	|portfolio account transaction account1 account2 transaction1 transaction2 transactionList portfolio1 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	transaction1 := Deposit register: 100 on: account1.
+	
+	portfolio := Portfolio new.
+	portfolio1 := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+	
+	transaction2 := Withdraw register: 75 on: account2.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:14:52' prior: 50566792!
+test12portfolioWithManyAccountsAndPortfoliosHasAccountsTransactionsInAll
+	|portfolio account account1 account2 transactionList portfolio1 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
+	
+	portfolio := Portfolio new.
+	portfolio1 := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+	
+	Withdraw register: 75 on: account2.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
+
+!testRun: #PortfolioTest #test12portfolioWithManyAccountsAndPortfoliosHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:14:55'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:16' prior: 50565907!
+test02portfolioWith1AccountHasAccountBalance
+	|portfolio account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self assert: 50 equals: portfolio balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:30' prior: 50565918!
+test03portfolioWithManyAccountsHasAccountSumBalance
+	|portfolio account account1 account2 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
+	Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	self assert: 75 equals: portfolio balance.! !
+
+!testRun: #PortfolioTest #test02portfolioWith1AccountHasAccountBalance stamp: 'FM 10/14/2022 19:15:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03portfolioWithManyAccountsHasAccountSumBalance stamp: 'FM 10/14/2022 19:15:32'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:38' prior: 50565938!
+test04portfolioWithManyAccountsAndPortfoliosHasAccountAndPortfolioSumBalance
+	|portfolio account account1 account2 portfolio1 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
+	Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio1 := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+	
+	self assert: 75 equals: portfolio balance.! !
+
+!testRun: #PortfolioTest #test04portfolioWithManyAccountsAndPortfoliosHasAccountAndPortfolioSumBalance stamp: 'FM 10/14/2022 19:15:41'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:45' prior: 50565961!
+test05portfolioWithNoAccountsDoesNotHaveATransactionRegistered
+	|portfolio transaction account|
+	
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	portfolio := Portfolio new.
+	
+	self assert: false equals: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:48' prior: 50565973!
+test06portfolioWithOneAccountHasTheSameTransactionAsTheAccount
+	|portfolio transaction account|
+	
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self assert: true equals: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:53' prior: 50566928!
+test06portfolioWithOneAccountHasTheSameTransactionAsTheAccount
+	|portfolio transaction account|
+	
+	account := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self assert: true equals: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:15:59' prior: 50566916!
+test05portfolioWithNoAccountsDoesNotHaveATransactionRegistered
+	|portfolio transaction account|
+	
+	account := ReceptiveAccount new.
+	transaction := Deposit register: 50 on: account.
+	portfolio := Portfolio new.
+	
+	self assert: false equals: (portfolio hasRegistered: transaction).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:16:17' prior: 50565986!
+test07portfolioWithManyAccountsHasSomeAccountsTransaction
+	|portfolio account account1 account2 transaction2 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
+	transaction2 := Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	self assert: true equals: (portfolio hasRegistered: transaction2)! !
+
+!testRun: #PortfolioTest #test07portfolioWithManyAccountsHasSomeAccountsTransaction stamp: 'FM 10/14/2022 19:16:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06portfolioWithOneAccountHasTheSameTransactionAsTheAccount stamp: 'FM 10/14/2022 19:16:19'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:16:29' prior: 50566007!
+test08portfolioWithManyAccountsAndPortfoliosHasATransactionInsideAPortfolio
+	|portfolio account account1 account2 transaction2 portfolio1 |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
+	transaction2 := Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio1 := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+	
+	self assert: true equals: (portfolio hasRegistered: transaction2).
+	
+	"Nos jugo en contra aca el hecho de tener una sola coleccion para elementos de tipo abstracto xx por eso este test paso de una, pero basicamente va a buscar a las hojas."! !
+
+!testRun: #PortfolioTest #test08portfolioWithManyAccountsAndPortfoliosHasATransactionInsideAPortfolio stamp: 'FM 10/14/2022 19:16:30'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:16:37' prior: 50566044!
+test10portfolioWithOneAccountHasAccountsTransactions
+	|portfolio account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 50 on: account. 
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self assert: (account transactions) equals: portfolio transactions.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FM 10/14/2022 19:16:46' prior: 50566700!
+test11portfolioWithManyAccountsHasAccountsTransactionsInAll
+	|portfolio account account1 account2 transactionList |
+	
+	account := ReceptiveAccount new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account.
+	Deposit register: 100 on: account1.
+	Withdraw register: 75 on: account2.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	transactionList := OrderedCollection new.
+	transactionList addAll: account transactions.
+	transactionList addAll: account1 transactions.
+	transactionList addAll: account2 transactions.
+	
+	self assert: transactionList equals: portfolio transactions.! !
+
+!testRun: #PortfolioTest #test11portfolioWithManyAccountsHasAccountsTransactionsInAll stamp: 'FM 10/14/2022 19:16:47'!
+PASSED!
+!AccountType methodsFor: 'balance' stamp: 'FM 10/14/2022 19:18:57'!
+transactions
+	self subclassResponsibility.! !

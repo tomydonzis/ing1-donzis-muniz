@@ -305,6 +305,159 @@ test07AccountKnowsItsTransactions
 ! !
 
 
+!classDefinition: #ReportTest category: 'Portfolio-Solucion'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:43:57'!
+test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0
+	|account report|
+	account := ReceptiveAccount new.
+	report := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: report run.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:44:43'!
+test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings
+	|account account2 report |
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	report := AccountSummary for: account.
+	
+	Deposit register: 30 on: account.
+	Withdraw register: 15 on: account.
+	Transfer register: 5 from: account to: account2.
+	Transfer register: 20 from: account2 to: account.
+	
+	self assert: (OrderedCollection with: 'Depósito por 30' 
+							   with: 'Extracción por 15' 
+							   with: 'Salida por transferencia de 5' 
+							   with: 'Entrada por transferencia de 20' 
+							   with: 'Balance = 30') 
+	equals: report run.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:44:55'!
+test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings
+	|account account2 report |
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	report := AccountSummary for: account.
+	
+	Deposit register: 100 on: account.
+	Withdraw register: 20 on: account.
+	Transfer register: 80 from: account to: account2.
+	Transfer register: 700 from: account2 to: account.
+	
+	self assert: (OrderedCollection with: 'Depósito por 100' 
+							   with: 'Extracción por 20' 
+							   with: 'Salida por transferencia de 80' 
+							   with: 'Entrada por transferencia de 700' 
+							   with: 'Balance = 700') 
+	equals: report run.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:45:12'!
+test04accountSummaryOnEmptyPortfolioReturnsBalanceZero
+	|portfolio report |
+	portfolio := Portfolio new.
+	report := AccountSummary for: portfolio.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: report run.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:45:30'!
+test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions
+	|portfolio account account2 report |
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	report := AccountSummary for: portfolio.
+	
+	Deposit register: 30 on: account.
+	Withdraw register: 15 on: account.
+	Transfer register: 5 from: account to: account2.
+	Transfer register: 20 from: account2 to: account.
+	
+	portfolio add: account.
+	
+	self assert: (OrderedCollection with: 'Depósito por 30' 
+							   with: 'Extracción por 15' 
+							   with: 'Salida por transferencia de 5' 
+							   with: 'Entrada por transferencia de 20' 
+							   with: 'Balance = 30') 
+	equals: report run.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:45:43'!
+test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions
+	|portfolio account account2 report |
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	report := AccountSummary for: portfolio.
+	
+	Deposit register: 30 on: account.
+	Transfer register: 5 from: account to: account2.
+	Transfer register: 20 from: account2 to: account.
+	
+	portfolio add: account.
+	portfolio add: account2.
+	
+	self assert: (OrderedCollection with: 'Depósito por 30' 
+							   with: 'Salida por transferencia de 5' 
+							   with: 'Entrada por transferencia de 20'
+							   with: 'Entrada por transferencia de 5'
+							   with: 'Salida por transferencia de 20' 
+							   with: 'Balance = 30') 
+	equals: report run.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:53:44'!
+test07transferNetOnAccountWithNoTransfersReturnsZero
+	|account report |
+	account := ReceptiveAccount new.
+	report := TransferNet for: account.
+	
+	self assert: 0 equals: report run.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:54:14'!
+test08transferNetOnAccountWithOneTransferHasCorrectValue
+	|account account2 report |
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	report := TransferNet for: account.
+	Transfer register: 40 from: account to: account2. 
+	
+	self assert: -40 equals: report run.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:54:30'!
+test09transferNetOnAccountWithMultipleTransfersHasCorrectValue
+	|account account2 report |
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	report := TransferNet for: account.
+	Transfer register: 40 from: account to: account2.
+	Transfer register: 70 from: account2 to: account.
+	Transfer register: 42 from: account to: account2.
+	Transfer register: 20 from: account2 to: account. 
+	
+	self assert: 8 equals: report run.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:54:44'!
+test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue
+	|account account2 report |
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	report := TransferNet for: account.
+	Transfer register: 40 from: account to: account2.
+	Transfer register: 70 from: account2 to: account.
+	Transfer register: 42 from: account to: account2.
+	Transfer register: 20 from: account2 to: account. 
+	Withdraw register: 50 on: account. 
+	Deposit register: 100 on: account. 
+	
+	self assert: 8 equals: report run.! !
+
+
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
 TestCase subclass: #TransferTest
 	instanceVariableNames: ''
@@ -385,6 +538,15 @@ transactions
 addedTo: aPortfolio
 
 	self subclassResponsibility ! !
+
+
+!Account methodsFor: 'reporting' stamp: 'S 10/20/2022 21:49:38'!
+provideBalanceToReport: aReport
+	aReport add: ('Balance = ', self balance asString).! !
+
+!Account methodsFor: 'reporting' stamp: 'S 10/20/2022 21:18:10'!
+transactionsOnReportFormatInto: reportTransactions
+	self subclassResponsibility.! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
@@ -498,6 +660,11 @@ signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
 
+
+!Portfolio methodsFor: 'reporting' stamp: 'S 10/20/2022 21:23:14'!
+transactionsOnReportFormatInto: aReport
+	accounts do: [:anAccount | anAccount transactionsOnReportFormatInto: aReport].! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
@@ -581,6 +748,21 @@ addedTo: aPortfolio
 	
 	! !
 
+
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'S 10/20/2022 20:24:20'!
+runTransferNet
+	^self calculateTransferNet.! !
+
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'S 10/20/2022 21:19:34'!
+transactionsOnReportFormatInto: aReport
+
+	^ transactions do: [:aTransaction| aReport add: (aTransaction accountSummaryEntryFormat, aTransaction value asString)]! !
+
+
+!ReceptiveAccount methodsFor: 'transfer net' stamp: 'S 10/20/2022 20:34:04'!
+calculateTransferNet
+	^transactions inject: 0 into: [:aTransferNet :aTransaction | aTransaction impactOnTransferNet: aTransferNet].! !
+
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
 Object subclass: #AccountTransaction
@@ -589,16 +771,15 @@ Object subclass: #AccountTransaction
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25'!
-value 
-
-	self subclassResponsibility ! !
-
-
 !AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
 affectBalance: aBalance
 
 	self subclassResponsibility ! !
+
+
+!AccountTransaction methodsFor: 'transfer net calculation' stamp: 'S 10/20/2022 21:25:16'!
+impactOnTransferNet: aTransferNet
+	self subclassResponsibility.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -606,15 +787,18 @@ affectBalance: aBalance
 AccountTransaction class
 	instanceVariableNames: ''!
 
-!AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/21/2019 18:54:27'!
-register: aValue on: account
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'S 10/20/2022 17:46:19'!
+for: aTransactionalValue
 
-	| transaction |
+	^ self new initializeFor: aTransactionalValue ! !
+
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'S 10/20/2022 17:45:59'!
+register: aTransactionalValue on: aReceptiveAccount
+	|transferEnd|
+	transferEnd := self for: aTransactionalValue.
+	aReceptiveAccount register: transferEnd.
 	
-	transaction := self for: aValue.
-	account register: transaction.
-		
-	^ transaction! !
+	^transferEnd.! !
 
 
 !classDefinition: #Deposit category: 'Portfolio-Solucion'!
@@ -624,13 +808,13 @@ AccountTransaction subclass: #Deposit
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45'!
+!Deposit methodsFor: 'initialization' stamp: 'S 10/20/2022 17:43:25'!
 initializeFor: aValue
 
 	value := aValue ! !
 
 
-!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38'!
+!Deposit methodsFor: 'value' stamp: 'S 10/20/2022 17:43:14'!
 value
 
 	^ value! !
@@ -641,93 +825,19 @@ affectBalance: aBalance
 
 	^aBalance + value ! !
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Deposit class' category: 'Portfolio-Solucion'!
-Deposit class
-	instanceVariableNames: ''!
-
-!Deposit class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:38'!
-for: aValue
-
-	^ self new initializeFor: aValue ! !
-
-
-!classDefinition: #Withdraw category: 'Portfolio-Solucion'!
-AccountTransaction subclass: #Withdraw
-	instanceVariableNames: 'value'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46'!
-initializeFor: aValue
-
-	value := aValue ! !
+!Deposit methodsFor: 'transfer net calculation' stamp: 'S 10/20/2022 20:36:34'!
+impactOnTransferNet: aTransferNet 
+	^aTransferNet.! !
 
 
-!Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33'!
-value
-
-	^ value! !
-
-
-!Withdraw methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:15'!
-affectBalance: aBalance
-
-	^aBalance - value! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion'!
-Withdraw class
-	instanceVariableNames: ''!
-
-!Withdraw class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:33'!
-for: aValue
-
-	^ self new initializeFor: aValue ! !
-
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion'!
-Object subclass: #Transfer
-	instanceVariableNames: 'value withdrawalEnd depositEnd'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!Transfer methodsFor: 'initialization' stamp: 'TD 10/20/2022 14:33:51'!
-initializeRegister: aValue from: aSenderAccount to: aReceiverAccount 
-	value := aValue.
-	depositEnd := TransferDeposit registerOn: aReceiverAccount forTransfer: self.
-	withdrawalEnd := TransferWithdrawal registerOn: aSenderAccount forTransfer: self.! !
-
-
-!Transfer methodsFor: 'accessing' stamp: 'TD 10/20/2022 14:17:37'!
-depositEnd
-	^depositEnd! !
-
-!Transfer methodsFor: 'accessing' stamp: 'TD 10/20/2022 14:32:59'!
-value
-	^value.! !
-
-!Transfer methodsFor: 'accessing' stamp: 'TD 10/20/2022 14:16:07'!
-withdrawalEnd
-	^withdrawalEnd.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Transfer class' category: 'Portfolio-Solucion'!
-Transfer class
-	instanceVariableNames: ''!
-
-!Transfer class methodsFor: 'instance creation' stamp: 'TD 10/20/2022 13:53:26'!
-register: aValue from: aSenderAccount to: aReceiverAccount 
-	^self new initializeRegister: aValue from: aSenderAccount to: aReceiverAccount ! !
+!Deposit methodsFor: 'account summary' stamp: 'S 10/20/2022 20:39:24'!
+accountSummaryEntryFormat
+	^'Depósito por '.! !
 
 
 !classDefinition: #TransferEnd category: 'Portfolio-Solucion'!
-Object subclass: #TransferEnd
+AccountTransaction subclass: #TransferEnd
 	instanceVariableNames: 'transfer'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -738,23 +848,18 @@ initializeFor: aTransfer
 	transfer := aTransfer.! !
 
 
+!TransferEnd methodsFor: 'value' stamp: 'S 10/20/2022 20:31:13'!
+impactOnTransferNet: aTransferNet
+	self subclassResponsibility.! !
+
 !TransferEnd methodsFor: 'value' stamp: 'TD 10/20/2022 14:31:46'!
 value
 	^transfer value.! !
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'TransferEnd class' category: 'Portfolio-Solucion'!
-TransferEnd class
-	instanceVariableNames: ''!
-
-!TransferEnd class methodsFor: 'instance creation' stamp: 'TD 10/20/2022 14:33:50'!
-registerOn: aReceptiveAccount forTransfer: aTransfer
-	|transferEnd|
-	transferEnd := self for: aTransfer.
-	aReceptiveAccount register: transferEnd.
-	
-	^transferEnd.! !
+!TransferEnd methodsFor: 'balance' stamp: 'S 10/20/2022 17:06:36'!
+affectBalance: aCurrentBalance
+	self subclassResponsibility.! !
 
 
 !classDefinition: #TransferDeposit category: 'Portfolio-Solucion'!
@@ -768,16 +873,15 @@ TransferEnd subclass: #TransferDeposit
 affectBalance: aCurrentBalance 
 	^aCurrentBalance + self value.! !
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'TransferDeposit class' category: 'Portfolio-Solucion'!
-TransferDeposit class
-	instanceVariableNames: ''!
+!TransferDeposit methodsFor: 'transfer net calculation' stamp: 'S 10/20/2022 20:31:24'!
+impactOnTransferNet: aTransferNet
+	^aTransferNet + self value.! !
 
-!TransferDeposit class methodsFor: 'instance creation' stamp: 'TD 10/20/2022 13:57:41'!
-for: aValue 
-	^self new initializeFor: aValue ! !
 
+!TransferDeposit methodsFor: 'account summary' stamp: 'S 10/20/2022 20:40:22'!
+accountSummaryEntryFormat
+	^'Entrada por transferencia de '.! !
 
 
 !classDefinition: #TransferWithdrawal category: 'Portfolio-Solucion'!
@@ -791,12 +895,143 @@ TransferEnd subclass: #TransferWithdrawal
 affectBalance: aCurrentBalance 
 	^aCurrentBalance - self value.! !
 
+
+!TransferWithdrawal methodsFor: 'transfer net calculation' stamp: 'S 10/20/2022 20:31:32'!
+impactOnTransferNet: aTransferNet
+	^aTransferNet + self value negated.! !
+
+
+!TransferWithdrawal methodsFor: 'account summary' stamp: 'S 10/20/2022 20:39:54'!
+accountSummaryEntryFormat
+	^'Salida por transferencia de '.! !
+
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Withdraw methodsFor: 'initialization' stamp: 'S 10/20/2022 17:43:25'!
+initializeFor: aValue
+
+	value := aValue ! !
+
+
+!Withdraw methodsFor: 'value' stamp: 'S 10/20/2022 17:43:14'!
+value
+
+	^ value! !
+
+
+!Withdraw methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:15'!
+affectBalance: aBalance
+
+	^aBalance - value! !
+
+
+!Withdraw methodsFor: 'transfer net calculation' stamp: 'S 10/20/2022 20:36:11'!
+impactOnTransferNet: aTransferNet
+	^aTransferNet.! !
+
+
+!Withdraw methodsFor: 'account summary' stamp: 'S 10/20/2022 20:40:51'!
+accountSummaryEntryFormat
+	^'Extracción por '.! !
+
+
+!classDefinition: #Report category: 'Portfolio-Solucion'!
+Object subclass: #Report
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Report methodsFor: 'initialization' stamp: 'S 10/20/2022 21:46:37'!
+initializeFor: anAccount
+	account := anAccount.! !
+
+
+!Report methodsFor: 'functionality' stamp: 'S 10/20/2022 21:46:57'!
+run
+	self subclassResponsibility.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'TransferWithdrawal class' category: 'Portfolio-Solucion'!
-TransferWithdrawal class
+!classDefinition: 'Report class' category: 'Portfolio-Solucion'!
+Report class
 	instanceVariableNames: ''!
 
-!TransferWithdrawal class methodsFor: 'instance creation' stamp: 'TD 10/20/2022 13:56:08'!
-for: aValue 
-	^self new initializeFor: aValue ! !
+!Report class methodsFor: 'instance creation' stamp: 'S 10/20/2022 21:46:12'!
+for: anAccount 
+	^self new initializeFor: anAccount ! !
+
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
+Report subclass: #AccountSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummary methodsFor: 'functionality' stamp: 'S 10/20/2022 21:50:04'!
+run
+	|reportTransactions|
+	reportTransactions := OrderedCollection new.
+	
+	account transactionsOnReportFormatInto: reportTransactions.
+	
+	account provideBalanceToReport: reportTransactions.
+	
+	^reportTransactions.! !
+
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion'!
+Report subclass: #TransferNet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferNet methodsFor: 'functionality' stamp: 'S 10/20/2022 21:52:50'!
+run
+	^account calculateTransferNet.! !
+
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value withdrawalEnd depositEnd'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Transfer methodsFor: 'initialization' stamp: 'S 10/20/2022 17:41:51'!
+initializeRegister: aValue from: aSenderAccount to: aReceiverAccount 
+	value := aValue.
+	depositEnd := TransferDeposit register: self on: aReceiverAccount.
+	withdrawalEnd := TransferWithdrawal register: self on: aSenderAccount.! !
+
+
+!Transfer methodsFor: 'accessing' stamp: 'TD 10/20/2022 14:32:59'!
+value
+	^value.! !
+
+
+!Transfer methodsFor: 'ends - testing' stamp: 'TD 10/20/2022 14:17:37'!
+depositEnd
+	^depositEnd! !
+
+!Transfer methodsFor: 'ends - testing' stamp: 'TD 10/20/2022 14:16:07'!
+withdrawalEnd
+	^withdrawalEnd.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Transfer class' category: 'Portfolio-Solucion'!
+Transfer class
+	instanceVariableNames: ''!
+
+!Transfer class methodsFor: 'instance creation' stamp: 'TD 10/20/2022 13:53:26'!
+register: aValue from: aSenderAccount to: aReceiverAccount 
+	^self new initializeRegister: aValue from: aSenderAccount to: aReceiverAccount ! !

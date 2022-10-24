@@ -312,7 +312,7 @@ TestCase subclass: #ReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:43:57'!
+!ReportTest methodsFor: 'tests' stamp: 'S 10/20/2022 21:43:57'!
 test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0
 	|account report|
 	account := ReceptiveAccount new.
@@ -320,7 +320,7 @@ test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0
 	
 	self assert: (OrderedCollection with: 'Balance = 0') equals: report run.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:44:43'!
+!ReportTest methodsFor: 'tests' stamp: 'S 10/20/2022 21:44:43'!
 test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings
 	|account account2 report |
 	account := ReceptiveAccount new.
@@ -339,7 +339,7 @@ test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings
 							   with: 'Balance = 30') 
 	equals: report run.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:44:55'!
+!ReportTest methodsFor: 'tests' stamp: 'S 10/20/2022 21:44:55'!
 test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings
 	|account account2 report |
 	account := ReceptiveAccount new.
@@ -358,7 +358,7 @@ test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStr
 							   with: 'Balance = 700') 
 	equals: report run.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:45:12'!
+!ReportTest methodsFor: 'tests' stamp: 'S 10/20/2022 21:45:12'!
 test04accountSummaryOnEmptyPortfolioReturnsBalanceZero
 	|portfolio report |
 	portfolio := Portfolio new.
@@ -366,7 +366,7 @@ test04accountSummaryOnEmptyPortfolioReturnsBalanceZero
 	
 	self assert: (OrderedCollection with: 'Balance = 0') equals: report run.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:45:30'!
+!ReportTest methodsFor: 'tests' stamp: 'S 10/20/2022 21:45:30'!
 test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions
 	|portfolio account account2 report |
 	portfolio := Portfolio new.
@@ -388,10 +388,11 @@ test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactio
 							   with: 'Balance = 30') 
 	equals: report run.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:45:43'!
+!ReportTest methodsFor: 'tests' stamp: 'TD 10/24/2022 01:52:09'!
 test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions
-	|portfolio account account2 report |
+	|portfolio portfolio1 account account2 report |
 	portfolio := Portfolio new.
+	portfolio1 := Portfolio new.
 	account := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
 	report := AccountSummary for: portfolio.
@@ -401,8 +402,9 @@ test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccounts
 	Transfer register: 20 from: account2 to: account.
 	
 	portfolio add: account.
-	portfolio add: account2.
-	
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+		
 	self assert: (OrderedCollection with: 'Depósito por 30' 
 							   with: 'Salida por transferencia de 5' 
 							   with: 'Entrada por transferencia de 20'
@@ -411,7 +413,7 @@ test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccounts
 							   with: 'Balance = 30') 
 	equals: report run.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:53:44'!
+!ReportTest methodsFor: 'tests' stamp: 'S 10/20/2022 21:53:44'!
 test07transferNetOnAccountWithNoTransfersReturnsZero
 	|account report |
 	account := ReceptiveAccount new.
@@ -419,7 +421,7 @@ test07transferNetOnAccountWithNoTransfersReturnsZero
 	
 	self assert: 0 equals: report run.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:54:14'!
+!ReportTest methodsFor: 'tests' stamp: 'S 10/20/2022 21:54:14'!
 test08transferNetOnAccountWithOneTransferHasCorrectValue
 	|account account2 report |
 	account := ReceptiveAccount new.
@@ -429,7 +431,7 @@ test08transferNetOnAccountWithOneTransferHasCorrectValue
 	
 	self assert: -40 equals: report run.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:54:30'!
+!ReportTest methodsFor: 'tests' stamp: 'S 10/20/2022 21:54:30'!
 test09transferNetOnAccountWithMultipleTransfersHasCorrectValue
 	|account account2 report |
 	account := ReceptiveAccount new.
@@ -442,7 +444,7 @@ test09transferNetOnAccountWithMultipleTransfersHasCorrectValue
 	
 	self assert: 8 equals: report run.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'S 10/20/2022 21:54:44'!
+!ReportTest methodsFor: 'tests' stamp: 'S 10/20/2022 21:54:44'!
 test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue
 	|account account2 report |
 	account := ReceptiveAccount new.
@@ -457,6 +459,89 @@ test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectVal
 	
 	self assert: 8 equals: report run.! !
 
+!ReportTest methodsFor: 'tests' stamp: 'TD 10/24/2022 00:07:42'!
+test11emptyPortfolioReturnsZeroTransferNetOnReport
+	|portfolio report |
+	portfolio := Portfolio new.
+	report := TransferNet for: portfolio.
+		
+	self assert: 0 equals: report run.! !
+
+!ReportTest methodsFor: 'tests' stamp: 'TD 10/24/2022 00:10:05'!
+test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount
+	|portfolio account account2 report |
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 20 from: account to: account2.
+	Transfer register: 10 from: account2 to: account.
+	report := TransferNet for: portfolio.
+	portfolio add: account.
+	
+	self assert: -10 equals: report run.! !
+
+!ReportTest methodsFor: 'tests' stamp: 'TD 10/24/2022 00:16:15'!
+test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts
+	|portfolio portfolio2 account account2 account3 report |
+	portfolio := Portfolio new.
+	portfolio2 := Portfolio new.
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	account3 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account3 to: account2.
+	Transfer register: 10 from: account2 to: account3.
+	Transfer register: 30 from: account3 to: account.
+	Transfer register: 15 from: account2 to: account3.
+	
+	report := TransferNet for: portfolio.
+	portfolio add: account.
+	portfolio2 add: account2.
+	portfolio add: portfolio2.
+	
+	self assert: 25 equals: report run.! !
+
+!ReportTest methodsFor: 'tests' stamp: 'TD 10/24/2022 00:24:28'!
+test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName
+	|portfolio report |
+	portfolio := Portfolio named: 'My Portfolio'.
+	report := PortfolioDisplay for: portfolio.
+	
+	self assert: (OrderedCollection with: 'My Portfolio') equals: report run.! !
+
+!ReportTest methodsFor: 'tests' stamp: 'TD 10/24/2022 00:32:12'!
+test15portfolioDisplayForPortfolioWithOneAccountReturnsNames
+	|portfolio report account |
+	portfolio := Portfolio named: 'My Portfolio'.
+	account := ReceptiveAccount named: 'My Receptive Account'.
+	report := PortfolioDisplay for: portfolio.
+	portfolio add: account.
+	
+	self assert: (OrderedCollection with: 'My Portfolio' with: ' My Receptive Account') equals: report run.! !
+
+!ReportTest methodsFor: 'tests' stamp: 'TD 10/24/2022 00:44:27'!
+test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames
+	|portfolio portfolio1 report account account2 |
+	portfolio := Portfolio named: 'My Portfolio'.
+	portfolio1 := Portfolio named: 'Another Portfolio'.
+	account := ReceptiveAccount named: 'My Receptive Account'.
+	account2 := ReceptiveAccount named: 'Another Receptive Account'.
+	report := PortfolioDisplay for: portfolio.
+	portfolio add: account.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+	
+	self assert: (OrderedCollection with: 'My Portfolio' 
+							   with: ' My Receptive Account'
+							   with: ' Another Portfolio'
+							   with: '  Another Receptive Account') equals: report run.! !
+
+!ReportTest methodsFor: 'tests' stamp: 'TD 10/24/2022 01:46:47'!
+test17portfolioDisplayOnReceptiveAccountThrowsError
+	|account report|
+	account := ReceptiveAccount named: 'My Receptive Account'.
+	self should: [	report := PortfolioDisplay for: account.] raise: Error withMessageText: PortfolioDisplay receptiveAccountCannotReportError ! !
+
 
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
 TestCase subclass: #TransferTest
@@ -465,7 +550,7 @@ TestCase subclass: #TransferTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferTest methodsFor: 'as yet unclassified' stamp: 'TD 10/20/2022 13:52:35'!
+!TransferTest methodsFor: 'tests' stamp: 'TD 10/20/2022 13:52:35'!
 test01accountsBalancesAreCorrectAfterTransfer
 	
 	| account1 account2 |
@@ -476,7 +561,7 @@ test01accountsBalancesAreCorrectAfterTransfer
 	self assert: 30 equals: account2 balance.
 	self assert: -30 equals: account1 balance.! !
 
-!TransferTest methodsFor: 'as yet unclassified' stamp: 'TD 10/20/2022 14:15:18'!
+!TransferTest methodsFor: 'tests' stamp: 'TD 10/20/2022 14:15:18'!
 test02accountsHaveRegisteredTheirEndsOfTheTransfer
 	
 	| account1 account2 transfer |
@@ -487,7 +572,7 @@ test02accountsHaveRegisteredTheirEndsOfTheTransfer
 	self assert: (account1 hasRegistered: transfer withdrawalEnd).
 	self assert: (account2 hasRegistered: transfer depositEnd)! !
 
-!TransferTest methodsFor: 'as yet unclassified' stamp: 'TD 10/20/2022 14:24:52'!
+!TransferTest methodsFor: 'tests' stamp: 'TD 10/20/2022 14:24:52'!
 test03valueIsEqualForAllEndsOfTheTransfer
 	| account1 account2 transfer |
 	account1 := ReceptiveAccount new.
@@ -501,7 +586,7 @@ test03valueIsEqualForAllEndsOfTheTransfer
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
-	instanceVariableNames: ''
+	instanceVariableNames: 'accountName'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -540,13 +625,30 @@ addedTo: aPortfolio
 	self subclassResponsibility ! !
 
 
-!Account methodsFor: 'reporting' stamp: 'S 10/20/2022 21:49:38'!
-provideBalanceToReport: aReport
-	aReport add: ('Balance = ', self balance asString).! !
-
-!Account methodsFor: 'reporting' stamp: 'S 10/20/2022 21:18:10'!
-transactionsOnReportFormatInto: reportTransactions
+!Account methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:41:36'!
+generateDataForReport: aReport 
 	self subclassResponsibility.! !
+
+
+!Account methodsFor: 'initialization' stamp: 'TD 10/24/2022 00:41:35'!
+initializeNamed: aName
+	accountName := aName.
+	self initialize.! !
+
+
+!Account methodsFor: 'accessing' stamp: 'TD 10/24/2022 01:48:30'!
+accountName
+	^accountName.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Account class' category: 'Portfolio-Solucion'!
+Account class
+	instanceVariableNames: ''!
+
+!Account class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 00:41:03'!
+named: aName 
+	^self new initializeNamed: aName ! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
@@ -661,9 +763,14 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'reporting' stamp: 'S 10/20/2022 21:23:14'!
-transactionsOnReportFormatInto: aReport
-	accounts do: [:anAccount | anAccount transactionsOnReportFormatInto: aReport].! !
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:44:54'!
+generateDataForReport: aReport 
+	^aReport reportForPortfolio: accounts.! !
+
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/24/2022 01:21:12'!
+reportTo: aReport 
+	^aReport reportedByAPortfolio: self.! !
+
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -671,19 +778,20 @@ transactionsOnReportFormatInto: aReport
 Portfolio class
 	instanceVariableNames: ''!
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:48:55'!
+!Portfolio class methodsFor: 'error message' stamp: 'HAW 5/25/2019 11:48:55'!
 canNotAddAccountErrorMessage
 	
 	^'Can not add repeated account to a portfolio'! !
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:18:21'!
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'HAW 5/25/2019 11:18:21'!
 with: anAccount
 
 	^self new 
 		add: anAccount;
 		yourself! !
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:23:59'!
+!Portfolio class methodsFor: 'instance creation' stamp: 'HAW 5/25/2019 11:23:59'!
 with: anAccount with: anotherAccount
 
 	^self new 
@@ -749,19 +857,16 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'reporting' stamp: 'S 10/20/2022 20:24:20'!
-runTransferNet
-	^self calculateTransferNet.! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:30:00'!
+generateDataForReport: aReport
+	^aReport reportForReceptiveAccount: transactions.! !
 
-!ReceptiveAccount methodsFor: 'reporting' stamp: 'S 10/20/2022 21:19:34'!
-transactionsOnReportFormatInto: aReport
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'TD 10/24/2022 01:14:22'!
+reportTo: aReport
+	^aReport reportedByReceptiveAccount: self.
+	! !
 
-	^ transactions do: [:aTransaction| aReport add: (aTransaction accountSummaryEntryFormat, aTransaction value asString)]! !
 
-
-!ReceptiveAccount methodsFor: 'transfer net' stamp: 'S 10/20/2022 20:34:04'!
-calculateTransferNet
-	^transactions inject: 0 into: [:aTransferNet :aTransaction | aTransaction impactOnTransferNet: aTransferNet].! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -777,8 +882,8 @@ affectBalance: aBalance
 	self subclassResponsibility ! !
 
 
-!AccountTransaction methodsFor: 'transfer net calculation' stamp: 'S 10/20/2022 21:25:16'!
-impactOnTransferNet: aTransferNet
+!AccountTransaction methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:35:45'!
+reportTo: anAccountSummary 
 	self subclassResponsibility.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -826,14 +931,9 @@ affectBalance: aBalance
 	^aBalance + value ! !
 
 
-!Deposit methodsFor: 'transfer net calculation' stamp: 'S 10/20/2022 20:36:34'!
-impactOnTransferNet: aTransferNet 
-	^aTransferNet.! !
-
-
-!Deposit methodsFor: 'account summary' stamp: 'S 10/20/2022 20:39:24'!
-accountSummaryEntryFormat
-	^'Depósito por '.! !
+!Deposit methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:34:37'!
+reportTo: aReport 
+	^aReport reportedByDeposit: self.! !
 
 
 !classDefinition: #TransferEnd category: 'Portfolio-Solucion'!
@@ -848,10 +948,6 @@ initializeFor: aTransfer
 	transfer := aTransfer.! !
 
 
-!TransferEnd methodsFor: 'value' stamp: 'S 10/20/2022 20:31:13'!
-impactOnTransferNet: aTransferNet
-	self subclassResponsibility.! !
-
 !TransferEnd methodsFor: 'value' stamp: 'TD 10/20/2022 14:31:46'!
 value
 	^transfer value.! !
@@ -859,6 +955,11 @@ value
 
 !TransferEnd methodsFor: 'balance' stamp: 'S 10/20/2022 17:06:36'!
 affectBalance: aCurrentBalance
+	self subclassResponsibility.! !
+
+
+!TransferEnd methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:37:45'!
+reportTo: anAccountSummary 
 	self subclassResponsibility.! !
 
 
@@ -874,14 +975,9 @@ affectBalance: aCurrentBalance
 	^aCurrentBalance + self value.! !
 
 
-!TransferDeposit methodsFor: 'transfer net calculation' stamp: 'S 10/20/2022 20:31:24'!
-impactOnTransferNet: aTransferNet
-	^aTransferNet + self value.! !
-
-
-!TransferDeposit methodsFor: 'account summary' stamp: 'S 10/20/2022 20:40:22'!
-accountSummaryEntryFormat
-	^'Entrada por transferencia de '.! !
+!TransferDeposit methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:38:33'!
+reportTo: anAccountSummary 
+	^anAccountSummary reportedByTransferDeposit: self.! !
 
 
 !classDefinition: #TransferWithdrawal category: 'Portfolio-Solucion'!
@@ -896,14 +992,9 @@ affectBalance: aCurrentBalance
 	^aCurrentBalance - self value.! !
 
 
-!TransferWithdrawal methodsFor: 'transfer net calculation' stamp: 'S 10/20/2022 20:31:32'!
-impactOnTransferNet: aTransferNet
-	^aTransferNet + self value negated.! !
-
-
-!TransferWithdrawal methodsFor: 'account summary' stamp: 'S 10/20/2022 20:39:54'!
-accountSummaryEntryFormat
-	^'Salida por transferencia de '.! !
+!TransferWithdrawal methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:39:57'!
+reportTo: anAccountSummary
+	^anAccountSummary reportedByTransferWithdrawal: self.! !
 
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
@@ -931,14 +1022,9 @@ affectBalance: aBalance
 	^aBalance - value! !
 
 
-!Withdraw methodsFor: 'transfer net calculation' stamp: 'S 10/20/2022 20:36:11'!
-impactOnTransferNet: aTransferNet
-	^aTransferNet.! !
-
-
-!Withdraw methodsFor: 'account summary' stamp: 'S 10/20/2022 20:40:51'!
-accountSummaryEntryFormat
-	^'Extracción por '.! !
+!Withdraw methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:34:42'!
+reportTo: anAccountSummary 
+	^anAccountSummary reportedByWithdraw: self.! !
 
 
 !classDefinition: #Report category: 'Portfolio-Solucion'!
@@ -957,15 +1043,39 @@ initializeFor: anAccount
 run
 	self subclassResponsibility.! !
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Report class' category: 'Portfolio-Solucion'!
-Report class
-	instanceVariableNames: ''!
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:42:45'!
+reportForPortfolio: aPortfolio 
+	self subclassResponsibility.! !
 
-!Report class methodsFor: 'instance creation' stamp: 'S 10/20/2022 21:46:12'!
-for: anAccount 
-	^self new initializeFor: anAccount ! !
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:13:39'!
+reportForReceptiveAccount: anAccount
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:16:53'!
+reportedByAPortfolio: aPortfolio 
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:14:43'!
+reportedByReceptiveAccount: aReceptiveAccount 
+	self subclassResponsibility.! !
+
+
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:31:15'!
+reportedByDeposit: aDeposit 
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:38:53'!
+reportedByTransferDeposit: aTransferDeposit 
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:36:40'!
+reportedByTransferWithdrawal: aTransferWithdrawal 
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:35:01'!
+reportedByWithdraw: aWithdraw 
+	self subclassResponsibility.! !
 
 
 !classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
@@ -975,16 +1085,106 @@ Report subclass: #AccountSummary
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountSummary methodsFor: 'functionality' stamp: 'S 10/20/2022 21:50:04'!
+!AccountSummary methodsFor: 'functionality' stamp: 'TD 10/23/2022 23:27:46'!
 run
 	|reportTransactions|
-	reportTransactions := OrderedCollection new.
-	
-	account transactionsOnReportFormatInto: reportTransactions.
-	
-	account provideBalanceToReport: reportTransactions.
-	
+	reportTransactions := account generateDataForReport: self.	
+	reportTransactions add: ('Balance = ', account balance asString).
 	^reportTransactions.! !
+
+
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:56:01'!
+reportForPortfolio: aCollectionOfAccounts
+	| subAccountsReports reportTransactions |
+	reportTransactions := OrderedCollection new.
+	subAccountsReports := aCollectionOfAccounts collect: [:anAccount | anAccount generateDataForReport: self].
+	subAccountsReports do: [:aTransactionCollection | reportTransactions addAll: aTransactionCollection].
+	^reportTransactions.! !
+
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:29:10'!
+reportForReceptiveAccount: aCollectionOfTransactions
+	^aCollectionOfTransactions collect: [:aTransaction | aTransaction reportTo: self].! !
+
+
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:33:15'!
+reportedByDeposit: aDeposit 
+	^'Depósito por ', aDeposit value asString.! !
+
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:39:30'!
+reportedByTransferDeposit: aTransferDeposit 
+	^'Entrada por transferencia de ', aTransferDeposit value asString.! !
+
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:41:00'!
+reportedByTransferWithdrawal: aTransferWithdrawal 
+	^'Salida por transferencia de ', aTransferWithdrawal value asString.! !
+
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:35:24'!
+reportedByWithdraw: aWithdraw 
+	^'Extracción por ', aWithdraw value asString.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AccountSummary class' category: 'Portfolio-Solucion'!
+AccountSummary class
+	instanceVariableNames: ''!
+
+!AccountSummary class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 01:42:07'!
+for: anAccount 
+	^self new initializeFor: anAccount ! !
+
+
+!classDefinition: #PortfolioDisplay category: 'Portfolio-Solucion'!
+Report subclass: #PortfolioDisplay
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioDisplay methodsFor: 'functionality' stamp: 'TD 10/24/2022 01:16:08'!
+run
+	|displayReport|
+	displayReport := account generateDataForReport: self.
+	displayReport addFirst: (account accountName).
+	^displayReport.! !
+
+
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:34:08'!
+reportForPortfolio: aCollectionOfAccounts
+	|subAccountDisplay displayReport |
+	displayReport := OrderedCollection new.
+	subAccountDisplay := aCollectionOfAccounts collect: [:anAccount | anAccount reportTo: self].
+	subAccountDisplay do: [:aDisplay | displayReport addAll: aDisplay].
+	^displayReport.! !
+
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:22:13'!
+reportedByAPortfolio: aPortfolio 
+	|displayReport|
+	displayReport := aPortfolio generateDataForReport: self.
+	displayReport := displayReport collect: [:aDisplay | ' ', aDisplay].
+	displayReport addFirst: (' ', aPortfolio accountName).
+	^displayReport.! !
+
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:35:19'!
+reportedByReceptiveAccount: aReceptiveAccount 
+	^OrderedCollection with: (' ', aReceptiveAccount accountName).! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'PortfolioDisplay class' category: 'Portfolio-Solucion'!
+PortfolioDisplay class
+	instanceVariableNames: ''!
+
+!PortfolioDisplay class methodsFor: 'error message' stamp: 'TD 10/24/2022 01:39:10'!
+receptiveAccountCannotReportError
+	^'receptive account cannot report portfolio display!!!!!!'! !
+
+
+!PortfolioDisplay class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 01:46:07'!
+for: anAccount 
+	(anAccount isKindOf: ReceptiveAccount) ifTrue: [^self error: self receptiveAccountCannotReportError].
+	^self new initializeFor: anAccount.
+	
+	"Este if esta porque el enunciado dice que no se deben modificar clases excepto aquellas de la parte 2, no ocurre lo mismo con los metodos reportedBy ya que estos podrian ser utiles para otros reportes."! !
 
 
 !classDefinition: #TransferNet category: 'Portfolio-Solucion'!
@@ -994,9 +1194,45 @@ Report subclass: #TransferNet
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferNet methodsFor: 'functionality' stamp: 'S 10/20/2022 21:52:50'!
+!TransferNet methodsFor: 'functionality' stamp: 'TD 10/23/2022 23:57:40'!
 run
-	^account calculateTransferNet.! !
+	^account generateDataForReport: self.! !
+
+
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:19:17'!
+reportForPortfolio: aCollectionOfAccounts 
+	^aCollectionOfAccounts inject: 0 into: [:aTransferNet :anAccount | aTransferNet + (anAccount generateDataForReport: self)].! !
+
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:00:50'!
+reportForReceptiveAccount: aCollectionOfTransactions 
+	^aCollectionOfTransactions inject: 0 into: [:aTransferNet :aTransaction | aTransferNet  + (aTransaction reportTo: self)].! !
+
+
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:02:37'!
+reportedByDeposit: aDeposit 
+	^0.! !
+
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:01:57'!
+reportedByTransferDeposit: aTransferDeposit 
+	^aTransferDeposit value.! !
+
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:01:31'!
+reportedByTransferWithdrawal: aTransferWithdrawal 
+	^aTransferWithdrawal value negated.! !
+
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:02:24'!
+reportedByWithdraw: aWithdraw 
+	^0.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferNet class' category: 'Portfolio-Solucion'!
+TransferNet class
+	instanceVariableNames: ''!
+
+!TransferNet class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 01:42:07'!
+for: anAccount 
+	^self new initializeFor: anAccount ! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!

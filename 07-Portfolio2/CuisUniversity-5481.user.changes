@@ -37316,3 +37316,3489 @@ PASSED!
 PASSED!
 
 ----QUIT----(20 October 2022 21:56:15) CuisUniversity-5481.image priorSource: 7323771!
+
+----STARTUP---- (23 October 2022 22:59:25) as C:\Users\tomas\Desktop\FACULTAD\Inge1\windows64\CuisUniversity-5481.image!
+
+
+!classRemoval: #TransferWithdrawal stamp: 'TD 10/23/2022 22:59:41'!
+TransferEnd subclass: #TransferWithdrawal
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferDeposit stamp: 'TD 10/23/2022 22:59:42'!
+TransferEnd subclass: #TransferDeposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferEnd stamp: 'TD 10/23/2022 22:59:42'!
+Object subclass: #TransferEnd
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transfer stamp: 'TD 10/23/2022 22:59:42'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value withdrawalEnd depositEnd'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'TD 10/23/2022 22:59:43'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'TD 10/23/2022 22:59:43'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'TD 10/23/2022 22:59:44'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'TD 10/23/2022 22:59:44'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'TD 10/23/2022 22:59:45'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'TD 10/23/2022 22:59:45'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferTest stamp: 'TD 10/23/2022 22:59:46'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'TD 10/23/2022 22:59:46'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'TD 10/23/2022 22:59:47'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----End fileIn of C:\Users\tomas\Desktop\FACULTAD\Inge1\windows64\07-Portfolio2.st----!
+!AccountSummary methodsFor: 'functionality' stamp: 'TD 10/23/2022 23:07:22' prior: 50614260 overrides: 50614231!
+run
+	account generateDataForReport: self.	
+	"|reportTransactions|
+	reportTransactions := OrderedCollection new.
+	
+	account transactionsOnReportFormatInto: reportTransactions.
+	
+	account provideBalanceToReport: reportTransactions.
+	
+	^reportTransactions."! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:07:52'!
+ERROR!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:07:52'!
+ERROR!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:07:52'!
+ERROR!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:07:52'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:07:52'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:07:53'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:07:53'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:07:55'!
+ERROR!
+!Account methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:08:04'!
+generateDataForReport: anAccountSummary 
+	self shouldBeImplemented.! !
+!Account methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:08:09' prior: 50614397!
+generateDataForReport: anAccountSummary 
+	self subclassResponsibility.! !
+!Account methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:08:16' prior: 50614402!
+generateDataForReport: aReport 
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:08:18'!
+ERROR!
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:08:25' overrides: 50614407!
+generateDataForReport: anAccountSummary 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:09:02' prior: 50614417 overrides: 50614407!
+generateDataForReport: aReport 
+	aReport reportForReceptiveAccount.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:09:04'!
+ERROR!
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:09:39'!
+reportForReceptiveAccount
+	self shouldBeImplemented.! !
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:09:46' prior: 50614433!
+reportForReceptiveAccount
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:09:47'!
+ERROR!
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:10:10' overrides: 50614439!
+reportForReceptiveAccount
+	self shouldBeImplemented.! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:13:15' prior: 50614449 overrides: 50614439!
+reportForReceptiveAccount
+	account.! !
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:13:39'!
+reportForReceptiveAccount: anAccount
+	self subclassResponsibility.! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:13:40' overrides: 50614459!
+reportForReceptiveAccount: anAccount
+	account.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'TD 10/23/2022 23:13:40' prior: 50614423 overrides: 50614407!
+generateDataForReport: aReport 
+	aReport reportForReceptiveAccount: self.! !
+
+!methodRemoval: Report #reportForReceptiveAccount stamp: 'TD 10/23/2022 23:13:40'!
+reportForReceptiveAccount
+	self subclassResponsibility.!
+
+!methodRemoval: AccountSummary #reportForReceptiveAccount stamp: 'TD 10/23/2022 23:13:40'!
+reportForReceptiveAccount
+	account.!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:14:47'!
+FAILURE!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:14:47'!
+FAILURE!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:14:47'!
+FAILURE!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:14:47'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:14:47'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:14:47'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:14:47'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:14:47'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:14:47'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:14:47'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:14:49'!
+FAILURE!
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:17:53' prior: 50614465 overrides: 50614459!
+reportForReceptiveAccount: aReceptiveAccount
+	account.! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:20:12' prior: 50614534 overrides: 50614459!
+reportForReceptiveAccount: transactions
+	account.! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:20:22' prior: 50614540 overrides: 50614459!
+reportForReceptiveAccount: aCollectionOfTransactions
+	account.! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:21:31' prior: 50614471 overrides: 50614407!
+generateDataForReport: aReport
+	aReport reportForReceptiveAccount: transactions.! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:22:22' prior: 50614546 overrides: 50614459!
+reportForReceptiveAccount: aCollectionOfTransactions
+	aCollectionOfTransactions collect: [:aTransaction | ]! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:24:04' prior: 50614559 overrides: 50614459!
+reportForReceptiveAccount: aCollectionOfTransactions
+	^aCollectionOfTransactions collect: [:aTransaction | aTransaction accountSummaryEntryFormat, aTransaction value asString].! !
+!AccountSummary methodsFor: 'functionality' stamp: 'TD 10/23/2022 23:25:13' prior: 50614339 overrides: 50614231!
+run
+	|reportTransactions|
+	reportTransactions := account generateDataForReport: self.	
+	reportTransactions add: ('Balance = ', account balance).
+	^reportTransactions.
+	
+	"|reportTransactions|
+	reportTransactions := OrderedCollection new.
+	
+	account transactionsOnReportFormatInto: reportTransactions.
+	
+	account provideBalanceToReport: reportTransactions.
+	
+	^reportTransactions."! !
+!AccountSummary methodsFor: 'functionality' stamp: 'TD 10/23/2022 23:25:17' prior: 50614577 overrides: 50614231!
+run
+	|reportTransactions|
+	reportTransactions := account generateDataForReport: self.	
+	reportTransactions add: ('Balance = ', account balance).
+	^reportTransactions.! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:27:21' prior: 50614567 overrides: 50614459!
+reportForReceptiveAccount: aCollectionOfTransactions
+	^aCollectionOfTransactions collect: [:aTransaction | aTransaction reportTo: self].! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:27:26'!
+ERROR!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:27:27'!
+ERROR!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:27:27'!
+ERROR!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:27:27'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:27:27'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:27:27'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:27:27'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:27:27'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:27:27'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:27:27'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:27:29'!
+ERROR!
+!AccountSummary methodsFor: 'functionality' stamp: 'TD 10/23/2022 23:27:46' prior: 50614593 overrides: 50614231!
+run
+	|reportTransactions|
+	reportTransactions := account generateDataForReport: self.	
+	reportTransactions add: ('Balance = ', account balance asString).
+	^reportTransactions.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:27:48'!
+ERROR!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:27:48'!
+ERROR!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:27:48'!
+ERROR!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:27:48'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:27:48'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:27:48'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:27:48'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:27:48'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:27:48'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:27:48'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:27:50'!
+ERROR!
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:28:14' prior: 50614603 overrides: 50614459!
+reportForReceptiveAccount: aCollectionOfTransactions
+	^(aCollectionOfTransactions collect: [:aTransaction | aTransaction reportTo: self]).! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:28:16'!
+ERROR!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:28:16'!
+ERROR!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:28:16'!
+ERROR!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:28:16'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:28:16'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:28:16'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:28:16'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:28:16'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:28:16'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:28:16'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:28:18'!
+ERROR!
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:29:10' prior: 50614715 overrides: 50614459!
+reportForReceptiveAccount: aCollectionOfTransactions
+	^aCollectionOfTransactions collect: [:aTransaction | aTransaction reportTo: self].! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:29:11'!
+ERROR!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:29:11'!
+ERROR!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:29:11'!
+ERROR!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:29:12'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:29:12'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:29:12'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:29:12'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:29:12'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:29:12'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:29:12'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:29:13'!
+ERROR!
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:30:00' prior: 50614552 overrides: 50614407!
+generateDataForReport: aReport
+	^aReport reportForReceptiveAccount: transactions.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:30:03'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:30:03'!
+ERROR!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:30:03'!
+ERROR!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:30:03'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:30:03'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:30:03'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:30:03'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:30:03'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:30:03'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:30:03'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:30:05'!
+ERROR!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'TD 10/23/2022 23:30:13'!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'TD 10/23/2022 23:30:43' prior: 50614879!
+reportTo: aReport 
+	aReport reportedByDeposit: self.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:30:46'!
+ERROR!
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:31:04'!
+reportedByDeposit: aDeposit 
+	self shouldBeImplemented.! !
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:31:15' prior: 50614894!
+reportedByDeposit: aDeposit 
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:31:16'!
+ERROR!
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:31:30' overrides: 50614900!
+reportedByDeposit: aDeposit 
+	self shouldBeImplemented.! !
+!AccountTransaction methodsFor: 'transfer net calculation' stamp: 'TD 10/23/2022 23:32:15'!
+reportTo: aReport
+	self subclassResponsibility.! !
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:33:15' prior: 50614911 overrides: 50614900!
+reportedByDeposit: aDeposit 
+	^'Depósito por ', aDeposit value asString.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:33:17'!
+ERROR!
+!Withdraw methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:33:31' overrides: 50614916!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!Withdraw methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:34:16' prior: 50614932 overrides: 50614916!
+reportTo: anAccountSummary 
+	anAccountSummary reportedBy: self.! !
+!Withdraw methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:34:26' prior: 50614938 overrides: 50614916!
+reportTo: anAccountSummary 
+	^anAccountSummary reportedBy: self.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'TD 10/23/2022 23:34:37' prior: 50614884 overrides: 50614916!
+reportTo: aReport 
+	^aReport reportedByDeposit: self.! !
+!Withdraw methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:34:42' prior: 50614944 overrides: 50614916!
+reportTo: anAccountSummary 
+	^anAccountSummary reportedByWithdraw: self.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:34:45'!
+ERROR!
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:34:51'!
+reportedByWithdraw: aWithdraw 
+	self shouldBeImplemented.! !
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:35:01' prior: 50614965!
+reportedByWithdraw: aWithdraw 
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:35:03'!
+ERROR!
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:35:11' overrides: 50614971!
+reportedByWithdraw: aWithdraw 
+	self shouldBeImplemented.! !
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:35:24' prior: 50614982 overrides: 50614971!
+reportedByWithdraw: aWithdraw 
+	^'Extracción por ', aWithdraw value asString.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:35:25'!
+ERROR!
+!AccountTransaction methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:35:35' prior: 50614916!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!AccountTransaction methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:35:45' prior: 50614999!
+reportTo: anAccountSummary 
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:35:47'!
+ERROR!
+!TransferEnd methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:36:05' overrides: 50615004!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!TransferEnd methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:36:26' prior: 50615014 overrides: 50615004!
+reportTo: anAccountSummary 
+	anAccountSummary reportedByTransferWithdrawal: self.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:36:28'!
+ERROR!
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:36:35'!
+reportedByTransferWithdrawal: aTransferWithdrawal 
+	self shouldBeImplemented.! !
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:36:40' prior: 50615030!
+reportedByTransferWithdrawal: aTransferWithdrawal 
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:36:41'!
+ERROR!
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:36:46' overrides: 50615036!
+reportedByTransferWithdrawal: aTransferWithdrawal 
+	self shouldBeImplemented.! !
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:37:12' prior: 50615047 overrides: 50615036!
+reportedByTransferWithdrawal: aTransferWithdrawal 
+	^'Entrada por transferencia de ', aTransferWithdrawal value asString.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:37:14'!
+FAILURE!
+!TransferEnd methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:37:45' prior: 50615020 overrides: 50615004!
+reportTo: anAccountSummary 
+	self subclassResponsibility.! !
+!TransferWithdrawal methodsFor: 'transfer net calculation' stamp: 'TD 10/23/2022 23:38:02' overrides: 50615066!
+reportTo: anAccountSummary
+	anAccountSummary reportedByTransferWithdrawal: self.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:38:07'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:38:07'!
+ERROR!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:38:07'!
+ERROR!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:38:07'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:38:07'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:38:07'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:38:07'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:38:07'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:38:07'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:38:07'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:38:09'!
+ERROR!
+!TransferDeposit methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:38:17' overrides: 50615066!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!TransferDeposit methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:38:33' prior: 50615125 overrides: 50615066!
+reportTo: anAccountSummary 
+	^anAccountSummary reportedByTransferDeposit: self.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:38:36'!
+ERROR!
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:38:43'!
+reportedByTransferDeposit: aTransferDeposit 
+	self shouldBeImplemented.! !
+!Report methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:38:53' prior: 50615141!
+reportedByTransferDeposit: aTransferDeposit 
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:38:54'!
+ERROR!
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:39:00' overrides: 50615147!
+reportedByTransferDeposit: aTransferDeposit 
+	self shouldBeImplemented.! !
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:39:30' prior: 50615158 overrides: 50615147!
+reportedByTransferDeposit: aTransferDeposit 
+	^'Entrada por transferencia de ', aTransferDeposit value asString.! !
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:39:31'!
+FAILURE!
+!TransferWithdrawal methodsFor: 'transfer net calculation' stamp: 'TD 10/23/2022 23:39:57' prior: 50615072 overrides: 50615066!
+reportTo: anAccountSummary
+	^anAccountSummary reportedByTransferWithdrawal: self.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:40:09'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:40:09'!
+FAILURE!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:40:09'!
+FAILURE!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:40:09'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:40:09'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:40:09'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:40:09'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:40:09'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:40:09'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:40:09'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:40:12'!
+FAILURE!
+!AccountSummary methodsFor: 'transaction type assignment - private' stamp: 'TD 10/23/2022 23:41:00' prior: 50615054 overrides: 50615036!
+reportedByTransferWithdrawal: aTransferWithdrawal 
+	^'Salida por transferencia de ', aTransferWithdrawal value asString.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:41:03'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:41:03'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:41:03'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:41:03'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:41:03'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:41:03'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:41:03'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:41:03'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:41:03'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:41:03'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:41:05'!
+ERROR!
+!Account methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:41:24' prior: 50614407!
+generateDataForReport: anAccountSummary 
+	self shouldBeImplemented.! !
+!Account methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:41:30' prior: 50615286!
+generateDataForReport: aReport 
+	self shouldBeImplemented.! !
+!Account methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:41:36' prior: 50615291!
+generateDataForReport: aReport 
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:41:38'!
+ERROR!
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:41:45' overrides: 50615296!
+generateDataForReport: anAccountSummary 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:41:53' prior: 50615305 overrides: 50615296!
+generateDataForReport: aRepor 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:41:59' prior: 50615311 overrides: 50615296!
+generateDataForReport: aReport 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:42:29' prior: 50615317 overrides: 50615296!
+generateDataForReport: aReport 
+	aReport reportForPortfolio: self.! !
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:42:33'!
+ERROR!
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:42:40'!
+reportForPortfolio: aPortfolio 
+	self shouldBeImplemented.! !
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:42:45' prior: 50615332!
+reportForPortfolio: aPortfolio 
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:42:47'!
+ERROR!
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:42:56' overrides: 50615338!
+reportForPortfolio: aPortfolio 
+	self shouldBeImplemented.! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:43:40' prior: 50615348 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:43:57' prior: 50615323 overrides: 50615296!
+generateDataForReport: aReport 
+	aReport reportForPortfolio: accounts.! !
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/23/2022 23:44:54' prior: 50615361 overrides: 50615296!
+generateDataForReport: aReport 
+	^aReport reportForPortfolio: accounts.! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:45:39' prior: 50615355 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	^aCollectionOfAccounts collect: [:anAccount | anAccount generateDataForReport: self].! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:45:50'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:45:50'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:45:50'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:45:50'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:45:50'!
+FAILURE!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:45:50'!
+FAILURE!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:45:50'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:45:50'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:45:50'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:45:50'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:45:52'!
+FAILURE!
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:47:58' prior: 50615374 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	|reportTransactions|
+	reportTransactions := OrderedCollection new.
+	reportTransactions addAll: [:anAccount | anAccount generateDataForReport: self].! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:48:03' prior: 50615430 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	|reportTransactions|
+	reportTransactions := OrderedCollection new.
+	reportTransactions addAll: [:anAccount | anAccount generateDataForReport: self].
+	^reportTransactions.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:48:08'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:48:08'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:48:08'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:48:08'!
+ERROR!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:48:08'!
+ERROR!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:48:08'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:48:08'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:48:08'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:48:08'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:48:08'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:48:10'!
+ERROR!
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:50:56' prior: 50615441 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	^aCollectionOfAccounts collect: [:anAccount | anAccount generateDataForReport: self].! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:54:47' prior: 50615499 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	| subAccountsReports |
+	subAccountsReports := aCollectionOfAccounts collect: [:anAccount | anAccount generateDataForReport: self].! !
+!AccountSummary methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:56:01' prior: 50615508 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	| subAccountsReports reportTransactions |
+	reportTransactions := OrderedCollection new.
+	subAccountsReports := aCollectionOfAccounts collect: [:anAccount | anAccount generateDataForReport: self].
+	subAccountsReports do: [:aTransactionCollection | reportTransactions addAll: aTransactionCollection].
+	^reportTransactions.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:56:23'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:56:23'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:56:23'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:56:23'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:56:23'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:56:23'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:56:23'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:56:23'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:56:23'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:56:23'!
+PASSED!
+!TransferNet methodsFor: 'functionality' stamp: 'TD 10/23/2022 23:57:40' prior: 50614282 overrides: 50614231!
+run
+	^account generateDataForReport: self.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:57:51'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:57:51'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:57:51'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:57:51'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:57:51'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:57:51'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:57:51'!
+ERROR!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:57:51'!
+ERROR!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:57:51'!
+ERROR!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:57:51'!
+ERROR!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:57:53'!
+ERROR!
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:58:14' overrides: 50614459!
+reportForReceptiveAccount: anOrderedCollection 
+	self shouldBeImplemented.! !
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:59:14' prior: 50615628 overrides: 50614459!
+reportForReceptiveAccount: aCollectionOfTransactions 
+	^aCollectionOfTransactions collect: [:aTransaction | aTransaction reportTo: self].! !
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:59:16'!
+FAILURE!
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/23/2022 23:59:50' prior: 50615635 overrides: 50614459!
+reportForReceptiveAccount: aCollectionOfTransactions 
+	^aCollectionOfTransactions inject: 0 into: [:aTransaction | aTransaction reportTo: self].! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/23/2022 23:59:53'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:59:53'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/23/2022 23:59:53'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/23/2022 23:59:53'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/23/2022 23:59:53'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/23/2022 23:59:53'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/23/2022 23:59:53'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:59:53'!
+ERROR!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/23/2022 23:59:53'!
+ERROR!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/23/2022 23:59:54'!
+ERROR!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/23/2022 23:59:56'!
+ERROR!
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:00:27' prior: 50615648 overrides: 50614459!
+reportForReceptiveAccount: aCollectionOfTransactions 
+	^aCollectionOfTransactions inject: 0 into: [:aTransferNet :aTransaction | aTransferNet  + aTransaction reportTo: self].! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:00:31'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:00:31'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:00:31'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:00:31'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:00:31'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:00:31'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:00:31'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:00:31'!
+ERROR!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:00:31'!
+ERROR!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:00:31'!
+ERROR!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:00:33'!
+ERROR!
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:00:50' prior: 50615704 overrides: 50614459!
+reportForReceptiveAccount: aCollectionOfTransactions 
+	^aCollectionOfTransactions inject: 0 into: [:aTransferNet :aTransaction | aTransferNet  + (aTransaction reportTo: self)].! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:00:52'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:00:52'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:00:52'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:00:52'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:00:52'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:00:52'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:00:52'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:00:52'!
+ERROR!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:00:52'!
+ERROR!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:00:52'!
+ERROR!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:00:54'!
+ERROR!
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:01:10' overrides: 50615036!
+reportedByTransferWithdrawal: aTransferWithdrawal 
+	self shouldBeImplemented.! !
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:01:31' prior: 50615817 overrides: 50615036!
+reportedByTransferWithdrawal: aTransferWithdrawal 
+	^aTransferWithdrawal value negated.! !
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:01:35'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:01:36'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:01:37'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:01:37'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:01:37'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:01:37'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:01:37'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:01:37'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:01:37'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:01:37'!
+ERROR!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:01:37'!
+ERROR!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:01:39'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:01:39'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:01:39'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:01:39'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:01:39'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:01:39'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:01:39'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:01:39'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:01:40'!
+ERROR!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:01:40'!
+ERROR!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:01:41'!
+ERROR!
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:01:49' overrides: 50615147!
+reportedByTransferDeposit: aTransferDeposit 
+	self shouldBeImplemented.! !
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:01:57' prior: 50615924 overrides: 50615147!
+reportedByTransferDeposit: aTransferDeposit 
+	^aTransferDeposit value.! !
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:01:59'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:02:00'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:02:00'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:02:00'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:02:00'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:02:00'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:02:00'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:02:00'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:02:00'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:02:00'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:02:00'!
+ERROR!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:02:00'!
+ERROR!
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:02:15' overrides: 50614971!
+reportedByWithdraw: aWithdraw 
+	self shouldBeImplemented.! !
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:02:24' prior: 50615989 overrides: 50614971!
+reportedByWithdraw: aWithdraw 
+	^0.! !
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:02:26'!
+ERROR!
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:02:31' overrides: 50614900!
+reportedByDeposit: aDeposit 
+	self shouldBeImplemented.! !
+!TransferNet methodsFor: 'transaction type assignment - private' stamp: 'TD 10/24/2022 00:02:37' prior: 50616006 overrides: 50614900!
+reportedByDeposit: aDeposit 
+	^0.! !
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:02:38'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:02:40'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:02:40'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:02:40'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:02:40'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:02:40'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:02:40'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:02:40'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:02:40'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:02:40'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:02:41'!
+PASSED!
+
+!methodRemoval: Deposit #impactOnTransferNet: stamp: 'TD 10/24/2022 00:02:58'!
+impactOnTransferNet: aTransferNet 
+	^aTransferNet.!
+
+!methodRemoval: Deposit #accountSummaryEntryFormat stamp: 'TD 10/24/2022 00:03:04'!
+accountSummaryEntryFormat
+	^'Depósito por '.!
+
+!methodRemoval: TransferEnd #impactOnTransferNet: stamp: 'TD 10/24/2022 00:03:07'!
+impactOnTransferNet: aTransferNet
+	self subclassResponsibility.!
+
+!methodRemoval: TransferDeposit #accountSummaryEntryFormat stamp: 'TD 10/24/2022 00:03:13'!
+accountSummaryEntryFormat
+	^'Entrada por transferencia de '.!
+
+!methodRemoval: TransferDeposit #impactOnTransferNet: stamp: 'TD 10/24/2022 00:03:17'!
+impactOnTransferNet: aTransferNet
+	^aTransferNet + self value.!
+
+!methodRemoval: TransferWithdrawal #accountSummaryEntryFormat stamp: 'TD 10/24/2022 00:03:20'!
+accountSummaryEntryFormat
+	^'Salida por transferencia de '.!
+
+!methodRemoval: TransferWithdrawal #impactOnTransferNet: stamp: 'TD 10/24/2022 00:03:22'!
+impactOnTransferNet: aTransferNet
+	^aTransferNet + self value negated.!
+
+!methodRemoval: Withdraw #accountSummaryEntryFormat stamp: 'TD 10/24/2022 00:03:25'!
+accountSummaryEntryFormat
+	^'Extracción por '.!
+
+!methodRemoval: Withdraw #impactOnTransferNet: stamp: 'TD 10/24/2022 00:03:27'!
+impactOnTransferNet: aTransferNet
+	^aTransferNet.!
+
+!methodRemoval: Portfolio #transactionsOnReportFormatInto: stamp: 'TD 10/24/2022 00:04:03'!
+transactionsOnReportFormatInto: aReport
+	accounts do: [:anAccount | anAccount transactionsOnReportFormatInto: aReport].!
+
+!methodRemoval: Account #transactionsOnReportFormatInto: stamp: 'TD 10/24/2022 00:04:21'!
+transactionsOnReportFormatInto: reportTransactions
+	self subclassResponsibility.!
+
+!methodRemoval: Account #provideBalanceToReport: stamp: 'TD 10/24/2022 00:04:22'!
+provideBalanceToReport: aReport
+	aReport add: ('Balance = ', self balance asString).!
+
+!methodRemoval: ReceptiveAccount #transactionsOnReportFormatInto: stamp: 'TD 10/24/2022 00:04:27'!
+transactionsOnReportFormatInto: aReport
+
+	^ transactions do: [:aTransaction| aReport add: (aTransaction accountSummaryEntryFormat, aTransaction value asString)]!
+
+!methodRemoval: ReceptiveAccount #runTransferNet stamp: 'TD 10/24/2022 00:04:30'!
+runTransferNet
+	^self calculateTransferNet.!
+
+!methodRemoval: ReceptiveAccount #calculateTransferNet stamp: 'TD 10/24/2022 00:04:39'!
+calculateTransferNet
+	^transactions inject: 0 into: [:aTransferNet :aTransaction | aTransaction impactOnTransferNet: aTransferNet].!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:05:39'!
+test11emptyPortfolioReturnsZeroTransferNetOnReport
+	|portfolio report |
+	portfolio := Portfolio new.
+	report := TransferNet for: portfolio.
+		
+	self assert: 8 equals: report run.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:05:45'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:05:45'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:05:45'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:05:45'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:05:45'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:05:45'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:05:45'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:05:45'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:05:45'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:05:45'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:05:45'!
+ERROR!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:05:45'!
+ERROR!
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:06:00' overrides: 50615338!
+reportForPortfolio: anOrderedCollection 
+	self shouldBeImplemented.! !
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:07:20' prior: 50616202 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	self shouldBeImplemented.! !
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:07:28' prior: 50616209 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	^0.! !
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:07:29'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:07:42' prior: 50616142!
+test11emptyPortfolioReturnsZeroTransferNetOnReport
+	|portfolio report |
+	portfolio := Portfolio new.
+	report := TransferNet for: portfolio.
+		
+	self assert: 0 equals: report run.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:07:43'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:10:05'!
+test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount
+	|portfolio account account2 report |
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 20 from: account to: account2.
+	Transfer register: 10 from: account2 to: account.
+	report := TransferNet for: portfolio.
+	portfolio add: account.
+	
+	self assert: -10 equals: report run.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:10:10'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:10:10'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:10:10'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:10:10'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:10:10'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:10:10'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:10:10'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:10:10'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:10:10'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:10:11'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:10:11'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:10:11'!
+FAILURE!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:10:11'!
+FAILURE!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:10:18'!
+FAILURE!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:10:29'!
+FAILURE!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:10:37'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:10:37'!
+FAILURE!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:10:37'!
+FAILURE!
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:12:22' prior: 50616216 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	aCollectionOfAccounts isEmpty ifTrue: [^0].
+	^(TransferNet for: (aCollectionOfAccounts first)) run.! !
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:12:24'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:12:25'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:12:25'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:12:25'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:12:25'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:12:25'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:12:25'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:12:25'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:12:25'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:12:26'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:12:26'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:12:26'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:12:26'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:14:35'!
+test12portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts
+	|portfolio portfolio2 account account2 account3 report |
+	portfolio := Portfolio new.
+	portfolio2 := Portfolio new.
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	account3 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account to: account2.
+	Transfer register: 10 from: account2 to: account.
+	Transfer register: 30 from: account3 to: account2.
+	Transfer register: 15 from: account2 to: account3.
+	
+	report := TransferNet for: portfolio.
+	portfolio add: account.
+	portfolio2 add: account2.
+	portfolio add: portfolio2.
+	
+	self assert: -10 equals: report run.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:15:27' prior: 50616479!
+test12portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts
+	|portfolio portfolio2 account account2 account3 report |
+	portfolio := Portfolio new.
+	portfolio2 := Portfolio new.
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	account3 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account3 to: account2.
+	Transfer register: 10 from: account2 to: account3.
+	Transfer register: 30 from: account3 to: account.
+	Transfer register: 15 from: account2 to: account3.
+	
+	report := TransferNet for: portfolio.
+	portfolio add: account.
+	portfolio2 add: account2.
+	portfolio add: portfolio2.
+	
+	self assert: 25 equals: report run.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:15:29'!
+FAILURE!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:15:29'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:15:29'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:16:15'!
+test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts
+	|portfolio portfolio2 account account2 account3 report |
+	portfolio := Portfolio new.
+	portfolio2 := Portfolio new.
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	account3 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account3 to: account2.
+	Transfer register: 10 from: account2 to: account3.
+	Transfer register: 30 from: account3 to: account.
+	Transfer register: 15 from: account2 to: account3.
+	
+	report := TransferNet for: portfolio.
+	portfolio add: account.
+	portfolio2 add: account2.
+	portfolio add: portfolio2.
+	
+	self assert: 25 equals: report run.! !
+
+!methodRemoval: ReportTest #test12portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:16:16'!
+test12portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts
+	|portfolio portfolio2 account account2 account3 report |
+	portfolio := Portfolio new.
+	portfolio2 := Portfolio new.
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	account3 := ReceptiveAccount new.
+	
+	Transfer register: 20 from: account3 to: account2.
+	Transfer register: 10 from: account2 to: account3.
+	Transfer register: 30 from: account3 to: account.
+	Transfer register: 15 from: account2 to: account3.
+	
+	report := TransferNet for: portfolio.
+	portfolio add: account.
+	portfolio2 add: account2.
+	portfolio add: portfolio2.
+	
+	self assert: 25 equals: report run.!
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:18:17' prior: 50616416 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	^aCollectionOfAccounts inject: 0 into: [:TransferNet :anAccount | anAccount generateDataForReport: self].! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:18:20'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:18:20'!
+FAILURE!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:18:20'!
+FAILURE!
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:18:52' prior: 50616641 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	^aCollectionOfAccounts inject: 0 into: [:aTransferNet :anAccount | aTransferNet + anAccount generateDataForReport: self].! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:18:54'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:18:54'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:18:54'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:18:54'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:18:54'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:18:54'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:18:54'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:18:55'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:18:55'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:18:55'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:18:55'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:18:55'!
+ERROR!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:18:55'!
+ERROR!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:18:57'!
+ERROR!
+!TransferNet methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:19:17' prior: 50616711 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	^aCollectionOfAccounts inject: 0 into: [:aTransferNet :anAccount | aTransferNet + (anAccount generateDataForReport: self)].! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:19:18'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:19:18'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:19:18'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:19:18'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:19:19'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:19:19'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:19:19'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:19:19'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:19:19'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:19:19'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:19:19'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:19:19'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:19:19'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:19:23'!
+PASSED!
+
+!classDefinition: #PortfolioDisplay category: 'Portfolio-Solucion' stamp: 'TD 10/24/2022 00:24:39'!
+Report subclass: #PortfolioDisplay
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:24:28'!
+test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName
+	|portfolio report |
+	portfolio := Portfolio named: 'My Portfolio'.
+	report := PortfolioDisplay for: portfolio.
+	
+	self assert: (OrderedCollection with: 'My Portfolio') equals: report run.! !
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:24:42'!
+ERROR!
+!Portfolio class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 00:24:49'!
+named: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNamed: aString ! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 00:25:05' prior: 50616923!
+named: aName
+	^self new initializeNamed: aName ! !
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:25:06'!
+ERROR!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'TD 10/24/2022 00:25:20'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio methodsFor: 'initialization' stamp: 'TD 10/24/2022 00:25:20'!
+initializeNamed: aName 
+	self shouldBeImplemented.
+	name := aName.! !
+!Portfolio methodsFor: 'initialization' stamp: 'TD 10/24/2022 00:25:24' prior: 50616947!
+initializeNamed: aName
+	name := aName.! !
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:25:25'!
+ERROR!
+!PortfolioDisplay methodsFor: 'functionality' stamp: 'TD 10/24/2022 00:25:40' overrides: 50614231!
+run
+	self shouldBeImplemented.! !
+!PortfolioDisplay methodsFor: 'functionality' stamp: 'TD 10/24/2022 00:26:05' prior: 50616961 overrides: 50614231!
+run
+	^OrderedCollection with: 'My Portfolio'.! !
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:26:06'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:32:12'!
+test15portfolioDisplayForPortfolioWithOneAccountReturnsNames
+	|portfolio report account |
+	portfolio := Portfolio named: 'My Portfolio'.
+	account := ReceptiveAccount named: 'My Receptive Account'.
+	report := PortfolioDisplay for: portfolio.
+	portfolio add: account.
+	
+	self assert: (OrderedCollection with: 'My Portfolio' with: ' My Receptive Account') equals: report run.! !
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:32:16'!
+ERROR!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:32:16'!
+ERROR!
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 00:32:21'!
+named: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNamed: aString ! !
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 00:32:31' prior: 50617057!
+named: aName 
+	^self new initializeNamed: aName ! !
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:32:32'!
+ERROR!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'TD 10/24/2022 00:32:36'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'TD 10/24/2022 00:32:36'!
+initializeNamed: aName 
+	self shouldBeImplemented.
+	name := aName.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'TD 10/24/2022 00:32:39' prior: 50617083!
+initializeNamed: aName
+	name := aName.! !
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:32:43'!
+FAILURE!
+!Portfolio methodsFor: 'initialization' stamp: 'TD 10/24/2022 00:33:14' prior: 50616952!
+initializeNamed: aName
+	name := aName.! !
+!PortfolioDisplay methodsFor: 'functionality' stamp: 'TD 10/24/2022 00:34:14' prior: 50616966 overrides: 50614231!
+run
+	^account generateDataForReport: self.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:34:18'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:34:18'!
+ERROR!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:34:18'!
+ERROR!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:34:20'!
+ERROR!
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:34:35' overrides: 50615338!
+reportForPortfolio: anOrderedCollection 
+	self shouldBeImplemented.! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:35:05' prior: 50617176 overrides: 50615338!
+reportForPortfolio: anAccountCollection 
+	self shouldBeImplemented.! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:35:13' prior: 50617183 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	self shouldBeImplemented.! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:36:36' prior: 50617190 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	aCollectionOfAccounts isEmpty ifTrue: [^OrderedCollection with: (account name)].
+	^OrderedCollection with: (account name) with: (' ', aCollectionOfAccounts first name)! !
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:36:39'!
+FAILURE!
+!PortfolioDisplay methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:38:33' prior: 50617197 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	aCollectionOfAccounts isEmpty ifTrue: [^OrderedCollection with: (account accountName)].
+	^OrderedCollection with: (account accountName) with: (' ', aCollectionOfAccounts first accountName)! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:38:45'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:38:45'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:38:45'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:38:45'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:38:45'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:38:45'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:38:45'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:38:45'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:38:46'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:38:46'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:38:46'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:38:46'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:38:46'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:38:46'!
+ERROR!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:38:46'!
+ERROR!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:38:47'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:39:01'!
+accountName
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:39:26' prior: 50617290!
+accountName
+	^name! !
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:39:29'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:39:30'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:39:30'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:39:30'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:39:30'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:39:30'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:39:30'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:39:31'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:39:31'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:39:31'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:39:31'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:39:31'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:39:31'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:39:31'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:39:31'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:39:31'!
+ERROR!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:39:31'!
+ERROR!
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'TD 10/24/2022 00:39:39'!
+accountName
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'TD 10/24/2022 00:39:45' prior: 50617370!
+accountName
+	^name! !
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:39:46'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:39:49'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'TD 10/24/2022 00:40:02'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents accountName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:40:02' prior: 50617098!
+initializeNamed: aName
+	accountName := aName.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:40:02' prior: 50617295!
+accountName
+	^accountName! !
+
+Object subclass: #Account
+	instanceVariableNames: 'accountName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'TD 10/24/2022 00:40:23'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Account category: 'Portfolio-Solucion' stamp: 'TD 10/24/2022 00:40:23'!
+Object subclass: #Account
+	instanceVariableNames: 'accountName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'TD 10/24/2022 00:40:30'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'TD 10/24/2022 00:40:39' prior: 50617375!
+accountName
+	^accountName.! !
+!Account class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 00:40:50'!
+named: aName
+	^self new initializeNamed: aName ! !
+
+!methodRemoval: Portfolio class #named: stamp: 'TD 10/24/2022 00:40:50'!
+named: aName
+	^self new initializeNamed: aName !
+!Account class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 00:41:03' prior: 50617501!
+named: aName 
+	^self new initializeNamed: aName ! !
+
+!methodRemoval: ReceptiveAccount class #named: stamp: 'TD 10/24/2022 00:41:03'!
+named: aName 
+	^self new initializeNamed: aName !
+!Portfolio methodsFor: 'initialization' stamp: 'TD 10/24/2022 00:41:16' prior: 50617455!
+initializeNamed: aName
+	accountName := aName.
+	self initialize.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'TD 10/24/2022 00:41:25' prior: 50617089!
+initializeNamed: aName
+	accountName := aName.
+	self initialize.! !
+!Account methodsFor: 'initialization' stamp: 'TD 10/24/2022 00:41:29'!
+initializeNamed: aName
+	accountName := aName.
+	self initialize.! !
+
+!methodRemoval: ReceptiveAccount #initializeNamed: stamp: 'TD 10/24/2022 00:41:30'!
+initializeNamed: aName
+	accountName := aName.
+	self initialize.!
+!Account methodsFor: 'initialization' stamp: 'TD 10/24/2022 00:41:35' prior: 50617530!
+initializeNamed: aName
+	accountName := aName.
+	self initialize.! !
+
+!methodRemoval: Portfolio #initializeNamed: stamp: 'TD 10/24/2022 00:41:35'!
+initializeNamed: aName
+	accountName := aName.
+	self initialize.!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:41:42'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:42:21'!
+test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames
+	|portfolio report account |
+	portfolio := Portfolio named: 'My Portfolio'.
+	account := ReceptiveAccount named: 'My Receptive Account'.
+	report := PortfolioDisplay for: portfolio.
+	portfolio add: account.
+	
+	self assert: (OrderedCollection with: 'My Portfolio' with: ' My Receptive Account') equals: report run.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:42:30' prior: 50617613!
+test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames
+	|portfolio report account account2 |
+	portfolio := Portfolio named: 'My Portfolio'.
+	account := ReceptiveAccount named: 'My Receptive Account'.
+	report := PortfolioDisplay for: portfolio.
+	portfolio add: account.
+	
+	self assert: (OrderedCollection with: 'My Portfolio' with: ' My Receptive Account') equals: report run.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 00:44:27' prior: 50617629!
+test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames
+	|portfolio portfolio1 report account account2 |
+	portfolio := Portfolio named: 'My Portfolio'.
+	portfolio1 := Portfolio named: 'Another Portfolio'.
+	account := ReceptiveAccount named: 'My Receptive Account'.
+	account2 := ReceptiveAccount named: 'Another Receptive Account'.
+	report := PortfolioDisplay for: portfolio.
+	portfolio add: account.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+	
+	self assert: (OrderedCollection with: 'My Portfolio' 
+							   with: ' My Receptive Account'
+							   with: ' Another Portfolio'
+							   with: '  Another Receptive Account') equals: report run.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:44:30'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 00:44:30'!
+FAILURE!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 00:44:30'!
+FAILURE!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 00:45:00'!
+PASSED!
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:46:39' prior: 50617212 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	|reportDisplay|
+	reportDisplay := OrderedCollection new.
+	aCollectionOfAccounts isEmpty ifTrue: [^OrderedCollection with: (account accountName)].
+	^OrderedCollection with: (account accountName) with: (' ', aCollectionOfAccounts first accountName)! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:48:04' prior: 50617750 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	|reportDisplay subAccountsDisplay|
+	reportDisplay := OrderedCollection new.
+	subAccountsDisplay := aCollectionOfAccounts collect: [:anAccount | anAccount generateDataForReport: self].! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:50:50' prior: 50617764 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	|reportDisplay subAccountsDisplay|
+	reportDisplay := OrderedCollection new.
+	subAccountsDisplay := aCollectionOfAccounts collect: [:anAccount | anAccount generateDataForReport: self].
+	reportDisplay do: [:aCollectionOfDisplays | reportDisplay addAll: (self addIndentationTo: aCollectionOfDisplays)].
+	^reportDisplay.! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:51:04' prior: 50617776 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	|reportDisplay subAccountsDisplay|
+	reportDisplay := OrderedCollection new.
+	subAccountsDisplay := aCollectionOfAccounts collect: [:anAccount | anAccount generateDataForReport: self].
+	subAccountsDisplay do: [:aCollectionOfDisplays | reportDisplay addAll: (self addIndentationTo: aCollectionOfDisplays)].
+	^reportDisplay.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 00:51:07'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:51:07'!
+FAILURE!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 00:51:07'!
+ERROR!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 00:51:07'!
+ERROR!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 00:51:13'!
+FAILURE!
+!PortfolioDisplay methodsFor: 'display format' stamp: 'TD 10/24/2022 01:00:49'!
+addIndentationTo: aCollectionOfDisplays
+	^aCollectionOfDisplays collect: [:aDisplay | ' ', aDisplay].! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:01:00'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:01:00'!
+FAILURE!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:01:00'!
+ERROR!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:01:01'!
+ERROR!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:01:02'!
+FAILURE!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:01:11'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:01:11'!
+FAILURE!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:01:11'!
+ERROR!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:01:11'!
+ERROR!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:01:14'!
+ERROR!
+
+!methodRemoval: PortfolioDisplay #addIndentationTo: stamp: 'TD 10/24/2022 01:02:52'!
+addIndentationTo: aCollectionOfDisplays
+	^aCollectionOfDisplays collect: [:aDisplay | ' ', aDisplay].!
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 00:36:36' prior: 50617792 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	aCollectionOfAccounts isEmpty ifTrue: [^OrderedCollection with: (account name)].
+	^OrderedCollection with: (account name) with: (' ', aCollectionOfAccounts first name)! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:13:04' prior: 50618037 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts 
+	^aCollectionOfAccounts collect: [:anAccount | anAccount reportTo: self].
+	
+	"aCollectionOfAccounts isEmpty ifTrue: [^OrderedCollection with: (account name)].
+	^OrderedCollection with: (account name) with: (' ', aCollectionOfAccounts first name)"! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:13:13'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:13:13'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:13:13'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:13:13'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:13:14'!
+FAILURE!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:13:14'!
+ERROR!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:13:14'!
+ERROR!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:13:17'!
+FAILURE!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:13:22'!
+ERROR!
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'TD 10/24/2022 01:13:35'!
+reportTo: aPortfolioDisplay 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'TD 10/24/2022 01:14:15' prior: 50618136!
+reportTo: aReport
+	aReport reportedByReceptiveAccount: self.
+	! !
+!ReceptiveAccount methodsFor: 'reporting' stamp: 'TD 10/24/2022 01:14:22' prior: 50618141!
+reportTo: aReport
+	^aReport reportedByReceptiveAccount: self.
+	! !
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:14:23'!
+ERROR!
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:14:36'!
+reportedByReceptiveAccount: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:14:43' prior: 50618155!
+reportedByReceptiveAccount: aReceptiveAccount 
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:14:44'!
+ERROR!
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:14:50' overrides: 50618161!
+reportedByReceptiveAccount: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:15:09' prior: 50618172 overrides: 50618161!
+reportedByReceptiveAccount: aReceptiveAccount 
+	^' ', aReceptiveAccount accountName.! !
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:15:10'!
+FAILURE!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:15:15'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:15:15'!
+FAILURE!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:15:15'!
+ERROR!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:15:15'!
+FAILURE!
+!PortfolioDisplay methodsFor: 'functionality' stamp: 'TD 10/24/2022 01:16:08' prior: 50617103 overrides: 50614231!
+run
+	|displayReport|
+	displayReport := account generateDataForReport: self.
+	displayReport addFirst: (account accountName).
+	^displayReport.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:16:10'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:16:10'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:16:10'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:16:10'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:16:10'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:16:10'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:16:11'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:16:11'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:16:11'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:16:11'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:16:11'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:16:11'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:16:11'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:16:11'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:16:11'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:16:11'!
+ERROR!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:16:11'!
+ERROR!
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/24/2022 01:16:17'!
+reportTo: aPortfolioDisplay 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/24/2022 01:16:41' prior: 50618338!
+reportTo: aReport 
+	aReport reportedByAPortfolio: self.! !
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:16:43'!
+ERROR!
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:16:47'!
+reportedByAPortfolio: aPortfolio 
+	self shouldBeImplemented.! !
+!Report methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:16:53' prior: 50618353!
+reportedByAPortfolio: aPortfolio 
+	self subclassResponsibility.! !
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:16:54'!
+ERROR!
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:16:59' overrides: 50618359!
+reportedByAPortfolio: aPortfolio 
+	self shouldBeImplemented.! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:20:04' prior: 50618370 overrides: 50618359!
+reportedByAPortfolio: aPortfolio 
+	|displayReport|
+	displayReport := aPortfolio generateDataForReport: self.
+	displayReport := displayReport collect: [:aDisplay | ' ', aDisplay].
+	displayReport addFirst: (aPortfolio accountName).! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:20:11' prior: 50618377 overrides: 50618359!
+reportedByAPortfolio: aPortfolio 
+	|displayReport|
+	displayReport := aPortfolio generateDataForReport: self.
+	displayReport := displayReport collect: [:aDisplay | ' ', aDisplay].
+	displayReport addFirst: (aPortfolio accountName).
+	^displayReport.! !
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:20:32'!
+FAILURE!
+!Portfolio methodsFor: 'reporting' stamp: 'TD 10/24/2022 01:21:12' prior: 50618343!
+reportTo: aReport 
+	^aReport reportedByAPortfolio: self.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:21:16'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:21:16'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:21:16'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:21:16'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:21:16'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:21:16'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:21:16'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:21:17'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:21:17'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:21:17'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:21:17'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:21:17'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:21:17'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:21:17'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:21:17'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:21:17'!
+FAILURE!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:21:17'!
+FAILURE!
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:22:13' prior: 50618389 overrides: 50618359!
+reportedByAPortfolio: aPortfolio 
+	|displayReport|
+	displayReport := aPortfolio generateDataForReport: self.
+	displayReport := displayReport collect: [:aDisplay | ' ', aDisplay].
+	displayReport addFirst: (' ', aPortfolio accountName).
+	^displayReport.! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:30:12' prior: 50618179 overrides: 50618161!
+reportedByReceptiveAccount: aReceptiveAccount 
+	^OrderedCollection with: (' ', aReceptiveAccount accountName).! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:30:25'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:30:25'!
+FAILURE!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:30:25'!
+ERROR!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:30:27'!
+FAILURE!
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:33:10' prior: 50618048 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	|subAccountDisplay displayReport |
+	displayReport := OrderedCollection new.
+	subAccountDisplay := aCollectionOfAccounts collect: [:anAccount | anAccount reportTo: self].
+	subAccountDisplay do: [:aDisplay | displayReport addAll: aDisplay].
+	^subAccountDisplay.
+	
+	"aCollectionOfAccounts isEmpty ifTrue: [^OrderedCollection with: (account name)].
+	^OrderedCollection with: (account name) with: (' ', aCollectionOfAccounts first name)"! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:33:16'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:33:16'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:33:16'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:33:16'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:33:16'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:33:17'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:33:17'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:33:17'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:33:17'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:33:17'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:33:17'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:33:17'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:33:17'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:33:17'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:33:17'!
+FAILURE!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:33:17'!
+ERROR!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:33:19'!
+FAILURE!
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:33:56' prior: 50618579 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	|subAccountDisplay displayReport |
+	displayReport := OrderedCollection new.
+	subAccountDisplay := aCollectionOfAccounts collect: [:anAccount | anAccount reportTo: self].
+	subAccountDisplay do: [:aDisplay | displayReport addAll: aDisplay].
+	^displayReport.
+	
+	"aCollectionOfAccounts isEmpty ifTrue: [^OrderedCollection with: (account name)].
+	^OrderedCollection with: (account name) with: (' ', aCollectionOfAccounts first name)"! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:33:58'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:33:58'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:33:58'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:33:58'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:33:58'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:33:58'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:33:58'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:33:58'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:33:58'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:33:58'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:33:59'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:33:59'!
+PASSED!
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:34:08' prior: 50618671 overrides: 50615338!
+reportForPortfolio: aCollectionOfAccounts
+	|subAccountDisplay displayReport |
+	displayReport := OrderedCollection new.
+	subAccountDisplay := aCollectionOfAccounts collect: [:anAccount | anAccount reportTo: self].
+	subAccountDisplay do: [:aDisplay | displayReport addAll: aDisplay].
+	^displayReport.! !
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:35:19' prior: 50618498 overrides: 50618161!
+reportedByReceptiveAccount: aReceptiveAccount 
+	^OrderedCollection with: (' ', aReceptiveAccount accountName).! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 01:38:24'!
+test17portfolioDisplayOnReceptiveAccountThrowsError
+	|account report|
+	account := ReceptiveAccount named: 'My Receptive Account'.
+	self should: [report := PortfolioDisplay for: account] raise: Error withMessageText: PortfolioDisplay receptiveAccountCannotReportError ! !
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:38:29'!
+ERROR!
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:38:29'!
+ERROR!
+!PortfolioDisplay class methodsFor: 'error handling' stamp: 'TD 10/24/2022 01:38:38'!
+receptiveAccountCannotReportError
+	self shouldBeImplemented.! !
+!PortfolioDisplay class methodsFor: 'error handling' stamp: 'TD 10/24/2022 01:39:10' prior: 50618799!
+receptiveAccountCannotReportError
+	^'receptive account cannot report portfolio display!!!!!!'! !
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:39:12'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 01:40:03' prior: 50618780!
+test17portfolioDisplayOnReceptiveAccountThrowsError
+	|account report|
+	account := ReceptiveAccount named: 'My Receptive Account'.
+	report := PortfolioDisplay for: account.
+	self should: [report run] raise: Error withMessageText: PortfolioDisplay receptiveAccountCannotReportError ! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:40:05'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:40:05'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:40:05'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:40:05'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:40:05'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:40:05'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:40:05'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:40:05'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:40:06'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:40:06'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:40:06'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:40:06'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:40:06'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:40:06'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:40:06'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:40:06'!
+PASSED!
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:40:06'!
+FAILURE!
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:40:06'!
+FAILURE!
+!PortfolioDisplay methodsFor: 'account type assignment - private' stamp: 'TD 10/24/2022 01:40:52' overrides: 50614459!
+reportForReceptiveAccount: anAccount
+	^self error: self class receptiveAccountCannotReportError.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:40:55'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:40:56'!
+PASSED!
+!AccountSummary class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 01:42:07' overrides: 50614243!
+for: anAccount 
+	^self new initializeFor: anAccount ! !
+!TransferNet class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 01:42:07' overrides: 50614243!
+for: anAccount 
+	^self new initializeFor: anAccount ! !
+!PortfolioDisplay class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 01:42:07' overrides: 50614243!
+for: anAccount 
+	^self new initializeFor: anAccount ! !
+
+!methodRemoval: Report class #for: stamp: 'TD 10/24/2022 01:42:08'!
+for: anAccount 
+	^self new initializeFor: anAccount !
+!PortfolioDisplay class methodsFor: 'instance creation' stamp: 'TD 10/24/2022 01:46:07' prior: 50618994!
+for: anAccount 
+	(anAccount isKindOf: ReceptiveAccount) ifTrue: [^self error: self receptiveAccountCannotReportError].
+	^self new initializeFor: anAccount.
+	
+	"Este if esta porque el enunciado dice que no se deben modificar clases excepto aquellas de la parte 2, no ocurre lo mismo con los metodos reportedBy ya que estos podrian ser utiles para otros reportes."! !
+
+!methodRemoval: PortfolioDisplay #reportForReceptiveAccount: stamp: 'TD 10/24/2022 01:46:24'!
+reportForReceptiveAccount: anAccount
+	^self error: self class receptiveAccountCannotReportError.!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:46:33'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:46:34'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:46:34'!
+PASSED!
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:46:34'!
+ERROR!
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:46:34'!
+ERROR!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'TD 10/24/2022 01:46:47' prior: 50618815!
+test17portfolioDisplayOnReceptiveAccountThrowsError
+	|account report|
+	account := ReceptiveAccount named: 'My Receptive Account'.
+	self should: [	report := PortfolioDisplay for: account.] raise: Error withMessageText: PortfolioDisplay receptiveAccountCannotReportError ! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:46:51'!
+PASSED!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:47:02'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:47:02'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:47:02'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:47:02'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:47:02'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:47:02'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:47:03'!
+PASSED!
+!Account methodsFor: 'accessing' stamp: 'TD 10/24/2022 01:48:23'!
+accountName
+	^accountName! !
+
+!methodRemoval: Portfolio #accountName stamp: 'TD 10/24/2022 01:48:23'!
+accountName
+	^accountName!
+!Account methodsFor: 'accessing' stamp: 'TD 10/24/2022 01:48:30' prior: 50619255!
+accountName
+	^accountName.! !
+
+!methodRemoval: ReceptiveAccount #accountName stamp: 'TD 10/24/2022 01:48:30'!
+accountName
+	^accountName.!
+
+!methodRemoval: AccountTransaction #impactOnTransferNet: stamp: 'TD 10/24/2022 01:48:36'!
+impactOnTransferNet: aTransferNet
+	self subclassResponsibility.!
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:50:51'!
+PASSED!
+!ReportTest methodsFor: 'tests' stamp: 'TD 10/24/2022 01:52:09' prior: 50613604!
+test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions
+	|portfolio portfolio1 account account2 report |
+	portfolio := Portfolio new.
+	portfolio1 := Portfolio new.
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	report := AccountSummary for: portfolio.
+	
+	Deposit register: 30 on: account.
+	Transfer register: 5 from: account to: account2.
+	Transfer register: 20 from: account2 to: account.
+	
+	portfolio add: account.
+	portfolio1 add: account2.
+	portfolio add: portfolio1.
+		
+	self assert: (OrderedCollection with: 'Depósito por 30' 
+							   with: 'Salida por transferencia de 5' 
+							   with: 'Entrada por transferencia de 20'
+							   with: 'Entrada por transferencia de 5'
+							   with: 'Salida por transferencia de 20' 
+							   with: 'Balance = 30') 
+	equals: report run.! !
+
+!testRun: #ReportTest #test01accountSummaryOnAnAccountWithNoTransactionsOnlyReturnsBalanceEquals0 stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test02accountSummaryOnAnAccountWithTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test03accountSummaryOnAnAccountWithDifferentTransactionsReturnsTransactionsAsStrings stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test04accountSummaryOnEmptyPortfolioReturnsBalanceZero stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test05accountSummaryOnPortfolioWithReceptiveAccountHasReceptiveAccountTransactions stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test06accountSummaryOnPortfolioWithMultipleReceptiveAccountsHasReceptiveAccountsTransactions stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test07transferNetOnAccountWithNoTransfersReturnsZero stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test08transferNetOnAccountWithOneTransferHasCorrectValue stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test09transferNetOnAccountWithMultipleTransfersHasCorrectValue stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test10transferNetOnAccountWithMultipleTransfersAndOtherTransactionsHasCorrectValue stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test11emptyPortfolioReturnsZeroTransferNetOnReport stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test12portfolioWithOneAccountWithTransfersHasSameTransferNetAsAccount stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test13portfolioWithMultipleAccountsAndPortfoliosWithTransfersHasSameTransferNetAsSubAccounts stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test14portfolioDisplayForEmptyPortfolioReturnsPortfolioName stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test15portfolioDisplayForPortfolioWithOneAccountReturnsNames stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test16portfolioDisplayForPortfolioWithMultipleAccountsAndPortfoliosReturnsSubAccountsNames stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+!testRun: #ReportTest #test17portfolioDisplayOnReceptiveAccountThrowsError stamp: 'TD 10/24/2022 01:52:11'!
+PASSED!
+
+----QUIT----(24 October 2022 01:52:33) CuisUniversity-5481.image priorSource: 9004514!

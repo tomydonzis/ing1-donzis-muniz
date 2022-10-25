@@ -1,0 +1,2287 @@
+
+----STARTUP---- (17 October 2022 17:12:31) as /Users/franco/Documents/UBA/Ing1/SmallTalk/CuisUniversity-5481.image!
+
+
+----End fileIn of /Users/franco/Documents/UBA/Ing1/SmallTalk/06-Portfolio.st----!
+
+----End fileIn of /Users/franco/Downloads/MarsRover-WithHeading.st----!
+
+TestCase subclass: #MarsRoverLoggerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverLoggerTest category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 19:57:58'!
+TestCase subclass: #MarsRoverLoggerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverLoggerTest methodsFor: 'nil' stamp: 'FM 10/24/2022 19:58:04'!
+pisiofsi! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:01:42'!
+test01loggerWithMarsRoverOnInitialPositionIsEmpty
+	|marsRover|
+	marsRover := MarsRoverHeadingNorth.! !
+
+!methodRemoval: MarsRoverLoggerTest #pisiofsi stamp: 'FM 10/24/2022 20:02:12'!
+pisiofsi!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:02:36' prior: 50553409!
+test01loggerWithMarsRoverOnInitialPositionIsEmpty
+	|marsRover|
+	marsRover := MarsRover at: 1@1! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:03:06' prior: 50553419!
+test01loggerWithMarsRoverOnInitialPositionIsEmpty
+	|marsRover|
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.! !
+
+!classDefinition: #MarsRoverLogger category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 20:03:47'!
+Object subclass: #MarsRoverLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:03:41' prior: 50553426!
+test01loggerWithMarsRoverOnInitialPositionIsEmpty
+	|marsRover logger |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	logger := MarsRoverLogger for: marsRover.! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:05:24' prior: 50553441!
+test01loggerWithMarsRoverOnInitialPositionIsEmpty
+	|marsRover logger |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	logger := MarsRoverLogger for: marsRover.
+	self assert: (logger logs) isEmpty.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:05:32'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:05:32'!
+ERROR!
+!MarsRoverLogger class methodsFor: 'instance creation' stamp: 'FM 10/24/2022 20:05:41'!
+for: aMarsRover 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aMarsRover ! !
+!MarsRoverLogger class methodsFor: 'instance creation' stamp: 'FM 10/24/2022 20:05:55' prior: 50553468!
+for: aMarsRover
+	^self new initializeFor: aMarsRover ! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:05:56'!
+ERROR!
+
+!classDefinition: #MarsRoverLogger category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 20:06:07'!
+Object subclass: #MarsRoverLogger
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverLogger methodsFor: 'initialization' stamp: 'FM 10/24/2022 20:06:07'!
+initializeFor: aMarsRover 
+	self shouldBeImplemented.
+	marsRover := aMarsRover.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:06:24'!
+ERROR!
+!MarsRoverLogger methodsFor: 'initialization' stamp: 'FM 10/24/2022 20:06:29' prior: 50553494!
+initializeFor: aMarsRover 
+	marsRover := aMarsRover.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:06:31'!
+ERROR!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 20:06:38'!
+logs
+	self shouldBeImplemented.! !
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 20:06:52' prior: 50553512!
+logs
+	^OrderedCollection new.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:06:54'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:06:55'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:08:18'!
+test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog
+	|marsRover logger |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	logger := MarsRoverLogger for: marsRover.
+	self assert: (logger logs) isEmpty.! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:09:11' prior: 50553528!
+test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog
+	|marsRover logger |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	marsRover moveForward.
+	
+	logger := MarsRoverLogger for: marsRover.
+	self assert: (OrderedCollection with: '1@2') equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:09:13'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:09:13'!
+FAILURE!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 20:11:37' prior: 50553516!
+logs
+	(marsRover position = 1@2) ifTrue: [^OrderedCollection with: '1@2'].
+	^OrderedCollection new.! !
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:11:40'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:11:40'!
+ERROR!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 20:12:25' prior: 50553560!
+logs
+	(marsRover isAt: 1@2 heading: MarsRoverHeadingNorth) ifTrue: [^OrderedCollection with: '1@2'].
+	^OrderedCollection new.! !
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:12:28'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:12:33'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:12:33'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:13:25'!
+test02loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs
+	|marsRover logger |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	marsRover moveForward.
+	
+	logger := MarsRoverLogger for: marsRover.
+	self assert: (OrderedCollection with: '1@2' with: '1@3') equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:13:39'!
+test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs
+	|marsRover logger |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	marsRover moveForward moveForward.
+	
+	logger := MarsRoverLogger for: marsRover.
+	self assert: (OrderedCollection with: '1@2' with: '1@3') equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:13:41'!
+test02loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs
+	|marsRover logger |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	marsRover moveForward.
+	
+	logger := MarsRoverLogger for: marsRover.
+	self assert: (OrderedCollection with: '1@2' with: '1@3') equals: (logger logs).!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:13:42'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:13:42'!
+FAILURE!
+
+Object subclass: #MarsRoverLogger
+	instanceVariableNames: 'marsRover logs'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverLogger category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 20:14:07'!
+Object subclass: #MarsRoverLogger
+	instanceVariableNames: 'marsRover logs'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 20:15:14' prior: 50553575!
+logs
+	^logs.! !
+!MarsRover class methodsFor: 'instance creation' stamp: 'FM 10/24/2022 20:16:14'!
+at: aPosition heading: aHeadingType withLogger: aLogger
+	
+	^self new initializeAt: aPosition heading: aHeadingType! !
+!MarsRover class methodsFor: 'instance creation' stamp: 'FM 10/24/2022 20:16:33' prior: 50553658!
+at: aPosition heading: aHeadingType withLogger: aLogger
+	
+	^self new initializeAt: aPosition heading: aHeadingType withLogger: aLogger.! !
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:17:02'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:17:02'!
+FAILURE!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:17:43' prior: 50553450!
+test01loggerWithMarsRoverOnInitialPositionIsEmpty
+	|marsRover logger |
+	logger := MarsRoverLogger for: marsRover.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	
+	self assert: (logger logs) isEmpty.! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:17:51' prior: 50553539!
+test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog
+	|marsRover logger |
+	logger := MarsRoverLogger for: marsRover.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover moveForward.
+	self assert: (OrderedCollection with: '1@2') equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:18:50' prior: 50553692!
+test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover moveForward.
+	self assert: (OrderedCollection with: '1@2') equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:18:55' prior: 50553681!
+test01loggerWithMarsRoverOnInitialPositionIsEmpty
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	
+	self assert: (logger logs) isEmpty.! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:19:19' prior: 50553607!
+test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover moveForward moveForward.
+	self assert: (OrderedCollection with: '1@2' with: '1@3') equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:19:20'!
+ERROR!
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 20:19:33'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head headingType'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 20:19:33'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head headingType logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 20:19:33'!
+initializeAt: aPosition heading: aHeadingType withLogger: aLogger 
+	self shouldBeImplemented.
+	position := aPosition.
+	headingType := aHeadingType.
+	logger := aLogger.! !
+!MarsRover methodsFor: 'initialization' stamp: 'FM 10/24/2022 20:20:00' prior: 50553762!
+initializeAt: aPosition heading: aHeadingType withLogger: aLogger 
+	position := aPosition.
+	headingType := aHeadingType.
+	logger := aLogger.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:20:08'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:20:08'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:20:08'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:20:14'!
+ERROR!
+!MarsRoverLogger methodsFor: 'initialization' stamp: 'FM 10/24/2022 20:20:55' overrides: 16920235!
+initialize
+	logs := OrderedCollection new.! !
+
+!methodRemoval: MarsRoverLogger #initializeFor: stamp: 'FM 10/24/2022 20:20:59'!
+initializeFor: aMarsRover 
+	marsRover := aMarsRover.!
+!MarsRoverLogger class methodsFor: 'instance creation' stamp: 'FM 10/24/2022 20:21:12' prior: 50553477!
+for: aMarsRover
+	^self new initialize! !
+
+!methodRemoval: MarsRoverLogger class #for: stamp: 'FM 10/24/2022 20:21:17'!
+for: aMarsRover
+	^self new initialize!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:21:29'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:21:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:21:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:21:37'!
+ERROR!
+!MarsRover methodsFor: 'initialization' stamp: 'FM 10/24/2022 20:22:32' prior: 50553771!
+initializeAt: aPosition heading: aHeadingType withLogger: aLogger 
+	position := aPosition.
+	head := aHeadingType for: self.
+	logger := aLogger.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:22:36'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:22:36'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:22:36'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:22:37'!
+FAILURE!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 20:23:18'!
+addLog: aPosition
+	logs add: aPosition.! !
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 20:23:48' prior: 50553155!
+moveForward
+	
+	head moveForward.
+	logger addLog: '1@2'.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:23:51'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:23:51'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:23:51'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:23:51'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:23:55'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:23:56'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:23:56'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 20:24:15' prior: 50553857!
+moveForward
+	
+	head moveForward.
+	logger addLog: position.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:24:17'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:24:17'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:24:17'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:24:21'!
+FAILURE!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:27:55' prior: 50553705!
+test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover moveForward.
+	self assert: (OrderedCollection with: 1@2) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:28:01' prior: 50553729!
+test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover moveForward moveForward.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:28:04'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:28:05'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:50:27' prior: 50553718!
+test01loggerWithMarsRoverOnInitialPositionIsEmpty
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process:''.
+	self assert: (logger logs) isEmpty.! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:50:38' prior: 50553913!
+test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection with: 1@2) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:50:48' prior: 50553926!
+test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'ff'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:50:56' prior: 50553973!
+test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'ff'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:51:00'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:51:00'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:51:00'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:51:35'!
+test03loggerWithMarsRoverRotatingClockwise
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:51:42'!
+test04loggerWithMarsRoverRotatingClockwise
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test03loggerWithMarsRoverRotatingClockwise stamp: 'FM 10/24/2022 20:51:43'!
+test03loggerWithMarsRoverRotatingClockwise
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: (logger logs).!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:54:04'!
+test04loggerWithMarsRoverRotatingClockwiseOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with: 'r') equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test04loggerWithMarsRoverRotatingClockwise stamp: 'FM 10/24/2022 20:54:06'!
+test04loggerWithMarsRoverRotatingClockwise
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: (logger logs).!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:55:13'!
+test04loggerWithMarsRoverRotatingClockwiseInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (logger logs) isEmpty! !
+
+!methodRemoval: MarsRoverLoggerTest #test04loggerWithMarsRoverRotatingClockwiseOrientationMode stamp: 'FM 10/24/2022 20:55:15'!
+test04loggerWithMarsRoverRotatingClockwiseOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with: 'r') equals: (logger logs).!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverRotatingClockwiseInPositionMode stamp: 'FM 10/24/2022 20:55:16'!
+PASSED!
+
+!methodRemoval: MarsRoverLoggerTest #test04loggerWithMarsRoverRotatingClockwiseInPositionMode stamp: 'FM 10/24/2022 20:55:27'!
+test04loggerWithMarsRoverRotatingClockwiseInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (logger logs) isEmpty!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:56:36'!
+test03loggerWithMarsRoverRotatingClockwiseIsRegisteredInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with: 'East') equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test03loggerWithMarsRoverRotatingClockwiseIsRegisteredInOrientationMode stamp: 'FM 10/24/2022 20:56:39'!
+test03loggerWithMarsRoverRotatingClockwiseIsRegisteredInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with: 'East') equals: (logger logs).!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:57:02'!
+test03loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'b'.
+	self assert: (OrderedCollection with: 1@0) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:57:16'!
+test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'b'.
+	self assert: (OrderedCollection with: 1@0) equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test03loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:57:16'!
+test03loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'b'.
+	self assert: (OrderedCollection with: 1@0) equals: (logger logs).!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:57:19'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 20:57:45' prior: 50553147!
+moveBackward
+	
+	head moveBackward.
+	logger addLog: position.! !
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 20:58:13' prior: 50554183!
+moveBackward
+	
+	head moveBackward.
+	logger addLog: 1@0.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:58:16'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:58:16'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:58:16'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:58:16'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:58:32'!
+test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'bb'.
+	self assert: (OrderedCollection with: 1@0 with:1@-1) equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:58:33'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:58:37'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 20:58:55' prior: 50554188!
+moveBackward
+	
+	head moveBackward.
+	logger addLog: position.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:58:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:58:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:58:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:58:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:58:57'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 20:59:56'!
+test05loggerWithMarsRoverMovingBackwardsAndForwardHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'bffbfb'.
+	self assert: (OrderedCollection with: 1@0 with:1@1 with:1@2 with:1@1 with:1@2 with:1@1) equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsAndForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:59:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 20:59:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 20:59:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 20:59:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:59:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsAndForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:59:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 20:59:57'!
+PASSED!
+
+!methodRemoval: MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsAndForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:00:04'!
+test05loggerWithMarsRoverMovingBackwardsAndForwardHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'bffbfb'.
+	self assert: (OrderedCollection with: 1@0 with:1@1 with:1@2 with:1@1 with:1@2 with:1@1) equals: (logger logs).!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:00:53'!
+test05loggerWithMarsRoverRotatingClockwiseHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with:'East') equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:00:58'!
+test06loggerWithMarsRoverRotatingClockwiseHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with:'East') equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test05loggerWithMarsRoverRotatingClockwiseHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:00:58'!
+test05loggerWithMarsRoverRotatingClockwiseHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with:'East') equals: (logger logs).!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:02:05'!
+test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with:'East') equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:02:07'!
+test06loggerWithMarsRoverRotatingClockwiseHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with:'East') equals: (logger logs).!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:02:15'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:02:15'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:02:15'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:02:15'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:02:15'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:02:15'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:02:15'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:03:16' prior: 50553121!
+rotateRight
+	
+	head rotateRight.
+	logger addLog: 'r'.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:03:19'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:03:19'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:03:19'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:03:19'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:03:19'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:03:19'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:03:19'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:03:30' prior: 50554418!
+rotateRight
+	
+	head rotateRight.
+	logger addLog: 'East'.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:03:32'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:03:32'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:03:32'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:03:32'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:03:32'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:03:32'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:04:11'!
+test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'l'.
+	self assert: (OrderedCollection with:'West') equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:04:12'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:04:23' prior: 50553117!
+rotateLeft
+	
+	head rotateLeft.
+	logger addLog: 'West'.! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:04:52'!
+test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'll'.
+	self assert: (OrderedCollection with:'West' with:'South') equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:05:13'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:05:34' prior: 50554503!
+rotateLeft
+	
+	head rotateLeft.
+	logger addLog: head.! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:06:07'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:12:41' prior: 50553654!
+logs
+	^logs.! !
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:15:21' prior: 50554454!
+rotateRight
+	
+	head rotateRight.
+	logger addLog: (logger identify: head).! !
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:15:24' prior: 50554543!
+rotateRight
+	
+	head rotateRight.
+	logger addLog: (logger identify: head).! !
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:15:32' prior: 50554526!
+rotateLeft
+	
+	head rotateLeft.
+	logger addLog: (logger identify: head).! !
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:17:27'!
+identify: aHeadingType
+	(aHeadingType isKindOf: MarsRoverHeadingEast) ifTrue: [^'East'].
+	(aHeadingType isKindOf: MarsRoverHeadingNorth) ifTrue: [^'North'].
+	(aHeadingType isKindOf: MarsRoverHeadingSouth) ifTrue: [^'South'].
+	(aHeadingType isKindOf: MarsRoverHeadingWest) ifTrue: [^'West'].! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:17:29'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:17:29'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:17:29'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:17:29'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:17:29'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:17:29'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:17:29'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:17:29'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:17:58'!
+test09loggerWithMarsRoverRotatingToBothSidesHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'rl'.
+	self assert: (OrderedCollection with:'East' with:'North') equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverRotatingToBothSidesHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:17:59'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:17:59'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:17:59'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:17:59'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:17:59'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:17:59'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:17:59'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:17:59'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:17:59'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverRotatingToBothSidesHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:17:59'!
+PASSED!
+
+!methodRemoval: MarsRoverLoggerTest #test09loggerWithMarsRoverRotatingToBothSidesHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:18:05'!
+test09loggerWithMarsRoverRotatingToBothSidesHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'rl'.
+	self assert: (OrderedCollection with:'East' with:'North') equals: (logger logs).!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:19:50' prior: 50554558!
+identify: aHeadingType
+	aHeadingType provideIdentificationTo: self.
+	"(aHeadingType isKindOf: MarsRoverHeadingEast) ifTrue: [^'East'].
+	(aHeadingType isKindOf: MarsRoverHeadingNorth) ifTrue: [^'North'].
+	(aHeadingType isKindOf: MarsRoverHeadingSouth) ifTrue: [^'South'].
+	(aHeadingType isKindOf: MarsRoverHeadingWest) ifTrue: [^'West']."! !
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:21:42' prior: 50554679!
+identify: aHeadingType
+	^aHeadingType identification.
+	"(aHeadingType isKindOf: MarsRoverHeadingEast) ifTrue: [^'East'].
+	(aHeadingType isKindOf: MarsRoverHeadingNorth) ifTrue: [^'North'].
+	(aHeadingType isKindOf: MarsRoverHeadingSouth) ifTrue: [^'South'].
+	(aHeadingType isKindOf: MarsRoverHeadingWest) ifTrue: [^'West']."! !
+!MarsRoverHeadingEast methodsFor: 'heading' stamp: 'FM 10/24/2022 21:21:54'!
+identification
+	^'East'.! !
+!MarsRoverHeadingNorth methodsFor: 'heading' stamp: 'FM 10/24/2022 21:22:05'!
+identification
+	^'North'.! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'FM 10/24/2022 21:22:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'FM 10/24/2022 21:22:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'FM 10/24/2022 21:22:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'FM 10/24/2022 21:22:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'FM 10/24/2022 21:22:08'!
+ERROR!
+!MarsRoverHeadingSouth methodsFor: 'heading' stamp: 'FM 10/24/2022 21:22:13'!
+identification
+	^'South'.! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'FM 10/24/2022 21:22:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'FM 10/24/2022 21:22:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'FM 10/24/2022 21:22:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'FM 10/24/2022 21:22:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'FM 10/24/2022 21:22:16'!
+ERROR!
+!MarsRoverHeadingWest methodsFor: 'heading' stamp: 'FM 10/24/2022 21:22:23'!
+identification
+	^'West'.! !
+!MarsRoverHeading methodsFor: 'heading' stamp: 'FM 10/24/2022 21:22:37'!
+identification
+
+	self subclassResponsibility ! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:22:39'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:22:39'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:22:39'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:22:39'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:22:39'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:22:39'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:22:39'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:22:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'FM 10/24/2022 21:22:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'FM 10/24/2022 21:22:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'FM 10/24/2022 21:22:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'FM 10/24/2022 21:22:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'FM 10/24/2022 21:22:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'FM 10/24/2022 21:22:48'!
+ERROR!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:23:09' prior: 50554693!
+identify: aHeadingType
+	^aHeadingType identification.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:23:12'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:23:12'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:23:12'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:23:12'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:23:12'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:23:12'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:23:12'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:23:12'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:23:56'!
+test08loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection new) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:24:01'!
+test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection new) equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test08loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:24:01'!
+test08loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection new) equals: (logger logs).!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:24:05'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:24:05'!
+FAILURE!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:24:52' prior: 50554982!
+test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverLogger mode: 'orientation'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection new) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:25:03' prior: 50555017!
+test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'orientation'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection new) equals: (logger logs).! !
+!MarsRoverLogger class methodsFor: 'instance creation' stamp: 'FM 10/24/2022 21:25:57'!
+mode: aMode
+	^self new initializeWithMode: aMode.! !
+
+!classDefinition: #MarsRoverLogger category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:27:03'!
+Object subclass: #MarsRoverLogger
+	instanceVariableNames: 'marsRover logs mode'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverLogger methodsFor: 'initialization' stamp: 'FM 10/24/2022 21:26:59'!
+initializeWithMode: aMode
+	mode := aMode.
+	logs := OrderedCollection new.! !
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:27:10'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:27:10'!
+FAILURE!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:27:58' prior: 50553853!
+addLog: anAttribute
+	logs add: anAttribute.! !
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:28:27' prior: 50555071!
+addLog: aLocalizationAttribute
+	logs add: aLocalizationAttribute.! !
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 21:30:07' prior: 50553891!
+moveForward
+	
+	head moveForward.
+	(logger mode = 'orientation') ifTrue: [^self].
+	logger addLog: position.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:30:16'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:30:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:30:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:30:16'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:30:16'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:30:16'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:30:16'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:30:16'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:30:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:30:22'!
+ERROR!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:30:33'!
+mode
+	^mode.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:30:35'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:30:35'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:30:35'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:30:35'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:30:35'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:30:35'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:30:35'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:30:35'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:30:35'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:31:08'!
+test09loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'orientation'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'br'.
+	self assert: (OrderedCollection with: 'East') equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:31:14'!
+test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'orientation'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'br'.
+	self assert: (OrderedCollection with: 'East') equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test09loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:31:14'!
+test09loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'orientation'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'br'.
+	self assert: (OrderedCollection with: 'East') equals: (logger logs).!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:31:16'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:31:16'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 21:31:34' prior: 50554232!
+moveBackward
+	
+	head moveBackward.
+	(logger mode = 'orientation') ifTrue: [^self].
+	logger addLog: position.! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:31:36'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:31:36'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:31:36'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:31:36'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:31:36'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:31:36'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:31:36'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:31:36'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:31:36'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:31:36'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:32:26'!
+test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'position'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection new) equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:32:28'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:32:43' prior: 50554548!
+rotateRight
+	
+	head rotateRight.
+	(logger mode = 'position') ifTrue: [^self].
+	logger addLog: (logger identify: head).! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:32:45'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:33:38'!
+test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'position'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'lf'.
+	self assert: (OrderedCollection with:1@2) equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:33:39'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:33:50' prior: 50554553!
+rotateLeft
+	
+	head rotateLeft.
+	(logger mode = 'position') ifTrue: [^self].
+	logger addLog: (logger identify: head).! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:33:52'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:33:52'!
+FAILURE!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:33:52'!
+FAILURE!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:34:07' prior: 50555355!
+test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'position'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'lf'.
+	self assert: (OrderedCollection with:1@2) equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:34:07'!
+FAILURE!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:34:21' prior: 50555440!
+test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'position'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'lf'.
+	self assert: (OrderedCollection with:0@1) equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:34:22'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:36:23'!
+test12loggerWithMarsRoverMovingForwardAndRotatingRightHasCorrectLogsInPosOriMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'posori'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection with:1@2 with:'East') equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:36:30'!
+test13loggerWithMarsRoverMovingForwardAndRotatingRightHasCorrectLogsInPosOriMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'posori'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection with:1@2 with:'East') equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test12loggerWithMarsRoverMovingForwardAndRotatingRightHasCorrectLogsInPosOriMode stamp: 'FM 10/24/2022 21:36:30'!
+test12loggerWithMarsRoverMovingForwardAndRotatingRightHasCorrectLogsInPosOriMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'posori'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection with:1@2 with:'East') equals: (logger logs).!
+
+!testRun: #MarsRoverLoggerTest #test13loggerWithMarsRoverMovingForwardAndRotatingRightHasCorrectLogsInPosOriMode stamp: 'FM 10/24/2022 21:36:36'!
+PASSED!
+
+!methodRemoval: MarsRoverLoggerTest #test13loggerWithMarsRoverMovingForwardAndRotatingRightHasCorrectLogsInPosOriMode stamp: 'FM 10/24/2022 21:36:57'!
+test13loggerWithMarsRoverMovingForwardAndRotatingRightHasCorrectLogsInPosOriMode
+	|marsRover logger |
+	logger := MarsRoverLogger mode: 'posori'.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'fr'.
+	self assert: (OrderedCollection with:1@2 with:'East') equals: (logger logs).!
+
+Object subclass: #MarsRoverLoggerMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverLoggerMode category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:37:38'!
+Object subclass: #MarsRoverLoggerMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLoggerMode subclass: #MarsRoverLoggerPositionMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverLoggerPositionMode category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:38:03'!
+MarsRoverLoggerMode subclass: #MarsRoverLoggerPositionMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLoggerMode subclass: #MarsRoverLoggerOrientationMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverLoggerOrientationMode category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:38:08'!
+MarsRoverLoggerMode subclass: #MarsRoverLoggerOrientationMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLoggerMode subclass: #MarsRoverLoggerPosoriMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverLoggerPosoriMode category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:38:11'!
+MarsRoverLoggerMode subclass: #MarsRoverLoggerPosoriMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:40:20'!
+processLog: aLocalizationAttribute
+	mode addOrDiscard: aLocalizationAttribute for: self.! !
+!MarsRoverLoggerOrientationMode methodsFor: 'nil' stamp: 'FM 10/24/2022 21:46:22'!
+addOrDiscard: aLocalizationAttribute for: aLogger
+	"aLogger addOrDiscardInOrientationMode: aLocalizationAttribute "! !
+
+MarsRoverLogger subclass: #MarsRoverPositionLogger
+	instanceVariableNames: 'marsRover logs'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLogger subclass: #MarsRoverPositionLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverPositionLogger category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:47:50'!
+MarsRoverLogger subclass: #MarsRoverPositionLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLogger subclass: #MarsRoverOrientationLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverOrientationLogger category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:47:53'!
+MarsRoverLogger subclass: #MarsRoverOrientationLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLogger subclass: #MarsRoverPosoriLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverPosoriLogger category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:48:06'!
+MarsRoverLogger subclass: #MarsRoverPosoriLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLogger subclass: #MarsRoverPosoriOnichanLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverPosoriOnichanLogger category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:48:09'!
+MarsRoverLogger subclass: #MarsRoverPosoriOnichanLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+MarsRoverLogger subclass: #MarsRoverPosoriLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverPosoriLogger category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:48:16'!
+MarsRoverLogger subclass: #MarsRoverPosoriLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverPosoriOnichanLogger stamp: 'FM 10/24/2022 21:48:27'!
+MarsRoverLogger subclass: #MarsRoverPosoriOnichanLogger
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverLoggerOrientationMode stamp: 'FM 10/24/2022 21:48:37'!
+MarsRoverLoggerMode subclass: #MarsRoverLoggerOrientationMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverLoggerPositionMode stamp: 'FM 10/24/2022 21:48:44'!
+MarsRoverLoggerMode subclass: #MarsRoverLoggerPositionMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverLoggerPosoriMode stamp: 'FM 10/24/2022 21:48:45'!
+MarsRoverLoggerMode subclass: #MarsRoverLoggerPosoriMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverLoggerMode stamp: 'FM 10/24/2022 21:48:45'!
+Object subclass: #MarsRoverLoggerMode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:48:55' prior: 50555076!
+addLog: aLocalizationAttribute
+	self subclassResponsibility.! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:50:39' prior: 50555459!
+test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'lf'.
+	self assert: (OrderedCollection with:0@1) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:51:02' prior: 50555281!
+test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection new) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:51:17' prior: 50555190!
+test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverOrientationLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'br'.
+	self assert: (OrderedCollection with: 'East') equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:51:21' prior: 50555030!
+test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode
+	|marsRover logger |
+	logger := MarsRoverOrientationLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection new) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:51:24' prior: 50554508!
+test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverOrientationLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'll'.
+	self assert: (OrderedCollection with:'West' with:'South') equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:51:27' prior: 50554485!
+test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverOrientationLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'l'.
+	self assert: (OrderedCollection with:'West') equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:51:31' prior: 50554360!
+test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode
+	|marsRover logger |
+	logger:= MarsRoverOrientationLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'r'.
+	self assert: (OrderedCollection with:'East') equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:51:39' prior: 50554210!
+test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'bb'.
+	self assert: (OrderedCollection with: 1@0 with:1@-1) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:51:42' prior: 50554152!
+test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'b'.
+	self assert: (OrderedCollection with: 1@0) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:51:48' prior: 50553986!
+test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'ff'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:51:57' prior: 50553960!
+test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection with: 1@2) equals: (logger logs).! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:52:01' prior: 50553948!
+test01loggerWithMarsRoverOnInitialPositionIsEmpty
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process:''.
+	self assert: (logger logs) isEmpty.! !
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:52:06'!
+test01loggerWithMarsRoverOnInitialPositionIsEmptyInPositionMode
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process:''.
+	self assert: (logger logs) isEmpty.! !
+
+!methodRemoval: MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmpty stamp: 'FM 10/24/2022 21:52:08'!
+test01loggerWithMarsRoverOnInitialPositionIsEmpty
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process:''.
+	self assert: (logger logs) isEmpty.!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:52:13'!
+test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection with: 1@2) equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog stamp: 'FM 10/24/2022 21:52:13'!
+test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLog
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'f'.
+	self assert: (OrderedCollection with: 1@2) equals: (logger logs).!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:52:17'!
+test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'ff'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs stamp: 'FM 10/24/2022 21:52:17'!
+test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogs
+	|marsRover logger |
+	logger := MarsRoverPositionLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'ff'.
+	self assert: (OrderedCollection with: 1@2 with: 1@3) equals: (logger logs).!
+
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head logger loggerts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:52:33'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head logger loggerts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head logger logger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head logger loggers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'FM 10/24/2022 21:52:40'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head logger loggers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!methodRemoval: MarsRoverLogger #processLog: stamp: 'FM 10/24/2022 21:52:57'!
+processLog: aLocalizationAttribute
+	mode addOrDiscard: aLocalizationAttribute for: self.!
+
+!methodRemoval: MarsRoverLogger #mode stamp: 'FM 10/24/2022 21:53:01'!
+mode
+	^mode.!
+
+!methodRemoval: MarsRoverLogger #initializeWithMode: stamp: 'FM 10/24/2022 21:53:03'!
+initializeWithMode: aMode
+	mode := aMode.
+	logs := OrderedCollection new.!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmptyInPositionMode stamp: 'FM 10/24/2022 21:53:13'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:53:13'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:53:15'!
+ERROR!
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 21:53:31' prior: 50555081!
+moveForward
+	
+	head moveForward.
+	logger addLog: position.! !
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 21:53:34' prior: 50555229!
+moveBackward
+	
+	head moveBackward.
+	logger addLog: position.! !
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:53:50' prior: 50555298!
+rotateRight
+	
+	head rotateRight.
+	logger addLog: (logger identify: head).! !
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:53:54' prior: 50555373!
+rotateLeft
+	
+	head rotateLeft.
+	logger addLog: (logger identify: head).! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmptyInPositionMode stamp: 'FM 10/24/2022 21:54:15'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:54:15'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:54:15'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:54:15'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:54:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:54:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:54:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:54:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:54:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:54:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:54:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:54:16'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:54:17'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmptyInPositionMode stamp: 'FM 10/24/2022 21:54:25'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:54:25'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:54:29'!
+ERROR!
+!MarsRoverPositionLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:54:37' overrides: 50555773!
+addLog: aPoint 
+	self shouldBeImplemented.! !
+
+!methodRemoval: MarsRoverPositionLogger #addLog: stamp: 'FM 10/24/2022 21:56:03'!
+addLog: aPoint 
+	self shouldBeImplemented.!
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 21:56:19' prior: 50556121!
+moveForward
+	
+	head moveForward.
+	logger addPositionLog: position.! !
+!MarsRover methodsFor: 'moving' stamp: 'FM 10/24/2022 21:56:26' prior: 50556126!
+moveBackward
+	
+	head moveBackward.
+	logger addPositionLog: position.! !
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:57:15' prior: 50556136!
+rotateLeft
+	
+	head rotateLeft.
+	logger addOrientationLog: (logger identify: head).! !
+!MarsRover methodsFor: 'heading' stamp: 'FM 10/24/2022 21:57:20' prior: 50556131!
+rotateRight
+	
+	head rotateRight.
+	logger addOrientationLog: (logger identify: head).! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmptyInPositionMode stamp: 'FM 10/24/2022 21:57:29'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:57:29'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:57:30'!
+ERROR!
+!MarsRoverPositionLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:57:37'!
+addPositionLog: aPoint 
+	self shouldBeImplemented.! !
+!MarsRoverPositionLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:57:53' prior: 50556352!
+addPositionLog: aPosition
+	logs add: aPosition.! !
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:57:54'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:57:55'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:57:56'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:57:57'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:57:58'!
+ERROR!
+!MarsRoverOrientationLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:58:02'!
+addOrientationLog: aString 
+	self shouldBeImplemented.! !
+!MarsRoverOrientationLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:58:16' prior: 50556385!
+addOrientationLog: anOrientation 
+	logs add: anOrientation.! !
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:58:17'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:58:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:58:19'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:58:19'!
+ERROR!
+!MarsRoverOrientationLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:58:24'!
+addPositionLog: aPoint 
+	self shouldBeImplemented.! !
+!MarsRoverOrientationLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:58:29' prior: 50556414!
+addPositionLog: aPosition! !
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:58:29'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:58:30'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:58:31'!
+ERROR!
+!MarsRoverPositionLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:58:35'!
+addOrientationLog: aString 
+	self shouldBeImplemented.! !
+!MarsRoverPositionLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:58:40' prior: 50556437!
+addOrientationLog: anOrientation! !
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:58:41'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:58:42'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmptyInPositionMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:58:46'!
+PASSED!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:59:03'!
+addPositionLog: aPosition
+	self subclassResponsibility.! !
+!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:59:12'!
+addOrientationLog: anOrientation
+	self subclassResponsibility.! !
+
+!methodRemoval: MarsRoverLogger #addLog: stamp: 'FM 10/24/2022 21:59:14'!
+addLog: aLocalizationAttribute
+	self subclassResponsibility.!
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmptyInPositionMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:59:18'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 21:59:35' prior: 50555779!
+test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverPosoriLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'lf'.
+	self assert: (OrderedCollection with:0@1) equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmptyInPositionMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 21:59:40'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:59:40'!
+ERROR!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 21:59:40'!
+ERROR!
+!MarsRoverPosoriLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:59:50' overrides: 50556516!
+addOrientationLog: aString 
+	self shouldBeImplemented.! !
+!MarsRoverPosoriLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 22:00:02' prior: 50556656 overrides: 50556516!
+addOrientationLog: anOrientation
+	logs add: anOrientation! !
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 22:00:02'!
+ERROR!
+!MarsRoverPosoriLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 22:00:07' overrides: 50556511!
+addPositionLog: aPoint 
+	self shouldBeImplemented.! !
+!MarsRoverPosoriLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 22:00:15' prior: 50556672 overrides: 50556511!
+addPositionLog: aPosition
+	logs add: aPosition.! !
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 22:00:15'!
+FAILURE!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 22:00:30' prior: 50556582!
+test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverPosoriLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'lf'.
+	self assert: (OrderedCollection with:'West' with:0@1) equals: (logger logs).! !
+
+!testRun: #MarsRoverLoggerTest #test01loggerWithMarsRoverOnInitialPositionIsEmptyInPositionMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test02loggerWithMarsRoverMovingForwardOnceHasCorrectSingleLogInPositionMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test03loggerWithMarsRoverMovingForwardTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test04loggerWithMarsRoverMovingBackwardsOnceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test05loggerWithMarsRoverMovingBackwardsTwiceHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test06loggerWithMarsRoverRotatingClockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test07loggerWithMarsRoverRotatingAnticlockwiseOnceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test08loggerWithMarsRoverRotatingAnticlockwiseTwiceHasCorrectLogsInOrientationMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test09loggerWithMarsRoverMovingForwardHasEmptyLogInOrientationMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test10loggerWithMarsRoverMovingBackwardsAndRotatesRightHasCorrectLogInOrientationMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test11loggerWithMarsRoverRotatingRightHasEmptyLogsInPositionMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+
+!testRun: #MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 22:00:31'!
+PASSED!
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'FM 10/24/2022 22:00:57'!
+test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPosoriMode
+	|marsRover logger |
+	logger := MarsRoverPosoriLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'lf'.
+	self assert: (OrderedCollection with:'West' with:0@1) equals: (logger logs).! !
+
+!methodRemoval: MarsRoverLoggerTest #test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode stamp: 'FM 10/24/2022 22:00:58'!
+test12loggerWithMarsRoverRotatingLeftAndMovingForwardHasCorrectLogsInPositionMode
+	|marsRover logger |
+	logger := MarsRoverPosoriLogger new.
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth withLogger: logger.
+	marsRover process: 'lf'.
+	self assert: (OrderedCollection with:'West' with:0@1) equals: (logger logs).!
+
+----SNAPSHOT----(24 October 2022 22:03:44) CuisUniversity-5481.image priorSource: 7059698!

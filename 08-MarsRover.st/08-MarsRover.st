@@ -375,6 +375,58 @@ test06trackingWindowTrackingMarsRoverDoingActualStuffDisplaysCorrectPositionAndH
 	
 	self assert: 'Position: -1@0. Heading: North.' equals: trackingWindow roverStatus.! !
 
+!MarsRoverTrackingWindowTest methodsFor: 'tests' stamp: 'TD 10/27/2022 00:08:45'!
+test07trackingWindowTrackingMarsRoverOnInitialPositionDisplaysNothingOnPositionMode
+	| marsRover trackingWindow |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	trackingWindow := TrackingWindowPosition for: marsRover.
+	
+	self assert: 'Position: .' equals: trackingWindow roverStatus.! !
+
+!MarsRoverTrackingWindowTest methodsFor: 'tests' stamp: 'TD 10/27/2022 00:10:48'!
+test08trackingWindowTrackingMarsRoverMovingForwardOnceDisplaysRightPositionOnPositionMode
+	| marsRover trackingWindow |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	trackingWindow := TrackingWindowPosition for: marsRover.
+	marsRover process: 'f'.
+	
+	self assert: ('Position: ', (1@2) asString, '.') equals: trackingWindow roverStatus.! !
+
+!MarsRoverTrackingWindowTest methodsFor: 'tests' stamp: 'TD 10/27/2022 00:14:15'!
+test09trackingWindowTrackingMarsRoverMovingForwardOnceAndRotatingDisplaysRightPositionOnPositionMode
+	| marsRover trackingWindow |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	trackingWindow := TrackingWindowPosition for: marsRover.
+	marsRover process: 'frrrrrrrrrrrrrrrrrrr'.
+	
+	self assert: ('Position: ', (1@2) asString, '.') equals: trackingWindow roverStatus.! !
+
+!MarsRoverTrackingWindowTest methodsFor: 'tests' stamp: 'TD 10/27/2022 00:18:57'!
+test10trackingWindowTrackingMarsRoverOnInitialPositionDisplaysNothingOnOrientationMode
+	| marsRover trackingWindow |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	trackingWindow := TrackingWindowOrientation for: marsRover.
+	
+	self assert: 'Heading: .' equals: trackingWindow roverStatus.! !
+
+!MarsRoverTrackingWindowTest methodsFor: 'tests' stamp: 'TD 10/27/2022 00:20:26'!
+test11trackingWindowTrackingMarsRoverRotatingLeftDisplaysCorrectHeadingOnOrientationMode
+	| marsRover trackingWindow |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	trackingWindow := TrackingWindowOrientation for: marsRover.
+	marsRover process: 'l'.
+	
+	self assert: 'Heading: West.' equals: trackingWindow roverStatus.! !
+
+!MarsRoverTrackingWindowTest methodsFor: 'tests' stamp: 'TD 10/27/2022 00:23:35'!
+test12trackingWindowTrackingMarsRoverRotatingOnceAndMovingDisplaysRightOrientationOnOrientationMode
+	| marsRover trackingWindow |
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	trackingWindow := TrackingWindowOrientation for: marsRover.
+	marsRover process: 'rffffffffffffffffffffffffff'.
+	
+	self assert: ('Heading: East.') equals: trackingWindow roverStatus.! !
+
 
 !classDefinition: #MarsRover category: 'MarsRover-WithHeading'!
 Object subclass: #MarsRover
@@ -727,40 +779,62 @@ rotateRight
 
 !classDefinition: #MarsRoverObserver category: 'MarsRover-WithHeading'!
 Object subclass: #MarsRoverObserver
-	instanceVariableNames: ''
+	instanceVariableNames: 'marsRover'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
+
+!MarsRoverObserver methodsFor: 'logging' stamp: 'TD 10/27/2022 00:29:44'!
+identify: aHeadingType
+	^aHeadingType identification.! !
+
+!MarsRoverObserver methodsFor: 'logging' stamp: 'TD 10/27/2022 00:29:48'!
+updateOrientation: anOrientation 
+	self subclassResponsibility.! !
+
+!MarsRoverObserver methodsFor: 'logging' stamp: 'TD 10/27/2022 00:29:51'!
+updatePosition: aPosition 
+	self subclassResponsibility.! !
+
+
+!MarsRoverObserver methodsFor: 'initialization' stamp: 'TD 10/27/2022 00:28:58'!
+initializeFor: aMarsRover
+	marsRover := aMarsRover.
+	marsRover getLoggedBy: self.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MarsRoverObserver class' category: 'MarsRover-WithHeading'!
+MarsRoverObserver class
+	instanceVariableNames: ''!
+
+!MarsRoverObserver class methodsFor: 'instance creation' stamp: 'TD 10/27/2022 00:35:29'!
+for: aMarsRover
+	self subclassResponsibility.! !
 
 
 !classDefinition: #MarsRoverLogger category: 'MarsRover-WithHeading'!
 MarsRoverObserver subclass: #MarsRoverLogger
-	instanceVariableNames: 'marsRover logs'
+	instanceVariableNames: 'logs'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!MarsRoverLogger methodsFor: 'initialization' stamp: 'TD 10/26/2022 17:48:58'!
+!MarsRoverLogger methodsFor: 'initialization' stamp: 'TD 10/27/2022 00:29:11'!
 initializeFor: aMarsRover 
-	marsRover := aMarsRover.
-	marsRover getLoggedBy: self.
-	
-	logs := OrderedCollection new.! !
+	logs := OrderedCollection new.
+	super initializeFor: aMarsRover.! !
 
-
-!MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:23:09'!
-identify: aHeadingType
-	^aHeadingType identification.! !
 
 !MarsRoverLogger methodsFor: 'logging' stamp: 'FM 10/24/2022 21:12:41'!
 logs
 	^logs.! !
 
-!MarsRoverLogger methodsFor: 'logging' stamp: 'TD 10/26/2022 16:46:39'!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'TD 10/27/2022 00:30:02'!
 updateOrientation: anOrientation 
 	self subclassResponsibility.! !
 
-!MarsRoverLogger methodsFor: 'logging' stamp: 'TD 10/26/2022 16:41:42'!
+!MarsRoverLogger methodsFor: 'logging' stamp: 'TD 10/27/2022 00:30:11'!
 updatePosition: aPosition 
 	self subclassResponsibility.! !
 
@@ -773,10 +847,6 @@ MarsRoverLogger class
 !MarsRoverLogger class methodsFor: 'instance creation' stamp: 'TD 10/26/2022 16:33:25'!
 for: aMarsRover
 	^self new initializeFor: aMarsRover ! !
-
-!MarsRoverLogger class methodsFor: 'instance creation' stamp: 'FM 10/24/2022 21:25:57'!
-mode: aMode
-	^self new initializeWithMode: aMode.! !
 
 
 !classDefinition: #MarsRoverOrientationLogger category: 'MarsRover-WithHeading'!
@@ -828,31 +898,30 @@ updatePosition: aPosition
 
 !classDefinition: #TrackingWindow category: 'MarsRover-WithHeading'!
 MarsRoverObserver subclass: #TrackingWindow
-	instanceVariableNames: 'marsRover'
+	instanceVariableNames: 'orientation position'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-
-!TrackingWindow methodsFor: 'logging' stamp: 'TD 10/26/2022 17:33:54'!
-identify: aHeadingType
-	^aHeadingType identification.! !
-
-!TrackingWindow methodsFor: 'logging' stamp: 'TD 10/26/2022 17:51:31'!
+!TrackingWindow methodsFor: 'initialization' stamp: 'TD 10/27/2022 00:29:26'!
 initializeFor: aMarsRover
-	self subclassResponsibility.! !
+	position := ''.
+	orientation := ''.
+	
+	super initializeFor: aMarsRover.! !
+
 
 !TrackingWindow methodsFor: 'logging' stamp: 'TD 10/26/2022 17:49:44'!
 roverStatus
 	self subclassResponsibility.! !
 
-!TrackingWindow methodsFor: 'logging' stamp: 'TD 10/26/2022 17:49:58'!
+!TrackingWindow methodsFor: 'logging' stamp: 'TD 10/27/2022 00:25:31'!
 updateOrientation: anOrientation
-	self subclassResponsibility.! !
+	orientation := anOrientation.! !
 
-!TrackingWindow methodsFor: 'logging' stamp: 'TD 10/26/2022 17:50:09'!
-updatePosition: aPosition
-	self subclassResponsibility.! !
+!TrackingWindow methodsFor: 'logging' stamp: 'TD 10/27/2022 00:25:42'!
+updatePosition: aPosition 
+	position := aPosition asString.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -865,9 +934,45 @@ for: aMarsRover
 	^self new initializeFor: aMarsRover ! !
 
 
+!classDefinition: #TrackingWindowOrientation category: 'MarsRover-WithHeading'!
+TrackingWindow subclass: #TrackingWindowOrientation
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+
+!TrackingWindowOrientation methodsFor: 'logging' stamp: 'TD 10/27/2022 00:21:38'!
+roverStatus
+	^'Heading: ', orientation, '.'! !
+
+
+!classDefinition: #TrackingWindowPosition category: 'MarsRover-WithHeading'!
+TrackingWindow subclass: #TrackingWindowPosition
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+
+!TrackingWindowPosition methodsFor: 'logging' stamp: 'TD 10/27/2022 00:12:23'!
+roverStatus
+	^'Position: ', position, '.'! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TrackingWindowPosition class' category: 'MarsRover-WithHeading'!
+TrackingWindowPosition class
+	instanceVariableNames: ''!
+
+!TrackingWindowPosition class methodsFor: 'instance creation' stamp: 'TD 10/27/2022 00:09:06'!
+for: aMarsRover 
+	^self new initializeFor: aMarsRover ! !
+
+
 !classDefinition: #TrackingWindowPosori category: 'MarsRover-WithHeading'!
 TrackingWindow subclass: #TrackingWindowPosori
-	instanceVariableNames: 'orientation position'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
@@ -876,19 +981,3 @@ TrackingWindow subclass: #TrackingWindowPosori
 roverStatus
 	^'Position: ', position, '. Heading: ', orientation, '.'.! !
 
-!TrackingWindowPosori methodsFor: 'logging' stamp: 'TD 10/26/2022 17:47:30'!
-updateOrientation: anOrientation 
-	orientation := anOrientation.! !
-
-!TrackingWindowPosori methodsFor: 'logging' stamp: 'TD 10/26/2022 17:47:33'!
-updatePosition: aPosition 
-	position := aPosition asString.! !
-
-
-!TrackingWindowPosori methodsFor: 'initialization' stamp: 'TD 10/26/2022 17:47:40'!
-initializeFor: aMarsRover
-	marsRover := aMarsRover.
-	marsRover getLoggedBy: self.
-	
-	position := ''.
-	orientation := ''.! !

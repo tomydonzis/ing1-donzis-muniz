@@ -1325,3 +1325,197 @@ test07emptyCartsCurrentInventoryReturnsEmptyDictionary
 	self assert: (Dictionary new) equals: (cart currentInventory).!
 
 ----QUIT----(27 October 2022 21:54:12) CuisUniversity-5510.image priorSource: 7155150!
+
+----STARTUP---- (27 October 2022 22:42:07) as C:\Users\tomas\Desktop\FACULTAD\Inge1\windows64\windows64\CuisUniversity-5510.image!
+
+
+----End fileIn of C:\Users\tomas\Desktop\FACULTAD\Inge1\FileOuts\09-TusLibros.st----!
+
+!classRenamed: #CarritoTest as: #CartTest stamp: 'TD 10/27/2022 22:42:54'!
+Smalltalk renameClassNamed: #CarritoTest as: #CartTest!
+
+!methodRemoval: Cart #currentInventory stamp: 'TD 10/27/2022 22:43:24'!
+currentInventory
+	^Dictionary new.!
+!Cart methodsFor: 'initialization' stamp: 'TD 10/27/2022 22:43:29' prior: 50555380!
+initializeWithCatalogue: aCatalogue
+	productsCarried := Bag new.
+	catalogue := aCatalogue.! !
+
+----End fileIn of C:\Users\tomas\Desktop\FACULTAD\Inge1\windows64\windows64\Packages\TerseGuide.pck.st----!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 22:44:36' prior: 50555356!
+add: units unitsOfBook: aBook
+	self assert: (units > 0) description: self class cannotAddNonPositiveAmountOfUnitsOfAProductErrorDescription.
+	self assert: (catalogue includes: aBook) description: self class cannotAddUnregisteredBookErrorDescription.
+	productsCarried add: aBook withOccurrences: units.! !
+
+!testRun: #CartTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 22:44:44'!
+PASSED!
+
+!testRun: #CartTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 22:44:44'!
+PASSED!
+
+!testRun: #CartTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 22:44:44'!
+PASSED!
+
+!testRun: #CartTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 22:44:44'!
+PASSED!
+
+!testRun: #CartTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 22:44:44'!
+PASSED!
+
+!testRun: #CartTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 22:44:44'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 23:06:55'!
+test07emptyCartsCurrentBooksReturnsEmptySet
+	|cart |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	
+	self assert: Set new equals: cart currentBooks.! !
+
+!testRun: #CartTest #test07emptyCartsCurrentBooksReturnsEmptySet stamp: 'TD 10/27/2022 23:07:00'!
+ERROR!
+
+!testRun: #CartTest #test07emptyCartsCurrentBooksReturnsEmptySet stamp: 'TD 10/27/2022 23:07:00'!
+ERROR!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 23:07:05'!
+currentBooks
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 23:07:12' prior: 50558395!
+currentBooks
+	^Set new.! !
+
+!testRun: #CartTest #test07emptyCartsCurrentBooksReturnsEmptySet stamp: 'TD 10/27/2022 23:07:13'!
+PASSED!
+
+!testRun: #CartTest #test07emptyCartsCurrentBooksReturnsEmptySet stamp: 'TD 10/27/2022 23:07:15'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 23:08:01'!
+test08cartsCurrentBooksIncludeOnlyAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 1 unitsOfBook: book.
+	
+	self assert: 1 equals: (cart unitsOf: book).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 23:08:26' prior: 50558409!
+test08cartsCurrentBooksIncludeOnlyAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 1 unitsOfBook: book.
+	
+	self assert: (Set with: book) equals: cart currentBooks.! !
+
+!testRun: #CartTest #test08cartsCurrentBooksIncludeOnlyAddedBook stamp: 'TD 10/27/2022 23:08:28'!
+FAILURE!
+
+!testRun: #CartTest #test08cartsCurrentBooksIncludeOnlyAddedBook stamp: 'TD 10/27/2022 23:08:28'!
+FAILURE!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 23:09:13' prior: 50558399!
+currentBooks
+	productsCarried isEmpty ifTrue: [^Set new].
+	^Set with: productsCarried first.! !
+
+!testRun: #CartTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 23:09:15'!
+PASSED!
+
+!testRun: #CartTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 23:09:15'!
+PASSED!
+
+!testRun: #CartTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 23:09:15'!
+PASSED!
+
+!testRun: #CartTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 23:09:15'!
+PASSED!
+
+!testRun: #CartTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 23:09:15'!
+PASSED!
+
+!testRun: #CartTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 23:09:15'!
+PASSED!
+
+!testRun: #CartTest #test07emptyCartsCurrentBooksReturnsEmptySet stamp: 'TD 10/27/2022 23:09:15'!
+PASSED!
+
+!testRun: #CartTest #test08cartsCurrentBooksIncludeOnlyAddedBook stamp: 'TD 10/27/2022 23:09:15'!
+ERROR!
+
+!testRun: #CartTest #test08cartsCurrentBooksIncludeOnlyAddedBook stamp: 'TD 10/27/2022 23:09:15'!
+ERROR!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 23:09:36' prior: 50558441!
+currentBooks
+	productsCarried isEmpty ifTrue: [^Set new].
+	^Set with: productsCarried anyOne.! !
+
+!testRun: #CartTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 23:09:38'!
+PASSED!
+
+!testRun: #CartTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 23:09:38'!
+PASSED!
+
+!testRun: #CartTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 23:09:38'!
+PASSED!
+
+!testRun: #CartTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 23:09:38'!
+PASSED!
+
+!testRun: #CartTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 23:09:38'!
+PASSED!
+
+!testRun: #CartTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 23:09:38'!
+PASSED!
+
+!testRun: #CartTest #test07emptyCartsCurrentBooksReturnsEmptySet stamp: 'TD 10/27/2022 23:09:38'!
+PASSED!
+
+!testRun: #CartTest #test08cartsCurrentBooksIncludeOnlyAddedBook stamp: 'TD 10/27/2022 23:09:38'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 23:11:16'!
+test09cartsCurrentBooksIncludesOnlyOneApparitionOfRepeatedBooks
+	|cart book book2 |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345' with: '987987987').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	book2 := '987987987'.
+	cart add: 3 unitsOfBook: book.
+	cart add: 3 unitsOfBook: book2.
+	
+	self assert: (Set with: book with: book2) equals: cart currentBooks.! !
+
+!testRun: #CartTest #test09cartsCurrentBooksIncludesOnlyOneApparitionOfRepeatedBooks stamp: 'TD 10/27/2022 23:11:20'!
+FAILURE!
+
+!testRun: #CartTest #test09cartsCurrentBooksIncludesOnlyOneApparitionOfRepeatedBooks stamp: 'TD 10/27/2022 23:11:20'!
+FAILURE!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 23:11:32' prior: 50558477!
+currentBooks
+	^productsCarried asSet.! !
+
+!testRun: #CartTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 23:11:33'!
+PASSED!
+
+!testRun: #CartTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 23:11:33'!
+PASSED!
+
+!testRun: #CartTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 23:11:33'!
+PASSED!
+
+!testRun: #CartTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 23:11:33'!
+PASSED!
+
+!testRun: #CartTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 23:11:33'!
+PASSED!
+
+!testRun: #CartTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 23:11:33'!
+PASSED!
+
+!testRun: #CartTest #test07emptyCartsCurrentBooksReturnsEmptySet stamp: 'TD 10/27/2022 23:11:33'!
+PASSED!
+
+!testRun: #CartTest #test08cartsCurrentBooksIncludeOnlyAddedBook stamp: 'TD 10/27/2022 23:11:33'!
+PASSED!
+
+!testRun: #CartTest #test09cartsCurrentBooksIncludesOnlyOneApparitionOfRepeatedBooks stamp: 'TD 10/27/2022 23:11:34'!
+PASSED!
+
+----QUIT----(27 October 2022 23:11:45) CuisUniversity-5510.image priorSource: 7155150!

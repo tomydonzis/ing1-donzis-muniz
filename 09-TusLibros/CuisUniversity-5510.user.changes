@@ -1,0 +1,1327 @@
+
+
+----QUIT----(26 October 2022 08:07:27) CuisUniversity-5510.image priorSource: 2900072!
+
+----STARTUP---- (26 October 2022 08:07:28) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5510.image!
+
+
+----QUIT----(26 October 2022 08:07:28) CuisUniversity-5510.image priorSource: 7154921!
+
+----STARTUP---- (27 October 2022 18:34:58) as /home/clinux01/Descargas/linux64 (1).tar-2/linux64/CuisUniversity-5510.image!
+
+
+ProtoObject new.!
+
+----STARTUP---- (27 October 2022 18:43:47) as /home/clinux01/Descargas/linux64 (1).tar-2/linux64/CuisUniversity-5510.image!
+
+
+ProtoObject new.!
+
+ProtoObject new.!
+
+----STARTUP---- (27 October 2022 18:44:17) as /home/clinux01/Descargas/linux64 (1).tar-2/linux64/CuisUniversity-5510.image!
+
+
+Object new.!
+
+Object new.!
+
+Object new.!
+
+Object new.!
+
+proto := ProtoObject new.!
+
+proto notNil!
+
+----STARTUP---- (27 October 2022 18:45:23) as /home/clinux01/Descargas/linux64 (1).tar-2/linux64/CuisUniversity-5510.image!
+
+
+TestCase subclass: #CarritoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CarritoTest category: 'TusLibros' stamp: 'TD 10/27/2022 20:36:51'!
+TestCase subclass: #CarritoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CarritoTest methodsFor: 'no messages' stamp: 'TD 10/27/2022 20:37:37'!
+test01newCartIsEmptyReturnsTrue! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:38:15'!
+test01newlyCreatedCartIsEmpty! !
+
+!methodRemoval: CarritoTest #test01newCartIsEmptyReturnsTrue stamp: 'TD 10/27/2022 20:38:15'!
+test01newCartIsEmptyReturnsTrue!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'TD 10/27/2022 20:40:15'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:40:11' prior: 50555280!
+test01newlyCreatedCartIsEmpty
+	|cart|
+	cart := Cart new.
+	
+	self assert: (cart isEmpty).! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:40:19'!
+ERROR!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:40:19'!
+ERROR!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 20:40:35'!
+isEmpty
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 20:40:47' prior: 50555306!
+isEmpty
+	^true.! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:40:49'!
+PASSED!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:40:54'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:41:33'!
+test02cartIsNotEmptyAfterAddingSomething
+	|cart|
+	cart := Cart new.
+	
+	self assert: (cart isEmpty).! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:42:52' prior: 50555320!
+test02cartIsNotEmptyAfterAddingSomething
+	|cart book|
+	cart := Cart new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: book.
+	
+	self assert: cart isEmpty not.! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:42:55' prior: 50555327!
+test02cartIsNotEmptyAfterAddingSomething
+	|cart book|
+	cart := Cart new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: book.
+	
+	self assert: (cart isEmpty not).! !
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:42:59'!
+ERROR!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:42:59'!
+ERROR!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 20:43:05'!
+add: book 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'TD 10/27/2022 20:44:14'!
+Object subclass: #Cart
+	instanceVariableNames: 'productsCarried'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 20:44:13' prior: 50555353!
+add: aBook 
+	productsCarried add: aBook.! !
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:44:16'!
+ERROR!
+!Cart methodsFor: 'nil' stamp: 'TD 10/27/2022 20:44:36' overrides: 16920235!
+initialize
+	productsCarried := OrderedCollection new.! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:44:45'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:44:45'!
+FAILURE!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:44:45'!
+FAILURE!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 20:44:53' prior: 50555310!
+isEmpty
+	^productsCarried isEmpty.! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:44:55'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:44:55'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:49:41'!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: book] raise: Error withExceptionDo: 
+		[:anError | self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription].! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:49:56' prior: 50555397!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: book] raise: Error withExceptionDo: 
+		[:anError | self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription.
+		self assert: cart isEmpty].! !
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:50:00'!
+FAILURE!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:50:00'!
+FAILURE!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:50:09'!
+FAILURE!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:50:09'!
+FAILURE!
+
+Object subclass: #Cart
+	instanceVariableNames: 'productsCarried inventory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'TD 10/27/2022 20:50:53'!
+Object subclass: #Cart
+	instanceVariableNames: 'productsCarried inventory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'TD 10/27/2022 20:51:22' prior: 50555372 overrides: 16920235!
+initialize
+	inventory := OrderedCollection new.
+	productsCarried := OrderedCollection new.! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 20:51:54' prior: 50555364!
+add: aBook 
+	(inventory includes: aBook) ifTrue: [productsCarried add: aBook].! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 20:52:01' prior: 50555457!
+add: aBook 
+	(inventory includes: aBook) ifTrue: [productsCarried add: aBook].! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 20:52:38' prior: 50555462!
+add: aBook 
+	(inventory includes: aBook) ifTrue: [productsCarried add: aBook]
+						  ifFalse: [self class ]! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 20:52:54' prior: 50555467!
+add: aBook 
+	(inventory includes: aBook) ifTrue: [productsCarried add: aBook]
+						  ifFalse: [self error: self class ]! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 20:53:22' prior: 50555473!
+add: aBook 
+	(inventory includes: aBook) ifTrue: [productsCarried add: aBook]
+						  ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription]! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:53:26'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:53:26'!
+ERROR!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:53:26'!
+ERROR!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:53:27'!
+ERROR!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:54:40' prior: 50555337!
+test02cartIsNotEmptyAfterAddingSomething
+	|cart book|
+	cart := Cart withInventory: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: book.
+	
+	self assert: (cart isEmpty not).! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:55:05'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:55:05'!
+ERROR!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:55:05'!
+ERROR!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:55:06'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'TD 10/27/2022 20:55:10'!
+withInventory: anOrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithInventory: anOrderedCollection ! !
+!Cart class methodsFor: 'instance creation' stamp: 'TD 10/27/2022 20:55:14' prior: 50555526!
+withInventory: anOrderedCollection 
+	^self new initializeWithInventory: anOrderedCollection ! !
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:55:15'!
+ERROR!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'TD 10/27/2022 20:55:21'!
+Object subclass: #Cart
+	instanceVariableNames: 'productsCarried inventory orderedCollection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'TD 10/27/2022 20:55:21'!
+initializeWithInventory: anOrderedCollection 
+	self shouldBeImplemented.
+	orderedCollection := anOrderedCollection.! !
+!Cart methodsFor: 'initialization' stamp: 'TD 10/27/2022 20:55:28' prior: 50555552!
+initializeWithInventory: anOrderedCollection 
+	inventory := anOrderedCollection.! !
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:55:30'!
+PASSED!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:55:31'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:55:31'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:55:31'!
+ERROR!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:55:31'!
+ERROR!
+!Cart class methodsFor: 'error handling' stamp: 'TD 10/27/2022 20:55:48'!
+cannotAddUnregisteredBookErrorDescription
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'error handling' stamp: 'TD 10/27/2022 20:56:03' prior: 50555581!
+cannotAddUnregisteredBookErrorDescription
+	^'cannot add unregistered book!!!!!!!!'! !
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:56:04'!
+FAILURE!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:56:27'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:56:27'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:56:27'!
+PASSED!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:56:28'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:56:28'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:56:28'!
+PASSED!
+!Cart methodsFor: 'initialization' stamp: 'TD 10/27/2022 20:56:36' prior: 50555559!
+initializeWithInventory: anInventory 
+	inventory := anInventory.! !
+!Cart methodsFor: 'initialization' stamp: 'TD 10/27/2022 20:56:53' prior: 50555615!
+initializeWithInventory: anInventory
+	productsCarried := OrderedCollection new.
+	inventory := anInventory.! !
+
+!methodRemoval: Cart #initialize stamp: 'TD 10/27/2022 20:57:06'!
+initialize
+	inventory := OrderedCollection new.
+	productsCarried := OrderedCollection new.!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:57:08'!
+ERROR!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:57:08'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:57:08'!
+FAILURE!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:57:09'!
+ERROR!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:57:28' prior: 50555295!
+test01newlyCreatedCartIsEmpty
+	|cart|
+	cart := Cart withInventory: OrderedCollection new.
+	
+	self assert: (cart isEmpty).! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:57:37' prior: 50555411!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart with: OrderedCollection new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: book] raise: Error withExceptionDo: 
+		[:anError | self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription.
+		self assert: cart isEmpty].! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:57:40'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:57:40'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:57:40'!
+ERROR!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:57:40'!
+ERROR!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:57:52' prior: 50555652!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart withInventory: OrderedCollection new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: book] raise: Error withExceptionDo: 
+		[:anError | self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription.
+		self assert: cart isEmpty].! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:57:56'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:57:56'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:57:56'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:58:11' prior: 50555680!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart withInventory: OrderedCollection new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: book] 
+		raise: Error 
+		withExceptionDo: 
+			[:anError | self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription.
+			self assert: cart isEmpty].! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 20:58:14'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 20:58:14'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 20:58:14'!
+PASSED!
+!Cart class methodsFor: 'instance creation' stamp: 'TD 10/27/2022 20:59:29'!
+withCatalogue: anOrderedCollection 
+	^self new initializeWithInventory: anOrderedCollection ! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:59:29' prior: 50555645!
+test01newlyCreatedCartIsEmpty
+	|cart|
+	cart := Cart withCatalogue: OrderedCollection new.
+	
+	self assert: (cart isEmpty).! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:59:29' prior: 50555502!
+test02cartIsNotEmptyAfterAddingSomething
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: book.
+	
+	self assert: (cart isEmpty not).! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:59:29' prior: 50555705!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart withCatalogue: OrderedCollection new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: book] 
+		raise: Error 
+		withExceptionDo: 
+			[:anError | self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription.
+			self assert: cart isEmpty].! !
+
+!methodRemoval: Cart class #withInventory: stamp: 'TD 10/27/2022 20:59:29'!
+withInventory: anOrderedCollection 
+	^self new initializeWithInventory: anOrderedCollection !
+!Cart methodsFor: 'initialization' stamp: 'TD 10/27/2022 20:59:43'!
+initializeWithCatalogue: anInventory
+	productsCarried := OrderedCollection new.
+	inventory := anInventory.! !
+!Cart class methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:59:43' prior: 50555730!
+withCatalogue: anOrderedCollection 
+	^self new initializeWithCatalogue: anOrderedCollection ! !
+
+!methodRemoval: Cart #initializeWithInventory: stamp: 'TD 10/27/2022 20:59:43'!
+initializeWithInventory: anInventory
+	productsCarried := OrderedCollection new.
+	inventory := anInventory.!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'TD 10/27/2022 20:59:49'!
+Object subclass: #Cart
+	instanceVariableNames: 'productsCarried catalogue orderedCollection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:59:49' prior: 50555775!
+initializeWithCatalogue: anInventory
+	productsCarried := OrderedCollection new.
+	catalogue := anInventory.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 20:59:49' prior: 50555480!
+add: aBook 
+	(catalogue includes: aBook) ifTrue: [productsCarried add: aBook]
+						  ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription]! !
+!Cart methodsFor: 'initialization' stamp: 'TD 10/27/2022 21:00:05' prior: 50555802!
+initializeWithCatalogue: aCatalogue
+	productsCarried := OrderedCollection new.
+	catalogue := aCatalogue.! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:03:45'!
+test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: -1 unitsOfBook: book] 
+		raise: Error 
+		withExceptionDo: 
+			[:anError | self assert: anError messageText equals: Cart cannotAddNonPositiveAmountOfUnitsOfAProduct.
+			self assert: cart isEmpty].! !
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:03:50'!
+ERROR!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:03:50'!
+ERROR!
+!Cart class methodsFor: 'error handling' stamp: 'TD 10/27/2022 21:03:58'!
+cannotAddNonPositiveAmountOfUnitsOfAProduct
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'error handling' stamp: 'TD 10/27/2022 21:04:22' prior: 50555847!
+cannotAddNonPositiveAmountOfUnitsOfAProduct
+	^'cannot add a non positive amount of units of a product!!!!!!'! !
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:04:23'!
+FAILURE!
+!Cart class methodsFor: 'error handling' stamp: 'TD 10/27/2022 21:04:43'!
+cannotAddNonPositiveAmountOfUnitsOfAProductErrorDescription
+	^'cannot add a non positive amount of units of a product!!!!!!'! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:04:43' prior: 50555823!
+test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: -1 unitsOfBook: book] 
+		raise: Error 
+		withExceptionDo: 
+			[:anError | self assert: anError messageText equals: Cart cannotAddNonPositiveAmountOfUnitsOfAProductErrorDescription.
+			self assert: cart isEmpty].! !
+
+!methodRemoval: Cart class #cannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:04:43'!
+cannotAddNonPositiveAmountOfUnitsOfAProduct
+	^'cannot add a non positive amount of units of a product!!!!!!'!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:04:49'!
+FAILURE!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:04:49'!
+FAILURE!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:06:00' prior: 50555809!
+add: book 
+	(catalogue includes: book) ifTrue: [productsCarried add: book]
+						  ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription]! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:07:16' prior: 50555902!
+add: units 
+	(catalogue includes: units) ifTrue: [productsCarried add: units]
+						  ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription]! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:07:38'!
+add: units unitsOfBook: aBook  
+	(catalogue includes: units) ifTrue: [productsCarried add: units]
+						  ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription]! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:07:38' prior: 50555910!
+add: units 
+	(catalogue includes: units) ifTrue: [productsCarried add: units unitsOfBook: book]
+						  ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription]! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:07:38' prior: 50555743!
+test02cartIsNotEmptyAfterAddingSomething
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: book unitsOfBook: book.
+	
+	self assert: (cart isEmpty not).! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:07:38' prior: 50555755!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart withCatalogue: OrderedCollection new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: book unitsOfBook: book] 
+		raise: Error 
+		withExceptionDo: 
+			[:anError | self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription.
+			self assert: cart isEmpty].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:07:38' prior: 50555918!
+add: units unitsOfBook: aBook  
+	(catalogue includes: units) ifTrue: [productsCarried add: units unitsOfBook: book]
+						  ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription]! !
+
+!methodRemoval: Cart #add: stamp: 'TD 10/27/2022 21:07:39'!
+add: units 
+	(catalogue includes: units) ifTrue: [productsCarried add: units unitsOfBook: book]
+						  ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription]!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:08:13' prior: 50555948!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart withCatalogue: OrderedCollection new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: 1 unitsOfBook: book] 
+		raise: Error 
+		withExceptionDo: 
+			[:anError | self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription.
+			self assert: cart isEmpty].! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:08:16' prior: 50555936!
+test02cartIsNotEmptyAfterAddingSomething
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 1 unitsOfBook: book.
+	
+	self assert: (cart isEmpty not).! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:08:25' prior: 50555870!
+test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: -1 unitsOfBook: book] 
+		raise: Error 
+		withExceptionDo: 
+			[:anError | self assert: anError messageText equals: Cart cannotAddNonPositiveAmountOfUnitsOfAProductErrorDescription.
+			self assert: cart isEmpty].! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:09:01' prior: 50555964!
+add: units unitsOfBook: aBook  
+	(catalogue includes: units) ifTrue: [units timesRepeat: (productsCarried add: aBook)]
+						  ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription]! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:09:05'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:09:05'!
+ERROR!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:09:05'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:09:05'!
+FAILURE!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:09:07'!
+ERROR!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:09:30' prior: 50556026!
+add: units unitsOfBook: aBook  
+	(catalogue includes: aBook) ifTrue: [units timesRepeat: (productsCarried add: aBook)]
+						  ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription]! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:09:31'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:09:31'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:09:31'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:09:31'!
+FAILURE!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:09:31'!
+FAILURE!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:10:49' prior: 50556052!
+add: units unitsOfBook: aBook
+	(units > 0) ifTrue: [
+					(catalogue includes: aBook) ifTrue: [units timesRepeat: (productsCarried add: aBook)]
+										   ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription].
+				    ]
+			ifFalse: [
+					self error: self class cannotAddNonPositiveAmountOfUnitsOfAProductErrorDescription
+				]! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:10:52'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:10:52'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:10:52'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:10:52'!
+PASSED!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:14:14'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:14:14'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:14:14'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:14:14'!
+PASSED!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:15:56' prior: 50556079!
+add: units unitsOfBook: aBook
+	(units > 0) ifTrue: [
+					(catalogue includes: aBook) ifTrue: [productsCarried add: aBook]
+										   ifFalse: [self error: self class cannotAddUnregisteredBookErrorDescription].
+				    ]
+			ifFalse: [
+					self error: self class cannotAddNonPositiveAmountOfUnitsOfAProductErrorDescription
+				]! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:18:39' prior: 50556120!
+add: units unitsOfBook: aBook
+	self assert: (units > 0) description: self class cannotAddNonPositiveAmountOfUnitsOfAProductErrorDescription.
+	self assert: (catalogue includes: aBook) description: self class cannotAddUnregisteredBookErrorDescription.
+	productsCarried add: aBook.! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:18:41'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:18:41'!
+PASSED!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:19:45'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:19:45'!
+PASSED!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:22:19'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:22:19'!
+PASSED!
+
+(catalogue includes: aBook)!
+
+self class cannotAddUnregisteredBookErrorDescription!
+
+cart add: 1 unitsOfBook: book!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:27:01' prior: 50555981!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart withCatalogue: OrderedCollection new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: 1 unitsOfBook: book] 
+		raise: Error 
+		withExceptionDo: 
+			[:anError | 
+			self halt.
+			self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription.
+			self assert: cart isEmpty].! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:27:03'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:27:03'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:27:19' prior: 50556168!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart withCatalogue: OrderedCollection new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: 1 unitsOfBook: book] 
+		raise: Error 
+		withExceptionDo: 
+			[:anError | 
+			self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription.
+			self assert: cart isEmpty].! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:28:01' prior: 50556191!
+test03cartCannotAddNonRegisteredProduct
+	|cart book|
+	cart := Cart withCatalogue: OrderedCollection new.
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: 1 unitsOfBook: book] 
+		raise: Exception
+		withExceptionDo: 
+			[:anError | 
+			self assert: anError messageText equals: Cart cannotAddUnregisteredBookErrorDescription.
+			self assert: cart isEmpty].! !
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:28:03'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:28:10' prior: 50556009!
+test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self should: [cart add: -1 unitsOfBook: book] 
+		raise: Exception
+		withExceptionDo: 
+			[:anError | self assert: anError messageText equals: Cart cannotAddNonPositiveAmountOfUnitsOfAProductErrorDescription.
+			self assert: cart isEmpty].! !
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:28:12'!
+PASSED!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:28:25'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:28:25'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:28:25'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:28:25'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:30:50'!
+test05cartContainsRecentlyAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 5 unitsOfBook: book.
+	
+	self assert: (cart carries: book)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:31:00'!
+test05cartCarriesRecentlyAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 5 unitsOfBook: book.
+	
+	self assert: (cart carries: book)! !
+
+!methodRemoval: CarritoTest #test05cartContainsRecentlyAddedBook stamp: 'TD 10/27/2022 21:31:00'!
+test05cartContainsRecentlyAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 5 unitsOfBook: book.
+	
+	self assert: (cart carries: book)!
+
+!testRun: #CarritoTest #test05cartCarriesRecentlyAddedBook stamp: 'TD 10/27/2022 21:31:04'!
+ERROR!
+
+!testRun: #CarritoTest #test05cartCarriesRecentlyAddedBook stamp: 'TD 10/27/2022 21:31:04'!
+ERROR!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:31:08'!
+carries: book 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:31:12' prior: 50556304!
+carries: aBook 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:31:56' prior: 50556308!
+carries: aBook 
+	^productsCarried includes: aBook.! !
+
+!testRun: #CarritoTest #test05cartCarriesRecentlyAddedBook stamp: 'TD 10/27/2022 21:31:58'!
+PASSED!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:32:09' prior: 50556312!
+carries: aBook 
+	^true.! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:32:10'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:32:10'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:32:10'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:32:10'!
+PASSED!
+
+!testRun: #CarritoTest #test05cartCarriesRecentlyAddedBook stamp: 'TD 10/27/2022 21:32:10'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:32:42'!
+test05cartDoesNotCarryNotAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self deny: (cart carries: book)! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:32:47'!
+test06cartDoesNotCarryNotAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self deny: (cart carries: book)! !
+
+!methodRemoval: CarritoTest #test05cartDoesNotCarryNotAddedBook stamp: 'TD 10/27/2022 21:32:47'!
+test05cartDoesNotCarryNotAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self deny: (cart carries: book)!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:32:55' prior: 50555997!
+test02cartIsNotEmptyAfterAddingSomething
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 1 unitsOfBook: book.
+	
+	self deny: (cart isEmpty).! !
+
+!testRun: #CarritoTest #test06cartDoesNotCarryNotAddedBook stamp: 'TD 10/27/2022 21:32:57'!
+FAILURE!
+
+!testRun: #CarritoTest #test06cartDoesNotCarryNotAddedBook stamp: 'TD 10/27/2022 21:32:57'!
+FAILURE!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:33:14' prior: 50556320!
+carries: aBook 
+	^productsCarried includes: aBook.! !
+
+!testRun: #CarritoTest #test06cartDoesNotCarryNotAddedBook stamp: 'TD 10/27/2022 21:33:16'!
+PASSED!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:33:18'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:33:18'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:33:18'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:33:18'!
+PASSED!
+
+!testRun: #CarritoTest #test05cartCarriesRecentlyAddedBook stamp: 'TD 10/27/2022 21:33:18'!
+PASSED!
+
+!testRun: #CarritoTest #test06cartDoesNotCarryNotAddedBook stamp: 'TD 10/27/2022 21:33:18'!
+PASSED!
+
+!methodRemoval: CarritoTest #test05cartCarriesRecentlyAddedBook stamp: 'TD 10/27/2022 21:34:23'!
+test05cartCarriesRecentlyAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 5 unitsOfBook: book.
+	
+	self assert: (cart carries: book)!
+
+!methodRemoval: CarritoTest #test06cartDoesNotCarryNotAddedBook stamp: 'TD 10/27/2022 21:34:24'!
+test06cartDoesNotCarryNotAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with:'1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	
+	self deny: (cart carries: book)!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:35:45'!
+test05cartContainsOneUnitOfAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 1 unitsOfBook: book.
+	
+	self assert: 1 equals: (cart unitsOf: book).! !
+
+!methodRemoval: Cart #carries: stamp: 'TD 10/27/2022 21:35:49'!
+carries: aBook 
+	^productsCarried includes: aBook.!
+
+!testRun: #CarritoTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:35:57'!
+ERROR!
+
+!testRun: #CarritoTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:35:57'!
+ERROR!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:36:00'!
+unitsOf: book 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:36:05' prior: 50556460!
+unitsOf: aBook 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:36:09' prior: 50556464!
+unitsOf: aBook 
+	^1.! !
+
+!testRun: #CarritoTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:36:11'!
+PASSED!
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:36:13'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:36:13'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:36:13'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:36:13'!
+PASSED!
+
+!testRun: #CarritoTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:36:13'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:36:54'!
+test05cartContainsFiveUnitsOfBookAddedFiveTimes
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 5 unitsOfBook: book.
+	
+	self assert: 5 equals: (cart unitsOf: book).! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:36:59'!
+test06cartContainsOneUnitOfAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 1 unitsOfBook: book.
+	
+	self assert: 1 equals: (cart unitsOf: book).! !
+
+!methodRemoval: CarritoTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:36:59'!
+test05cartContainsOneUnitOfAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 1 unitsOfBook: book.
+	
+	self assert: 1 equals: (cart unitsOf: book).!
+
+!testRun: #CarritoTest #test06cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:37:03'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:37:09'!
+test05cartContainsOneUnitOfAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 1 unitsOfBook: book.
+	
+	self assert: 1 equals: (cart unitsOf: book).! !
+
+!methodRemoval: CarritoTest #test06cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:37:09'!
+test06cartContainsOneUnitOfAddedBook
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 1 unitsOfBook: book.
+	
+	self assert: 1 equals: (cart unitsOf: book).!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:37:13'!
+test06cartContainsFiveUnitsOfBookAddedFiveTimes
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 5 unitsOfBook: book.
+	
+	self assert: 5 equals: (cart unitsOf: book).! !
+
+!methodRemoval: CarritoTest #test05cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 21:37:13'!
+test05cartContainsFiveUnitsOfBookAddedFiveTimes
+	|cart book|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	cart add: 5 unitsOfBook: book.
+	
+	self assert: 5 equals: (cart unitsOf: book).!
+
+!testRun: #CarritoTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 21:37:15'!
+FAILURE!
+
+!testRun: #CarritoTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 21:37:15'!
+FAILURE!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:37:30' prior: 50556468!
+unitsOf: aBook 
+	^productsCarried occurrencesOf: aBook.! !
+
+!testRun: #CarritoTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 21:37:32'!
+FAILURE!
+
+!testRun: #CarritoTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 21:37:42'!
+FAILURE!
+
+!testRun: #CarritoTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 21:37:42'!
+FAILURE!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:38:07' prior: 50556133!
+add: units unitsOfBook: aBook
+	self assert: (units > 0) description: self class cannotAddNonPositiveAmountOfUnitsOfAProductErrorDescription.
+	self assert: (catalogue includes: aBook) description: self class cannotAddUnregisteredBookErrorDescription.
+	units timesRepeat: [productsCarried add: aBook].! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:38:09'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:38:09'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:38:09'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:38:09'!
+PASSED!
+
+!testRun: #CarritoTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:38:09'!
+PASSED!
+
+!testRun: #CarritoTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 21:38:09'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:41:19'!
+test07cartHasCorrectProductsAdded
+	|cart book book2 |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345' with: '9879879871').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	book2 := '9879879871'.
+	cart add: 1 unitsOfBook: book.
+	cart add: 1 unitsOfBook: book2.
+	
+	self assert: 5 equals: (cart unitsOf: book).! !
+
+!methodRemoval: CarritoTest #test07cartHasCorrectProductsAdded stamp: 'TD 10/27/2022 21:42:24'!
+test07cartHasCorrectProductsAdded
+	|cart book book2 |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345' with: '9879879871').
+	book := '1234512345'. "Considero book como su codigo ISBN, el formato no esta bien"
+	book2 := '9879879871'.
+	cart add: 1 unitsOfBook: book.
+	cart add: 1 unitsOfBook: book2.
+	
+	self assert: 5 equals: (cart unitsOf: book).!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:44:44'!
+test07emptyCartsCurrentInventoryReturnsEmptyCollection
+	|cart |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	
+	self assert: (OrderedCollection new) equals: (cart currentInventory).! !
+
+!testRun: #CarritoTest #test07emptyCartsCurrentInventoryReturnsEmptyCollection stamp: 'TD 10/27/2022 21:44:49'!
+ERROR!
+
+!testRun: #CarritoTest #test07emptyCartsCurrentInventoryReturnsEmptyCollection stamp: 'TD 10/27/2022 21:44:49'!
+ERROR!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:44:56'!
+currentInventory
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:45:04' prior: 50556681!
+currentInventory
+	^OrderedCollection new.! !
+
+!testRun: #CarritoTest #test07emptyCartsCurrentInventoryReturnsEmptyCollection stamp: 'TD 10/27/2022 21:45:09'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:45:40'!
+test08cartsCurrentInventoryReturnsAllItemsAdded
+	|cart |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	
+	self assert: (OrderedCollection new) equals: (cart currentInventory).! !
+
+!methodRemoval: CarritoTest #test07emptyCartsCurrentInventoryReturnsEmptyCollection stamp: 'TD 10/27/2022 21:45:40'!
+test07emptyCartsCurrentInventoryReturnsEmptyCollection
+	|cart |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	
+	self assert: (OrderedCollection new) equals: (cart currentInventory).!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:46:00'!
+test07emptyCartsCurrentInventoryReturnsEmptyCollection
+	|cart |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	
+	self assert: (OrderedCollection new) equals: (cart currentInventory).! !
+
+!methodRemoval: CarritoTest #test08cartsCurrentInventoryReturnsAllItemsAdded stamp: 'TD 10/27/2022 21:46:00'!
+test08cartsCurrentInventoryReturnsAllItemsAdded
+	|cart |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	
+	self assert: (OrderedCollection new) equals: (cart currentInventory).!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:47:06'!
+test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements
+	|cart book book2|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345' with: '987987987').
+	book := '1234512345'.
+	book2 := '987987987'
+	
+	self assert: (OrderedCollection with: book with: book2) equals: (cart currentInventory).! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:47:13' prior: 50556731!
+test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements
+	|cart book book2|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345' with: '987987987').
+	book := '1234512345'.
+	book2 := '987987987'.
+	
+	self assert: (OrderedCollection with: book with: book2) equals: (cart currentInventory).! !
+
+!testRun: #CarritoTest #test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements stamp: 'TD 10/27/2022 21:47:15'!
+FAILURE!
+
+!testRun: #CarritoTest #test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements stamp: 'TD 10/27/2022 21:47:15'!
+FAILURE!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:47:29' prior: 50556685!
+currentInventory
+	^productsCarried.! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:47:31'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:47:31'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:47:31'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:47:31'!
+PASSED!
+
+!testRun: #CarritoTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:47:31'!
+PASSED!
+
+!testRun: #CarritoTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 21:47:31'!
+PASSED!
+
+!testRun: #CarritoTest #test07emptyCartsCurrentInventoryReturnsEmptyCollection stamp: 'TD 10/27/2022 21:47:31'!
+PASSED!
+
+!testRun: #CarritoTest #test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements stamp: 'TD 10/27/2022 21:47:31'!
+FAILURE!
+
+!testRun: #CarritoTest #test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements stamp: 'TD 10/27/2022 21:47:31'!
+FAILURE!
+
+!testRun: #CarritoTest #test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements stamp: 'TD 10/27/2022 21:47:44'!
+FAILURE!
+
+!testRun: #CarritoTest #test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements stamp: 'TD 10/27/2022 21:47:44'!
+FAILURE!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:48:03' prior: 50556745!
+test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements
+	|cart book book2|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345' with: '987987987').
+	book := '1234512345'.
+	book2 := '987987987'.
+	
+	cart add: 1 unitsOfBook: book.
+	cart add: 1 unitsOfBook: book2. 
+	
+	self assert: (OrderedCollection with: book with: book2) equals: (cart currentInventory).! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:48:05'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:48:05'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:48:05'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:48:05'!
+PASSED!
+
+!testRun: #CarritoTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:48:05'!
+PASSED!
+
+!testRun: #CarritoTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 21:48:05'!
+PASSED!
+
+!testRun: #CarritoTest #test07emptyCartsCurrentInventoryReturnsEmptyCollection stamp: 'TD 10/27/2022 21:48:05'!
+PASSED!
+
+!testRun: #CarritoTest #test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements stamp: 'TD 10/27/2022 21:48:05'!
+PASSED!
+
+!methodRemoval: CarritoTest #test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements stamp: 'TD 10/27/2022 21:48:47'!
+test08cartsCurrentInventoryAfterAdditionsReturnsCollectionWithAddedElements
+	|cart book book2|
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345' with: '987987987').
+	book := '1234512345'.
+	book2 := '987987987'.
+	
+	cart add: 1 unitsOfBook: book.
+	cart add: 1 unitsOfBook: book2. 
+	
+	self assert: (OrderedCollection with: book with: book2) equals: (cart currentInventory).!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:49:41'!
+test07emptyCartsCurrentInventoryReturnsEmptyDictionary
+	|cart |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	
+	self assert: (OrderedCollection new) equals: (cart currentInventory).! !
+
+!methodRemoval: CarritoTest #test07emptyCartsCurrentInventoryReturnsEmptyCollection stamp: 'TD 10/27/2022 21:49:41'!
+test07emptyCartsCurrentInventoryReturnsEmptyCollection
+	|cart |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	
+	self assert: (OrderedCollection new) equals: (cart currentInventory).!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:49:48' prior: 50556874!
+test07emptyCartsCurrentInventoryReturnsEmptyDictionary
+	|cart |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	
+	self assert: (Dictionary new) equals: (cart currentInventory).! !
+
+----End fileIn of /home/clinux01/Descargas/linux64 (1).tar-2/linux64/Packages/TerseGuide.pck.st----!
+!Cart methodsFor: 'topology' stamp: 'TD 10/27/2022 21:50:12' prior: 50556767!
+currentInventory
+	^Dictionary new.! !
+
+!testRun: #CarritoTest #test01newlyCreatedCartIsEmpty stamp: 'TD 10/27/2022 21:50:15'!
+PASSED!
+
+!testRun: #CarritoTest #test02cartIsNotEmptyAfterAddingSomething stamp: 'TD 10/27/2022 21:50:15'!
+PASSED!
+
+!testRun: #CarritoTest #test03cartCannotAddNonRegisteredProduct stamp: 'TD 10/27/2022 21:50:15'!
+PASSED!
+
+!testRun: #CarritoTest #test04cartCannotAddNonPositiveAmountOfUnitsOfAProduct stamp: 'TD 10/27/2022 21:50:15'!
+PASSED!
+
+!testRun: #CarritoTest #test05cartContainsOneUnitOfAddedBook stamp: 'TD 10/27/2022 21:50:15'!
+PASSED!
+
+!testRun: #CarritoTest #test06cartContainsFiveUnitsOfBookAddedFiveTimes stamp: 'TD 10/27/2022 21:50:15'!
+PASSED!
+
+!testRun: #CarritoTest #test07emptyCartsCurrentInventoryReturnsEmptyDictionary stamp: 'TD 10/27/2022 21:50:15'!
+PASSED!
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:52:33'!
+test08cartsCurrentInventoryAfterAddingBooksReturnsDictionaryWithISBNAndQuantity
+	|cart book book2 |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345' with: '987987987').
+	book := '1234512345'.
+	book2 := '987987987'.
+	cart add: 1 unitsOfBook: book.
+	cart add: 1 unitsOfBook: book2.
+	
+	self assert: (Dictionary new) equals: (cart currentInventory).! !
+!CarritoTest methodsFor: 'as yet unclassified' stamp: 'TD 10/27/2022 21:53:17' prior: 50559851!
+test08cartsCurrentInventoryAfterAddingBooksReturnsDictionaryWithISBNAndQuantity
+	|cart book book2 |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345' with: '987987987').
+	book := '1234512345'.
+	book2 := '987987987'.
+	cart add: 1 unitsOfBook: book.
+	cart add: 1 unitsOfBook: book2.
+	
+	self assert: ((Dictionary at: book put: 1) at: book2 put: 1) equals: (cart currentInventory).! !
+
+!testRun: #CarritoTest #test08cartsCurrentInventoryAfterAddingBooksReturnsDictionaryWithISBNAndQuantity stamp: 'TD 10/27/2022 21:53:20'!
+ERROR!
+
+!testRun: #CarritoTest #test08cartsCurrentInventoryAfterAddingBooksReturnsDictionaryWithISBNAndQuantity stamp: 'TD 10/27/2022 21:53:20'!
+ERROR!
+
+!testRun: #CarritoTest #test08cartsCurrentInventoryAfterAddingBooksReturnsDictionaryWithISBNAndQuantity stamp: 'TD 10/27/2022 21:53:33'!
+ERROR!
+
+!methodRemoval: CarritoTest #test08cartsCurrentInventoryAfterAddingBooksReturnsDictionaryWithISBNAndQuantity stamp: 'TD 10/27/2022 21:53:47'!
+test08cartsCurrentInventoryAfterAddingBooksReturnsDictionaryWithISBNAndQuantity
+	|cart book book2 |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345' with: '987987987').
+	book := '1234512345'.
+	book2 := '987987987'.
+	cart add: 1 unitsOfBook: book.
+	cart add: 1 unitsOfBook: book2.
+	
+	self assert: ((Dictionary at: book put: 1) at: book2 put: 1) equals: (cart currentInventory).!
+
+!methodRemoval: CarritoTest #test07emptyCartsCurrentInventoryReturnsEmptyDictionary stamp: 'TD 10/27/2022 21:53:51'!
+test07emptyCartsCurrentInventoryReturnsEmptyDictionary
+	|cart |
+	cart := Cart withCatalogue: (OrderedCollection with: '1234512345').
+	
+	self assert: (Dictionary new) equals: (cart currentInventory).!
+
+----QUIT----(27 October 2022 21:54:12) CuisUniversity-5510.image priorSource: 7155150!

@@ -1,0 +1,2055 @@
+
+
+----STARTUP---- (6 November 2022 14:32:43) as C:\Users\tomas\Desktop\FACULTAD\Inge1\windows64\windows64\CuisUniversity-5510.image!
+
+
+!classRemoval: #CreditCard stamp: 'TD 11/6/2022 14:32:50'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expirationDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'TD 11/6/2022 14:32:50'!
+Object subclass: #Cashier
+	instanceVariableNames: 'priceList salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'TD 11/6/2022 14:32:51'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CashierTest stamp: 'TD 11/6/2022 14:32:51'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'cashier cart catalogT creditCardT'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'TD 11/6/2022 14:32:51'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of C:\Users\tomas\Desktop\FACULTAD\Inge1\FileOuts\Iteracion2\TusLibros-33.st----!
+
+TestCase subclass: #RESTInterfaceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RESTInterfaceTest category: 'TusLibros' stamp: 'TD 11/6/2022 14:33:39'!
+TestCase subclass: #RESTInterfaceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RESTInterface category: 'TusLibros' stamp: 'TD 11/6/2022 14:35:41'!
+Object subclass: #RESTInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterfaceTest methodsFor: 'no messages' stamp: 'TD 11/6/2022 14:35:36'!
+test01ListCartIsEmptyAfterValidCartCreation
+	| cartContents cartId interface password username |
+	interface := RESTInterface new.
+	cartId := interface createCartFor: username and: password.
+	cartContents := interface listCart: cartId.
+	self assert: (cartContents isEmpty).! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/6/2022 14:36:47' prior: 50564041!
+test01ListCartIsEmptyAfterValidCartCreation
+	| cartContents cartId  password username |
+	interface := RESTInterface new.
+	username := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: username and: password.
+	cartContents := interface listCart: cartId.
+	
+	self assert: (cartContents isEmpty).! !
+
+!classDefinition: #RESTInterfaceTest category: 'TusLibros' stamp: 'TD 11/6/2022 14:36:47'!
+TestCase subclass: #RESTInterfaceTest
+	instanceVariableNames: 'interface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/6/2022 14:36:51' prior: 50564053!
+test01ListCartIsEmptyAfterValidCartCreation
+	| cartContents cartId password username |
+	interface := RESTInterface new.
+	username := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: username and: password.
+	cartContents := interface listCart: cartId.
+	
+	self assert: (cartContents isEmpty).! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/6/2022 14:37:06'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/6/2022 14:37:06'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/6/2022 14:37:27'!
+createCartFor: username and: password 
+	self shouldBeImplemented.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/6/2022 14:37:39' prior: 50564094!
+createCartFor: username and: password! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/6/2022 14:37:47'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/6/2022 14:37:51'!
+listCart: cartId 
+	self shouldBeImplemented.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/6/2022 14:38:52' prior: 50564107!
+listCart: cartId 
+	^Dictionary new.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/6/2022 14:38:53'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/6/2022 14:38:55'!
+PASSED!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/6/2022 14:41:58'!
+test02CreateCartThrowsErrorWhenGivenInvalidCredentials
+	| password username |
+	interface := RESTInterface withAuthenticationSevice: false.
+	username := 'pepito'.
+	password := '123'.
+	
+	self should: [interface createCartFor: username and: password.] 
+		raise: Exception 
+		withMessageText: RESTInterface invalidCredentialsErrorDescription.! !
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/6/2022 14:42:17'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/6/2022 14:42:17'!
+ERROR!
+!RESTInterface class methodsFor: 'instance creation' stamp: 'TD 11/6/2022 14:42:22'!
+withAuthenticationSevice: aFalse 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithAuthenticationSevice: aFalse ! !
+!RESTInterface class methodsFor: 'instance creation' stamp: 'TD 11/6/2022 14:42:34' prior: 50564146!
+withAuthenticationSevice: aBoolean 
+	^self new initializeWithAuthenticationSevice: aBoolean ! !
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/6/2022 14:42:35'!
+ERROR!
+
+!classDefinition: #RESTInterface category: 'TusLibros' stamp: 'TD 11/6/2022 14:42:42'!
+Object subclass: #RESTInterface
+	instanceVariableNames: 'boolean'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterface methodsFor: 'initialization' stamp: 'TD 11/6/2022 14:42:42'!
+initializeWithAuthenticationSevice: aBoolean 
+	self shouldBeImplemented.
+	boolean := aBoolean.! !
+!RESTInterface methodsFor: 'initialization' stamp: 'TD 11/6/2022 14:42:47' prior: 50564173!
+initializeWithAuthenticationSevice: aBoolean 
+	boolean := aBoolean.! !
+
+!classDefinition: #RESTInterface category: 'TusLibros' stamp: 'TD 11/6/2022 14:42:53'!
+Object subclass: #RESTInterface
+	instanceVariableNames: 'shouldAuthenticate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterface methodsFor: 'as yet unclassified' stamp: 'TD 11/6/2022 14:42:53' prior: 50564179!
+initializeWithAuthenticationSevice: aBoolean 
+	shouldAuthenticate := aBoolean.! !
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/6/2022 14:42:55'!
+ERROR!
+!RESTInterface class methodsFor: 'error handling' stamp: 'TD 11/6/2022 14:43:04'!
+invalidCredentialsErrorDescription
+	self shouldBeImplemented.! !
+!RESTInterface class methodsFor: 'error handling' stamp: 'TD 11/6/2022 14:43:16' prior: 50564202!
+invalidCredentialsErrorDescription
+	^'invalid credentials!!!!!!'! !
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/6/2022 14:43:18'!
+FAILURE!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/6/2022 14:43:32' prior: 50564074!
+test01ListCartIsEmptyAfterValidCartCreation
+	| cartContents cartId password username |
+	interface := RESTInterface withAuthenticationSevice: true.
+	username := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: username and: password.
+	cartContents := interface listCart: cartId.
+	
+	self assert: (cartContents isEmpty).! !
+
+!classDefinition: #RESTInterface category: 'TusLibros' stamp: 'TD 11/6/2022 14:45:26'!
+Object subclass: #RESTInterface
+	instanceVariableNames: 'shouldAuthenticate nextCartId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/6/2022 14:45:24' prior: 50564099!
+createCartFor: username and: password
+	self assert: shouldAuthenticate.
+	nextCartId := nextCartId + 1.
+	^nextCartId - 1.! !
+!RESTInterface methodsFor: 'initialization' stamp: 'TD 11/6/2022 14:45:37' prior: 50564192!
+initializeWithAuthenticationSevice: aBoolean 
+	shouldAuthenticate := aBoolean.
+	nextCartId := 1.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/6/2022 14:45:39'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/6/2022 14:45:39'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/6/2022 14:45:39'!
+FAILURE!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/6/2022 14:46:17' prior: 50564240!
+createCartFor: username and: password
+	self assert: shouldAuthenticate description: self class invalidCredentialsErrorDescription.
+	nextCartId := nextCartId + 1.
+	^nextCartId - 1.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/6/2022 14:46:24'!
+assertAuthentication
+
+	^ self assert: shouldAuthenticate description: self class invalidCredentialsErrorDescription! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/6/2022 14:46:24' prior: 50564265!
+createCartFor: username and: password
+	self assertAuthentication.
+	nextCartId := nextCartId + 1.
+	^nextCartId - 1.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/6/2022 14:46:40'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/6/2022 14:46:40'!
+PASSED!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/6/2022 17:13:28' prior: 50564218!
+test01ListCartIsEmptyAfterValidCartCreation
+	| cartContents cartId password clientId |
+	interface := RESTInterface withAuthenticationSevice: true.
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	cartContents := interface listCart: cartId.
+	
+	self assert: (cartContents isEmpty).! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/6/2022 17:13:46' prior: 50564124!
+test02CreateCartThrowsErrorWhenGivenInvalidCredentials
+	| password clientId |
+	interface := RESTInterface withAuthenticationSevice: false.
+	clientId := 'pepito'.
+	password := '123'.
+	
+	self should: [interface createCartFor: clientId and: password.] 
+		raise: Exception 
+		withMessageText: RESTInterface invalidCredentialsErrorDescription.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/6/2022 17:13:56' prior: 50564280!
+createCartFor: clientId and: password
+	self assertAuthentication.
+	nextCartId := nextCartId + 1.
+	^nextCartId - 1.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/6/2022 18:58:37' prior: 50564323!
+createCartFor: clientId and: password
+	self assertAuthentication.
+	^1.! !
+
+Object subclass: #RESTInterface
+	instanceVariableNames: 'shouldAuthenticate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RESTInterface category: 'TusLibros' stamp: 'TD 11/6/2022 18:58:41'!
+Object subclass: #RESTInterface
+	instanceVariableNames: 'shouldAuthenticate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterface methodsFor: 'initialization' stamp: 'TD 11/6/2022 18:58:49' prior: 50564247!
+initializeWithAuthenticationSevice: aBoolean 
+	shouldAuthenticate := aBoolean.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/6/2022 18:58:50'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/6/2022 18:58:50'!
+PASSED!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:51:31'!
+test03AddToCartAValidBookAndQuantityMatchesListCartEntry
+	| password clientId cartId |
+	interface := RESTInterface withAuthenticationSevice: true.
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	
+	self assert: (interface listCart: cartId) equals: ((Dictionary new) at: #validBook put: 1).! !
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:51:42'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:51:42'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 00:51:48'!
+addToCartWithId: cartId thisAmount: aString ofBook: aString3 
+	self shouldBeImplemented.! !
+
+!classDefinition: #RESTInterface category: 'TusLibros' stamp: 'TD 11/7/2022 00:54:14'!
+Object subclass: #RESTInterface
+	instanceVariableNames: 'shouldAuthenticate carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 00:54:12' prior: 50564385!
+addToCartWithId: cartId thisAmount: aPositiveInteger ofBook: anISBN
+	(carts at: cartId) add: aPositiveInteger of: anISBN.! !
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:54:16'!
+ERROR!
+!RESTInterface methodsFor: 'initialization' stamp: 'TD 11/7/2022 00:54:33' prior: 50564348!
+initializeWithAuthenticationSevice: aBoolean 
+	shouldAuthenticate := aBoolean.
+	carts := Dictionary new.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 00:54:36'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 00:54:36'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:54:36'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:54:36'!
+ERROR!
+
+!classDefinition: #RESTInterface category: 'TusLibros' stamp: 'TD 11/7/2022 00:55:39'!
+Object subclass: #RESTInterface
+	instanceVariableNames: 'shouldAuthenticate carts catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 00:55:36' prior: 50564330!
+createCartFor: clientId and: password
+	self assertAuthentication.
+	carts at: 1 put: Cart acceptingItemsOf: catalog.
+	^1.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 00:55:50' prior: 50564440!
+createCartFor: clientId and: password
+	self assertAuthentication.
+	carts at: 1 put: (Cart acceptingItemsOf: catalog).
+	^1.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 00:55:57'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 00:55:58'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:55:58'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:55:58'!
+ERROR!
+!RESTInterface methodsFor: 'initialization' stamp: 'TD 11/7/2022 00:56:44'!
+initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog  
+	shouldAuthenticate := aBoolean.
+	carts := Dictionary new.! !
+!RESTInterface class methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:56:44' prior: 50564156!
+withAuthenticationSevice: aBoolean 
+	^self new initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog ! !
+
+!methodRemoval: RESTInterface #initializeWithAuthenticationSevice: stamp: 'TD 11/7/2022 00:56:44'!
+initializeWithAuthenticationSevice: aBoolean 
+	shouldAuthenticate := aBoolean.
+	carts := Dictionary new.!
+!RESTInterface methodsFor: 'initialization' stamp: 'TD 11/7/2022 00:56:58' prior: 50564469!
+initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog  
+	shouldAuthenticate := aBoolean.
+	catalog := aCatalog.
+	carts := Dictionary new.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 00:57:01'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 00:57:01'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:57:01'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:57:01'!
+ERROR!
+
+TestCase subclass: #RESTInterfaceTest
+	instanceVariableNames: 'interface storeTestObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RESTInterfaceTest category: 'TusLibros' stamp: 'TD 11/7/2022 00:57:37'!
+TestCase subclass: #RESTInterfaceTest
+	instanceVariableNames: 'interface storeTestObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:58:01'!
+setup
+	storeTestObjectsFactory := StoreTestObjectsFactory new.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:58:16' prior: 50564295!
+test01ListCartIsEmptyAfterValidCartCreation
+	| cartContents cartId password clientId |
+	interface := RESTInterface withAuthenticationSevice: true.
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	cartContents := interface listCart: cartId.
+	
+	self assert: (cartContents isEmpty).! !
+!RESTInterface class methodsFor: 'instance creation' stamp: 'TD 11/7/2022 00:58:42'!
+withAuthenticationSevice: aBoolean andCatalog: andCatalog  
+	^self new initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog ! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:58:42' prior: 50564309!
+test02CreateCartThrowsErrorWhenGivenInvalidCredentials
+	| password clientId |
+	interface := RESTInterface withAuthenticationSevice: false andCatalog: aCatalog.
+	clientId := 'pepito'.
+	password := '123'.
+	
+	self should: [interface createCartFor: clientId and: password.] 
+		raise: Exception 
+		withMessageText: RESTInterface invalidCredentialsErrorDescription.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:58:42' prior: 50564533!
+test01ListCartIsEmptyAfterValidCartCreation
+	| cartContents cartId password clientId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: aCatalog.
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	cartContents := interface listCart: cartId.
+	
+	self assert: (cartContents isEmpty).! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:58:42' prior: 50564361!
+test03AddToCartAValidBookAndQuantityMatchesListCartEntry
+	| password clientId cartId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: aCatalog.
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	
+	self assert: (interface listCart: cartId) equals: ((Dictionary new) at: #validBook put: 1).! !
+
+!methodRemoval: RESTInterface class #withAuthenticationSevice: stamp: 'TD 11/7/2022 00:58:42'!
+withAuthenticationSevice: aBoolean 
+	^self new initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:58:52' overrides: 16961394!
+setUp
+	storeTestObjectsFactory := StoreTestObjectsFactory new.! !
+
+!methodRemoval: RESTInterfaceTest #setup stamp: 'TD 11/7/2022 00:58:52'!
+setup
+	storeTestObjectsFactory := StoreTestObjectsFactory new.!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:59:18' prior: 50564570!
+test01ListCartIsEmptyAfterValidCartCreation
+	| cartContents cartId password clientId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	cartContents := interface listCart: cartId.
+	
+	self assert: (cartContents isEmpty).! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:59:26' prior: 50564555!
+test02CreateCartThrowsErrorWhenGivenInvalidCredentials
+	| password clientId |
+	interface := RESTInterface withAuthenticationSevice: false andCatalog: (storeTestObjectsFactory defaultCatalog).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	self should: [interface createCartFor: clientId and: password.] 
+		raise: Exception 
+		withMessageText: RESTInterface invalidCredentialsErrorDescription.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 00:59:32' prior: 50564585!
+test03AddToCartAValidBookAndQuantityMatchesListCartEntry
+	| password clientId cartId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	
+	self assert: (interface listCart: cartId) equals: ((Dictionary new) at: #validBook put: 1).! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 00:59:37'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 00:59:37'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:59:38'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 00:59:38'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:00:16'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:00:16'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:00:16'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:00:17'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:01:08'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:01:08'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:01:08'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:01:08'!
+ERROR!
+!RESTInterface class methodsFor: 'instance creation' stamp: 'TD 11/7/2022 01:02:02' prior: 50564547!
+withAuthenticationSevice: aBoolean andCatalog: aCatalog  
+	^self new initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog ! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:02:07'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:02:07'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:02:07'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:02:07'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:02:31'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:02:31'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:02:31'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:02:31'!
+FAILURE!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 01:03:23' prior: 50564651!
+test03AddToCartAValidBookAndQuantityMatchesListCartEntry
+	| password clientId cartId expected |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	
+	expected := Dictionary new.
+	expected at: 'validBook' put: 1.
+	
+	self assert: expected equals: (interface listCart: cartId).! !
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:03:28'!
+FAILURE!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:06:06' prior: 50564112!
+listCart: cartId 
+	| cart cartContents |
+	cart := carts at: cartId.
+	cartContents := Dictionary new.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:09:09' prior: 50564778!
+listCart: cartId 
+	| cart cartContents |
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	(catalog select: [:aBook | cart includes: aBook]) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)]! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:09:12'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:09:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:09:12'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:09:13'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:09:25' prior: 50564784!
+listCart: cartId 
+	| cart cartContents |
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	^(catalog select: [:aBook | cart includes: aBook]) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)]! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:09:26'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:09:26'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:09:26'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:09:26'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:09:39'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:09:40'!
+FAILURE!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:10:42' prior: 50564811!
+listCart: cartId 
+	| cart cartContents |
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	^((catalog keys) select: [:aBook | cart includes: aBook]) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)]! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:10:43'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:10:44'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:10:44'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:10:44'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:11:42'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:11:42'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:11:42'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:11:42'!
+FAILURE!
+
+((catalog keys) select: [:aBook | cart includes: aBook]) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)]!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:13:14' prior: 50564846!
+listCart: cartId 
+	| cart cartContents |
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	((catalog keys) select: [:aBook | cart includes: aBook]) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)]
+	^cartContents.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:13:18' prior: 50564895!
+listCart: cartId 
+	| cart cartContents |
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	((catalog keys) select: [:aBook | cart includes: aBook]) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)].
+	^cartContents.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:13:18'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:13:18'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:13:18'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:13:20'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:13:21'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:13:21'!
+PASSED!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:13:48'!
+booksContainedInCart: cart
+
+	^ (catalog keys) select: [:aBook | cart includes: aBook]! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:13:48' prior: 50564908!
+listCart: cartId 
+	| cart cartContents |
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	(self booksContainedInCart: cart) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)].
+	^cartContents.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:14:09' prior: 50564943!
+booksContainedInCart: aCart
+
+	^ (catalog keys) select: [:aBook | aCart includes: aBook]! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 01:16:42'!
+test04AddToCartWithAnInvalidCartIdThrowsError
+	| password clientId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	self should: [interface addToCartWithId: 0 thisAmount: 1 ofBook: 'validBook']
+		raise: Exception
+		withMessageText: RESTInterface invalidCartIdErrorDescription.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 01:16:52' prior: 50564967!
+test04AddToCartWithAnInvalidCartIdThrowsError
+	| password |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog).
+	
+	self should: [interface addToCartWithId: 0 thisAmount: 1 ofBook: 'validBook']
+		raise: Exception
+		withMessageText: RESTInterface invalidCartIdErrorDescription.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 01:16:58' prior: 50564983!
+test04AddToCartWithAnInvalidCartIdThrowsError
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog).
+	
+	self should: [interface addToCartWithId: 0 thisAmount: 1 ofBook: 'validBook']
+		raise: Exception
+		withMessageText: RESTInterface invalidCartIdErrorDescription.! !
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:17:00'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:17:00'!
+ERROR!
+!RESTInterface class methodsFor: 'error handling' stamp: 'TD 11/7/2022 01:17:04'!
+invalidCartIdErrorDescription
+	self shouldBeImplemented.! !
+!RESTInterface class methodsFor: 'error handling' stamp: 'TD 11/7/2022 01:17:18' prior: 50565017!
+invalidCartIdErrorDescription
+	^'invalid cart id!!!!!!'.! !
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:17:20'!
+FAILURE!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:18:11' prior: 50564399!
+addToCartWithId: cartId thisAmount: aPositiveInteger ofBook: anISBN
+	self assert: (carts includesKey: cartId) description: self class invalidCartIdErrorDescription.
+	(carts at: cartId) add: aPositiveInteger of: anISBN.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:18:14'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:18:14'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:18:14'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:18:14'!
+PASSED!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:18:43'!
+assertValidCartId: cartId
+
+	^ self assert: (carts includesKey: cartId) description: self class invalidCartIdErrorDescription! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:18:44' prior: 50565031!
+addToCartWithId: cartId thisAmount: aPositiveInteger ofBook: anISBN
+	self assertValidCartId: cartId.
+	(carts at: cartId) add: aPositiveInteger of: anISBN.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:18:47'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:18:47'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:18:47'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:18:47'!
+PASSED!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:21:26' prior: 50564949!
+listCart: cartId 
+	| cart cartContents |
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	cart fillCartContents: cartContents.
+	^cartContents.! !
+!Cart methodsFor: 'queries' stamp: 'TD 11/7/2022 01:22:44' prior: 50563508!
+occurrencesOf: anItem
+
+	^items occurrencesOf: anItem  ! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:13:48' prior: 50565086!
+listCart: cartId 
+	| cart cartContents |
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	(self booksContainedInCart: cart) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)].
+	^cartContents.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:23:26' prior: 50565099!
+listCart: cartId 
+	| cart cartContents |
+	
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	(self booksContainedInCart: cart) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)].
+	
+	^cartContents.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:23:52' prior: 50565063!
+addToCartWithId: cartId thisAmount: aPositiveInteger ofBook: anISBN
+	"Las excepciones por la cantidad y el ISBN las responde el carrito."
+
+	self assertValidCartId: cartId.
+	(carts at: cartId) add: aPositiveInteger of: anISBN.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 01:24:39'!
+test05ListCartWithAnInvalidCartIdThrowsError
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog).
+	
+	self should: [interface listCart: 0]
+		raise: Exception
+		withMessageText: RESTInterface invalidCartIdErrorDescription.! !
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:24:41'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:24:41'!
+FAILURE!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:24:54' prior: 50565111!
+listCart: cartId 
+	| cart cartContents |
+	
+	self assertValidCartId: cartId.
+	
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	(self booksContainedInCart: cart) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)].
+	
+	^cartContents.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:24:55'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:24:55'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:24:55'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:24:55'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:24:55'!
+PASSED!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 01:27:24'!
+test06CheckoutInvalidCartIdThrowsError
+! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 01:27:34' prior: 50565184!
+test06CheckoutInvalidCartIdThrowsError
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog).
+	
+	self should: [interface listCart: 0]
+		raise: Exception
+		withMessageText: RESTInterface invalidCartIdErrorDescription.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 01:29:08' prior: 50565189!
+test06CheckoutInvalidCartIdThrowsError
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog).
+	
+	self should: 
+	[interface checkoutCartWithId: 0 paidWithCreditCardWithNumber: 1 expirationDate: 122022 andOwnerName: 'pepe']
+		raise: Exception
+		withMessageText: RESTInterface invalidCartIdErrorDescription.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:30:57'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:30:57'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:30:57'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:30:57'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:30:57'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:30:57'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:30:57'!
+FAILURE!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:32:10'!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	^self error: self class invalidCartIdErrorDescription.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:32:13'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:32:13'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:32:13'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:32:13'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:32:13'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 01:32:13'!
+PASSED!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 01:44:34'!
+test07CheckoutValidCartIdAppearsOnPurchasesList
+	| password clientId cartId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	interface checkoutCartWithId: cartId paidWithCreditCardWithNumber: 12345678 expirationDate: 122022 andOwnerName: 'Pepe'.
+	
+	self assert: (interface listPurchases: clientId and: password) includes: cartId.! !
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 01:44:43'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 01:44:43'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 01:44:48'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 01:53:11'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 01:53:11'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 01:53:12'!
+PASSED!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:00:05' prior: 50564609 overrides: 16961394!
+setUp
+	storeTestObjectsFactory := StoreTestObjectsFactory new.! !
+
+!classDefinition: #MerchantProcessor category: 'TusLibros' stamp: 'TD 11/7/2022 02:00:58'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:00:54' prior: 50565273!
+test07CheckoutValidCartIdAppearsOnPurchasesList
+	| password clientId cartId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: (MerchantProcessor new).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	interface checkoutCartWithId: cartId paidWithCreditCardWithNumber: 12345678 expirationDate: 122022 andOwnerName: 'Pepe'.
+	
+	self assert: (interface listPurchases: clientId and: password) includes: cartId.! !
+!RESTInterface class methodsFor: 'instance creation' stamp: 'TD 11/7/2022 02:01:40'!
+withAuthenticationSevice: aBoolean andCatalog: aCatalog andMerchantProcessor: aMerchantProcessor   
+	^self new initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog ! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:01:40' prior: 50564997!
+test04AddToCartWithAnInvalidCartIdThrowsError
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: MerchantProcessor new.
+	
+	self should: [interface addToCartWithId: 0 thisAmount: 1 ofBook: 'validBook']
+		raise: Exception
+		withMessageText: RESTInterface invalidCartIdErrorDescription.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:01:40' prior: 50565133!
+test05ListCartWithAnInvalidCartIdThrowsError
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: MerchantProcessor new.
+	
+	self should: [interface listCart: 0]
+		raise: Exception
+		withMessageText: RESTInterface invalidCartIdErrorDescription.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:01:40' prior: 50564635!
+test02CreateCartThrowsErrorWhenGivenInvalidCredentials
+	| password clientId |
+	interface := RESTInterface withAuthenticationSevice: false andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: MerchantProcessor new.
+	clientId := 'pepito'.
+	password := '123'.
+	
+	self should: [interface createCartFor: clientId and: password.] 
+		raise: Exception 
+		withMessageText: RESTInterface invalidCredentialsErrorDescription.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:01:40' prior: 50564619!
+test01ListCartIsEmptyAfterValidCartCreation
+	| cartContents cartId password clientId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: MerchantProcessor new.
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	cartContents := interface listCart: cartId.
+	
+	self assert: (cartContents isEmpty).! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:01:40' prior: 50564755!
+test03AddToCartAValidBookAndQuantityMatchesListCartEntry
+	| password clientId cartId expected |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: MerchantProcessor new.
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	
+	expected := Dictionary new.
+	expected at: 'validBook' put: 1.
+	
+	self assert: expected equals: (interface listCart: cartId).! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:01:40' prior: 50565201!
+test06CheckoutInvalidCartIdThrowsError
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: MerchantProcessor new.
+	
+	self should: 
+	[interface checkoutCartWithId: 0 paidWithCreditCardWithNumber: 1 expirationDate: 122022 andOwnerName: 'pepe']
+		raise: Exception
+		withMessageText: RESTInterface invalidCartIdErrorDescription.! !
+
+!methodRemoval: RESTInterface class #withAuthenticationSevice:andCatalog: stamp: 'TD 11/7/2022 02:01:40'!
+withAuthenticationSevice: aBoolean andCatalog: aCatalog  
+	^self new initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog !
+!RESTInterface methodsFor: 'initialization' stamp: 'TD 11/7/2022 02:02:06'!
+initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog andMerchantProcessor: aMerchantProcessor   
+	shouldAuthenticate := aBoolean.
+	catalog := aCatalog.
+	carts := Dictionary new.! !
+!RESTInterface class methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:02:06' prior: 50565354!
+withAuthenticationSevice: aBoolean andCatalog: aCatalog andMerchantProcessor: aMerchantProcessor   
+	^self new initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog andMerchantProcessor: aMerchantProcessor ! !
+
+!methodRemoval: RESTInterface #initializeWithAuthenticationSevice:andCatalog: stamp: 'TD 11/7/2022 02:02:06'!
+initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog  
+	shouldAuthenticate := aBoolean.
+	catalog := aCatalog.
+	carts := Dictionary new.!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:02:11'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:02:11'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:03:49' prior: 50565241!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	self assertValidCartId: aCartId.
+	^self error: self class invalidCartIdErrorDescription.! !
+
+!classDefinition: #RESTInterface category: 'TusLibros' stamp: 'TD 11/7/2022 02:09:48'!
+Object subclass: #RESTInterface
+	instanceVariableNames: 'shouldAuthenticate carts catalog purchases'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:09:45' prior: 50565506!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	self assertValidCartId: aCartId.
+	purchases at: aCartId put: 1.
+	^1.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:09:51'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:09:51'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:09:51'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:09:51'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:09:51'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:09:51'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:09:51'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:09:51'!
+ERROR!
+!RESTInterface methodsFor: 'initialization' stamp: 'TD 11/7/2022 02:10:03' prior: 50565470!
+initializeWithAuthenticationSevice: aBoolean andCatalog: aCatalog andMerchantProcessor: aMerchantProcessor   
+	shouldAuthenticate := aBoolean.
+	catalog := aCatalog.
+	purchases := Dictionary new.
+	carts := Dictionary new.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:10:05'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:10:05'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:10:05'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:10:05'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:10:06'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:10:06'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:10:06'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:10:06'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:10:13'!
+listPurchases: clientId and: password 
+	self shouldBeImplemented.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:10:44' prior: 50565604!
+listPurchases: clientId and: password 
+	^purchases at: clientId.! !
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:10:46'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:17:14' prior: 50564447!
+createCartFor: clientId and: password
+	self assertAuthentication.
+	(carts at: clientId) at: 1 put: (Cart acceptingItemsOf: catalog).
+	^1.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:17:44'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:17:44'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:17:44'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:17:44'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:17:44'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:17:44'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:17:44'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:17:45'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:24:49' prior: 50565618!
+createCartFor: clientId and: password
+	self assertAuthentication.
+	(carts at: clientId ifAbsent: [carts at: clientId put: (Dictionary new)]) at: 1 put: (Cart acceptingItemsOf: catalog).
+	^1.! !
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:24:50'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:24:50'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:24:50'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:24:51'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:25:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:25:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:25:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:25:12'!
+PASSED!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:26:11' prior: 50565152!
+listCart: cartId 
+	| activeCarts cartContents |
+	
+	self assertValidCartId: cartId.
+	
+	activeCarts := carts at: cartId.
+	cartContents := Dictionary new.
+	(self booksContainedInCart: activeCarts) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (activeCarts occurrencesOf: aContainedBook)].
+	
+	^cartContents.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 01:24:54' prior: 50565694!
+listCart: cartId 
+	| cart cartContents |
+	
+	self assertValidCartId: cartId.
+	
+	cart := carts at: cartId.
+	cartContents := Dictionary new.
+	(self booksContainedInCart: cart) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)].
+	
+	^cartContents.! !
+!RESTInterface methodsFor: 'assertions' stamp: 'TD 11/7/2022 02:29:18' prior: 50565056!
+assertValidCartId: cartId
+
+	^ self assert: ((carts keys) anySatisfy: [:aClientId | (carts at: aClientId) includes: cartId]) description: self class invalidCartIdErrorDescription! !
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:29:30'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:29:30'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:29:30'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:29:30'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:29:41'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:29:41'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:29:41'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:29:41'!
+PASSED!
+!RESTInterface methodsFor: 'assertions' stamp: 'TD 11/7/2022 02:30:35' prior: 50565721!
+assertValidCartId: cartId
+
+	^ self assert: ((carts keys) anySatisfy: [:aClientId | ((carts at: aClientId) keys) includes: cartId]) description: self class invalidCartIdErrorDescription! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:30:37'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:30:37'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:30:37'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:30:37'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:30:37'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:30:37'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:30:37'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:30:39'!
+ERROR!
+!RESTInterface methodsFor: 'assertions' stamp: 'TD 11/7/2022 02:31:47' prior: 50565759!
+assertValidCartId: cartId
+
+	^ self assert: ((carts keys) anySatisfy: [:aClientId | ((carts at: aClientId) keys) includes: cartId]) description: self class invalidCartIdErrorDescription! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:31:49'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:31:49'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:31:49'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:31:49'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:31:49'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:31:49'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:31:49'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:31:51'!
+ERROR!
+!RESTInterface methodsFor: 'assertions' stamp: 'TD 11/7/2022 02:32:16' prior: 50565798!
+assertValidCartId: cartId
+
+	^ self assert: ((carts keys) anySatisfy: [:aClientId | (carts at: aClientId) keys includes: cartId]) description: self class invalidCartIdErrorDescription! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:32:18'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:32:18'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:32:18'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:32:18'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:32:18'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:32:18'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:32:18'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:32:19'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:33:46' prior: 50565708!
+listCart: cartId 
+	| cart cartContents |
+	
+	self assertValidCartId: cartId.
+	
+	cart := ((carts keys) select: [:aClientId | (aClientId keys) includes: cartId]) at: cartId.
+	cartContents := Dictionary new.
+	(self booksContainedInCart: cart) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)].
+	
+	^cartContents.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:33:49'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:33:49'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:33:49'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:33:49'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:33:49'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:33:49'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:33:49'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:33:50'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:34:09' prior: 50565875!
+listCart: cartId 
+	| cart cartContents |
+	
+	self assertValidCartId: cartId.
+	
+	cart := ((carts keys) select: [:aClientId | (carts at: aClientId keys) includes: cartId]) at: cartId.
+	cartContents := Dictionary new.
+	(self booksContainedInCart: cart) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)].
+	
+	^cartContents.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:34:11'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:34:11'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:34:11'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:34:11'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:34:11'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:34:11'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:34:11'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:34:12'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:34:29' prior: 50565920!
+listCart: cartId 
+	| cart cartContents |
+	
+	self assertValidCartId: cartId.
+	
+	cart := ((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId]) at: cartId.
+	cartContents := Dictionary new.
+	(self booksContainedInCart: cart) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)].
+	
+	^cartContents.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:34:31'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:34:31'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:34:31'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:34:31'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:34:31'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:34:31'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:34:31'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:34:33'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:36:03'!
+getCartWithID: cartId
+
+	^ ((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId]) at: cartId! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:36:03' prior: 50565965!
+listCart: cartId 
+	| cart cartContents |
+	
+	self assertValidCartId: cartId.
+	
+	cart := self getCartWithID: cartId.
+	cartContents := Dictionary new.
+	(self booksContainedInCart: cart) inject: cartContents into: 
+	[:contents :aContainedBook | contents at: aContainedBook put: (cart occurrencesOf: aContainedBook)].
+	
+	^cartContents.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:36:29' prior: 50565123!
+addToCartWithId: cartId thisAmount: aPositiveInteger ofBook: anISBN
+	"Las excepciones por la cantidad y el ISBN las responde el carrito."
+
+	self assertValidCartId: cartId.
+	(self getCartWithID: cartId) add: aPositiveInteger of: anISBN.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:36:30'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:36:30'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:36:30'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:36:30'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:36:30'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:36:30'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:36:30'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:36:32'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:36:41'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:37:16'!
+ERROR!
+
+ ((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId]) at: cartId!
+
+((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId])!
+!RESTInterface methodsFor: 'support' stamp: 'TD 11/7/2022 02:38:36' prior: 50566010!
+getCartWithID: cartId
+
+	^ (carts at: ((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId])) at: cartId! !
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:38:37'!
+ERROR!
+
+(carts at: ((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId]))!
+!RESTInterface methodsFor: 'support' stamp: 'TD 11/7/2022 02:39:00' prior: 50566084!
+getCartWithID: cartId
+
+	^((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId]) at: cartId! !
+!RESTInterface methodsFor: 'support' stamp: 'TD 11/7/2022 02:39:07' prior: 50566098!
+getCartWithID: cartId
+
+	^ (carts at: ((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId])) at: cartId! !
+
+(carts at: ((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId]))!
+!RESTInterface methodsFor: 'support' stamp: 'TD 11/7/2022 02:39:17' prior: 50566105!
+getCartWithID: cartId
+
+	^((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId]) at: cartId! !
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:39:19'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:39:22'!
+ERROR!
+!RESTInterface methodsFor: 'support' stamp: 'TD 11/7/2022 02:40:23' prior: 50566115!
+getCartWithID: cartId
+
+	^(carts at: ((carts keys) select: [:aClientId | (carts at: aClientId) keys includes: cartId]) first) at: cartId! !
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:40:24'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:40:26'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:40:26'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:40:26'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:40:26'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:40:26'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:40:26'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:40:26'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:40:26'!
+ERROR!
+!RESTInterface methodsFor: 'support' stamp: 'TD 11/7/2022 02:41:10' prior: 50566130!
+getCartWithID: cartId
+
+	^(carts at: ((carts keys) detect: [:aClientId | (carts at: aClientId) keys includes: cartId]) first) at: cartId! !
+!RESTInterface methodsFor: 'support' stamp: 'TD 11/7/2022 02:41:13' prior: 50566171!
+getCartWithID: cartId
+
+	^(carts at: ((carts keys) detect: [:aClientId | (carts at: aClientId) keys includes: cartId])) at: cartId! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:41:14'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:41:15'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:41:15'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:41:15'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:41:15'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:41:15'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:41:15'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:41:15'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:41:24'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:41:26'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:41:29'!
+PASSED!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:43:15' prior: 50565525!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| clientId |
+	self assertValidCartId: aCartId.
+	clientId := carts detect: [:aClientId | (carts at: aClientId) includes: aCartId].
+	purchases at: aCartId put: 1.
+	^1.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:43:44' prior: 50566226!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| clientId |
+	self assertValidCartId: aCartId.
+	clientId := carts detect: [:aClientId | (carts at: aClientId) includes: aCartId].
+	(purchases at: clientId ifAbsent: [purchases at: clientId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:43:46'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:43:47'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:43:47'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:43:47'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:43:47'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:43:47'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:43:47'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:43:47'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:44:43'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:44:43'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:45:15' prior: 50566239!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| userId |
+	self assertValidCartId: aCartId.
+	userId := carts detect: [:aClientId | (carts at: aClientId) includes: aCartId].
+	(purchases at: userId ifAbsent: [purchases at: userId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+
+carts detect: [:aClientId | (carts at: aClientId) includes: aCartId]!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:45:52' prior: 50566291!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| userId |
+	self assertValidCartId: aCartId.
+	userId := carts detect: [:aClientId | (carts keys at: aClientId) includes: aCartId].
+	(purchases at: userId ifAbsent: [purchases at: userId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:45:56' prior: 50566308!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| userId |
+	self assertValidCartId: aCartId.
+	userId := carts detect: [:aClientId | (carts at: aClientId) includes: aCartId].
+	(purchases at: userId ifAbsent: [purchases at: userId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:45:58' prior: 50566323!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| userId |
+	self assertValidCartId: aCartId.
+	userId := carts keys detect: [:aClientId | (carts at: aClientId) includes: aCartId].
+	(purchases at: userId ifAbsent: [purchases at: userId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:46:00'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:46:00'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:46:00'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:46:00'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:46:00'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:46:00'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:46:00'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:46:00'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:46:31' prior: 50566338!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| userId |
+	self assertValidCartId: aCartId.
+	userId := (carts keys) detect: [:aClientId | (carts at: aClientId) includes: aCartId].
+	(purchases at: userId ifAbsent: [purchases at: userId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:46:33'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:46:33'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:46:33'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:46:33'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:46:33'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:46:33'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:46:33'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:46:33'!
+ERROR!
+
+(carts keys)!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:46:52' prior: 50566383!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| userId |
+	self assertValidCartId: aCartId.
+	userId := (carts keys) detect: [:aClientId | (carts at: aClientId) keys includes: aCartId].
+	(purchases at: userId ifAbsent: [purchases at: userId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:46:53'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:46:54'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:46:55'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:46:55'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:46:55'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:46:55'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:46:55'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:46:55'!
+PASSED!
+!RESTInterface methodsFor: 'support' stamp: 'TD 11/7/2022 02:47:48'!
+getClientIdByCartId: cartId
+
+	^(carts keys) detect: [:aClientId | (carts at: aClientId) keys includes: cartId]! !
+!RESTInterface methodsFor: 'support' stamp: 'TD 11/7/2022 02:48:21' prior: 50566178!
+getCartWithID: cartId
+
+	^(carts at: (self getClientIdByCartId: cartId)) at: cartId! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:48:22'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:48:22'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:48:22'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:48:22'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:48:22'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:48:22'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:48:22'!
+PASSED!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 02:49:00' prior: 50566428!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| userId |
+	self assertValidCartId: aCartId.
+	userId := self getClientIdByCartId: aCartId.
+	(purchases at: userId ifAbsent: [purchases at: userId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 02:49:02'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 02:49:02'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 02:49:02'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:49:02'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:49:03'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 02:49:03'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 02:49:03'!
+PASSED!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:56:27'!
+test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases
+	| password clientId cartId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: (MerchantProcessor new).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	self should: 
+	[interface checkoutCartWithId: cartId paidWithCreditCardWithNumber: 12345678 expirationDate: 122022 andOwnerName: 'Pepe'] 
+	raise: Exception 
+	withExceptionDo: 
+	[:anError | self assert: anError messageText equals: RESTInterface invalidCardErrorDescription.
+			self deny: ((interface listPurchases: clientId and: password) includes: cartId)].! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 02:57:42' prior: 50566551!
+test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases
+	| password clientId cartId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: (MerchantProcessor new).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	self should: 
+	[interface checkoutCartWithId: cartId paidWithCreditCardWithNumber: 12345678 expirationDate: 131 andOwnerName: 'sadfadsgiadhgjakfdsfdafheioqruqewioruekjaklsdfjasnasdfn']
+	raise: Exception 
+	withExceptionDo: 
+	[:anError | self assert: anError messageText equals: RESTInterface invalidCardErrorDescription.
+			self deny: ((interface listPurchases: clientId and: password) includes: cartId)].! !
+
+!testRun: #RESTInterfaceTest #test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases stamp: 'TD 11/7/2022 02:57:50'!
+FAILURE!
+
+!testRun: #RESTInterfaceTest #test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases stamp: 'TD 11/7/2022 02:57:50'!
+FAILURE!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 03:00:37' prior: 50566511!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| userId |
+	self assertValidCartId: aCartId.
+	self assert: (anExpirationDateFormat size = 6 and: [anOwnerName size <= 30]) description: self class invalidCardErrorDescription.
+	
+	userId := self getClientIdByCartId: aCartId.
+	(purchases at: userId ifAbsent: [purchases at: userId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 03:00:56'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 03:00:56'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 03:00:56'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:00:56'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:00:56'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:00:56'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 03:00:56'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases stamp: 'TD 11/7/2022 03:00:56'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 03:00:58'!
+ERROR!
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 03:01:18' prior: 50565331!
+test07CheckoutValidCartIdAppearsOnPurchasesList
+	| password clientId cartId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: (MerchantProcessor new).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	interface checkoutCartWithId: cartId paidWithCreditCardWithNumber: 12345678 expirationDate: '122022' andOwnerName: 'Pepe'.
+	
+	self assert: (interface listPurchases: clientId and: password) includes: cartId.! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 03:01:25' prior: 50566579!
+test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases
+	| password clientId cartId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: (MerchantProcessor new).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	self should: 
+	[interface checkoutCartWithId: cartId paidWithCreditCardWithNumber: 12345678 expirationDate: '131' andOwnerName: 'sadfadsgiadhgjakfdsfdafheioqruqewioruekjaklsdfjasnasdfn']
+	raise: Exception 
+	withExceptionDo: 
+	[:anError | self assert: anError messageText equals: RESTInterface invalidCardErrorDescription.
+			self deny: ((interface listPurchases: clientId and: password) includes: cartId)].! !
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 03:01:27'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 03:01:27'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 03:01:27'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:01:27'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:01:27'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:01:27'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 03:01:27'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases stamp: 'TD 11/7/2022 03:01:27'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 03:01:29'!
+ERROR!
+!RESTInterface class methodsFor: 'error handling' stamp: 'TD 11/7/2022 03:01:38'!
+invalidCardErrorDescription
+	self shouldBeImplemented.! !
+!RESTInterface class methodsFor: 'error handling' stamp: 'TD 11/7/2022 03:01:56' prior: 50566754!
+invalidCardErrorDescription
+	^'invalid credit card!!!!!!'! !
+!RESTInterface class methodsFor: 'error handling' stamp: 'TD 11/7/2022 03:02:05'!
+invalidCreditCardErrorDescription
+	^'invalid credit card!!!!!!'! !
+!RESTInterfaceTest methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 03:02:05' prior: 50566691!
+test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases
+	| password clientId cartId |
+	interface := RESTInterface withAuthenticationSevice: true andCatalog: (storeTestObjectsFactory defaultCatalog) andMerchantProcessor: (MerchantProcessor new).
+	clientId := 'pepito'.
+	password := '123'.
+	
+	cartId := interface createCartFor: clientId and: password.
+	interface addToCartWithId: cartId thisAmount: 1 ofBook: 'validBook'.
+	self should: 
+	[interface checkoutCartWithId: cartId paidWithCreditCardWithNumber: 12345678 expirationDate: '131' andOwnerName: 'sadfadsgiadhgjakfdsfdafheioqruqewioruekjaklsdfjasnasdfn']
+	raise: Exception 
+	withExceptionDo: 
+	[:anError | self assert: anError messageText equals: RESTInterface invalidCreditCardErrorDescription.
+			self deny: ((interface listPurchases: clientId and: password) includes: cartId)].! !
+!RESTInterface methodsFor: 'as yet unclassified' stamp: 'TD 11/7/2022 03:02:05' prior: 50566616!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| userId |
+	self assertValidCartId: aCartId.
+	self assert: (anExpirationDateFormat size = 6 and: [anOwnerName size <= 30]) description: self class invalidCreditCardErrorDescription.
+	
+	userId := self getClientIdByCartId: aCartId.
+	(purchases at: userId ifAbsent: [purchases at: userId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+
+!methodRemoval: RESTInterface class #invalidCardErrorDescription stamp: 'TD 11/7/2022 03:02:05'!
+invalidCardErrorDescription
+	^'invalid credit card!!!!!!'!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 03:02:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 03:02:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 03:02:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:02:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:02:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:02:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 03:02:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases stamp: 'TD 11/7/2022 03:02:13'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases stamp: 'TD 11/7/2022 03:02:13'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test01ListCartIsEmptyAfterValidCartCreation stamp: 'TD 11/7/2022 03:03:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test02CreateCartThrowsErrorWhenGivenInvalidCredentials stamp: 'TD 11/7/2022 03:03:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test03AddToCartAValidBookAndQuantityMatchesListCartEntry stamp: 'TD 11/7/2022 03:03:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test04AddToCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:03:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test05ListCartWithAnInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:03:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test06CheckoutInvalidCartIdThrowsError stamp: 'TD 11/7/2022 03:03:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test07CheckoutValidCartIdAppearsOnPurchasesList stamp: 'TD 11/7/2022 03:03:12'!
+PASSED!
+
+!testRun: #RESTInterfaceTest #test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases stamp: 'TD 11/7/2022 03:03:12'!
+ERROR!
+
+!testRun: #RESTInterfaceTest #test08CheckoutValidCartIdWithMPErrorDoesntImpactOnPurchases stamp: 'TD 11/7/2022 03:03:12'!
+ERROR!
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 03:04:23'!
+assertCanCreateCardWithExpirationDateFormat: anExpirationDateFormat andOwnerName: anOwnerName
+
+	^ self assert: (anExpirationDateFormat size = 6 and: [anOwnerName size <= 30]) description: self class invalidCreditCardErrorDescription! !
+!RESTInterface methodsFor: 'endpoints' stamp: 'TD 11/7/2022 03:04:23' prior: 50566800!
+checkoutCartWithId: aCartId paidWithCreditCardWithNumber: aCreditCardNumber expirationDate: anExpirationDateFormat andOwnerName: anOwnerName
+	| userId |
+	self assertValidCartId: aCartId.
+	self assertCanCreateCardWithExpirationDateFormat: anExpirationDateFormat andOwnerName: anOwnerName.
+	
+	userId := self getClientIdByCartId: aCartId.
+	(purchases at: userId ifAbsent: [purchases at: userId put: Dictionary new]) at: aCartId put: 1.
+	^1.! !
+
+----QUIT----(7 November 2022 03:07:36) CuisUniversity-5510.image priorSource: 7395428!

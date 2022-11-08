@@ -1,0 +1,766 @@
+
+
+----QUIT----(26 October 2022 08:07:27) CuisUniversity-5510.image priorSource: 2900072!
+
+----STARTUP---- (26 October 2022 08:07:28) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5510.image!
+
+
+----QUIT----(26 October 2022 08:07:28) CuisUniversity-5510.image priorSource: 7154921!
+
+----STARTUP---- (7 November 2022 17:05:06) as /home/clinux01/Escritorio/linux64.tar-1/linux64/CuisUniversity-5510.image!
+
+
+----End fileIn of /home/clinux01/Descargas/it4/TusLibros-Model Ejercicio it4.st----!
+
+----End fileIn of /home/clinux01/Descargas/it4/TusLibrosREST Ejercicio it4.st----!
+
+----End fileIn of /home/clinux01/Descargas/it4/TusLibros-Tests Ejercicio it4.st----!
+
+----End fileIn of /home/clinux01/Escritorio/linux64.tar-1/linux64/Packages/System/Collections-CompactArrays.pck.st----!
+
+----End fileIn of /home/clinux01/Escritorio/linux64.tar-1/linux64/Packages/Features/Compression.pck.st----!
+
+----End fileIn of /home/clinux01/Escritorio/linux64.tar-1/linux64/Packages/Features/Sound.pck.st----!
+
+----End fileIn of /home/clinux01/Escritorio/linux64.tar-1/linux64/Packages/Features/Cryptography-DigitalSignatures.pck.st----!
+
+----End fileIn of /home/clinux01/Escritorio/linux64.tar-1/linux64/Packages/Features/Identities-UUID.pck.st----!
+
+----End fileIn of /home/clinux01/Escritorio/linux64.tar-1/linux64/Packages/System/Network-Kernel.pck.st----!
+
+----End fileIn of /home/clinux01/Descargas/it4/WebClient.pck.st----!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:23:51'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:23:53'!
+FAILURE!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:25:18' prior: 50556073!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales |
+
+	bookPerformance := Dictionary new.
+	
+	[totalSales := self totalSalesOf: anItem.] fork.
+	[totalMoney := self totalMoneyRaisedBy: anItem.] fork.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:25:25'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:25:25'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:25:51'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:25:51'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:26:20'!
+ERROR!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:27:38' prior: 50594766!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales semaphore |
+
+	semaphore := Semaphore new.
+	bookPerformance := Dictionary new.
+	
+	[totalSales := self totalSalesOf: anItem.] fork.
+	
+	[totalMoney := self totalMoneyRaisedBy: anItem.] fork.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:29:12' prior: 50594804!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales salesSemaphore moneySemaphore |
+
+	salesSemaphore := Semaphore new.
+	moneySemaphore := Semaphore new.
+	
+	bookPerformance := Dictionary new.
+	
+	[totalSales := self totalSalesOf: anItem.] fork.
+	
+	[totalMoney := self totalMoneyRaisedBy: anItem.] fork.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:32:03' prior: 50594824!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales salesSemaphore moneySemaphore |
+
+	salesSemaphore := Semaphore new.
+	moneySemaphore := Semaphore new.
+	
+	bookPerformance := Dictionary new.
+	
+	salesSemaphore signal.
+	[salesSemaphore wait. totalSales := self totalSalesOf: anItem. salesSemaphore signal] fork.
+	
+	[moneySemaphore wait. totalMoney := self totalMoneyRaisedBy: anItem. moneySemaphore signal.] fork.
+	
+	salesSemaphore wait.
+	moneySemaphore wait.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:33:58' prior: 50594846!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales salesSemaphore moneySemaphore |
+
+	salesSemaphore := Semaphore new.
+	moneySemaphore := Semaphore new.
+	
+	bookPerformance := Dictionary new.
+	
+	salesSemaphore signal.
+	moneySemaphore signal.
+	
+	[salesSemaphore wait. totalSales := self totalSalesOf: anItem. salesSemaphore signal] fork.
+	
+	[moneySemaphore wait. totalMoney := self totalMoneyRaisedBy: anItem. moneySemaphore signal.] fork.
+	
+	salesSemaphore wait.
+	moneySemaphore wait.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:34:01'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:34:01'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:34:23'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:35:49'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:36:29'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:36:29'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:36:33'!
+FAILURE!
+
+self validBook!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:38:24' prior: 50594873!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales salesSemaphore moneySemaphore |
+
+	salesSemaphore := Semaphore new.
+	moneySemaphore := Semaphore new.
+	
+	bookPerformance := Dictionary new.
+	
+	[totalSales := self totalSalesOf: anItem. salesSemaphore signal] fork.
+	
+	[totalMoney := self totalMoneyRaisedBy: anItem. moneySemaphore signal.] fork.
+	
+	salesSemaphore wait.
+	moneySemaphore wait.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:38:29'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:40:18' prior: 50556114!
+storePerformance
+
+	| totalMoney totalSales performance moneySemaphore salesSemaphore |
+	
+	performance := Dictionary new.
+	
+	salesSemaphore := Semaphore new.
+	moneySemaphore := Semaphore new.
+	
+	[totalSales := self totalSales. salesSemaphore signal] fork.
+	[totalMoney := self totalMoneyRaised. moneySemaphore signal] fork.
+	
+	salesSemaphore wait.
+	moneySemaphore wait.
+	
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:40:24'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:41:22' prior: 50594957!
+storePerformance
+	| moneySemaphore |
+	moneySemaphore := Semaphore new.
+	[ | totalMoney |totalMoney := self totalMoneyRaised. moneySemaphore signal] fork.
+	^moneySemaphore.
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:40:18' prior: 50594984!
+storePerformance
+
+	| totalMoney totalSales performance moneySemaphore salesSemaphore |
+	
+	performance := Dictionary new.
+	
+	salesSemaphore := Semaphore new.
+	moneySemaphore := Semaphore new.
+	
+	[totalSales := self totalSales. salesSemaphore signal] fork.
+	[totalMoney := self totalMoneyRaised. moneySemaphore signal] fork.
+	
+	salesSemaphore wait.
+	moneySemaphore wait.
+	
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:43:16'!
+semaphoreToWaitAfterForking: aClosure
+
+	| moneySemaphore |
+	moneySemaphore := Semaphore new.
+	[aClosure value. moneySemaphore signal] fork.
+	^moneySemaphore.	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:43:23' prior: 50595016!
+semaphoreToWaitAfterForking: aClosure
+	| moneySemaphore |
+	
+	moneySemaphore := Semaphore new.
+	[aClosure value. moneySemaphore signal] fork.
+	^moneySemaphore.	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:43:30' prior: 50595025!
+semaphoreToWaitAfterForking: aClosure
+	| semaphore |
+	
+	semaphore := Semaphore new.
+	[aClosure value. semaphore signal] fork.
+	^semaphore.	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:45:20' prior: 50594993!
+storePerformance
+
+	| totalMoney totalSales performance moneySemaphore salesSemaphore |
+	
+	performance := Dictionary new.
+	
+	salesSemaphore := self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	moneySemaphore := self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaised].
+	
+	salesSemaphore wait.
+	moneySemaphore wait.
+	
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:45:27'!
+PASSED!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:47:15' prior: 50594928!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales salesSemaphore moneySemaphore |
+
+	salesSemaphore := Semaphore new.
+	moneySemaphore := Semaphore new.
+	
+	salesSemaphore := self semaphoreToWaitAfterForking: [totalSales := self totalSalesOf: anItem].
+	moneySemaphore := self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaisedBy: anItem].
+	
+	salesSemaphore wait.
+	moneySemaphore wait.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:47:38' prior: 50595069!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales salesSemaphore moneySemaphore |
+	
+	bookPerformance := Dictionary new.
+	
+	salesSemaphore := self semaphoreToWaitAfterForking: [totalSales := self totalSalesOf: anItem].
+	moneySemaphore := self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaisedBy: anItem].
+	
+	salesSemaphore wait.
+	moneySemaphore wait.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:48:46' prior: 50595034!
+semaphoreToWaitAfterForking: aClosure
+	| semaphore |
+	
+	semaphore := Semaphore new.
+	[aClosure value. semaphore signal] fork.
+	semaphore wait.
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:48:52' prior: 50595042!
+storePerformance
+
+	| totalMoney totalSales performance moneySemaphore salesSemaphore |
+	
+	performance := Dictionary new.
+	
+	salesSemaphore := self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	moneySemaphore := self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaised].
+
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:49:03' prior: 50595126!
+storePerformance
+
+	| totalMoney totalSales performance moneySemaphore |
+	
+	performance := Dictionary new.
+	
+	self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaised].
+
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:49:09' prior: 50595147!
+storePerformance
+
+	| totalMoney totalSales performance |
+	
+	performance := Dictionary new.
+	
+	self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaised].
+
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:49:48' prior: 50595094!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales |
+	
+	bookPerformance := Dictionary new.
+	
+	self semaphoreToWaitAfterForking: [totalSales := self totalSalesOf: anItem].
+	self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaisedBy: anItem].
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CheckOutReturnsTransactionIdAndImpactsCustomerPurchases stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10_1_CanNotCheckoutAnAlreadyCheckedOutCart stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'TD 11/7/2022 21:50:00'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:50:02'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:50:04'!
+FAILURE!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:50:08'!
+FAILURE!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:47:38' prior: 50595186!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales salesSemaphore moneySemaphore |
+	
+	bookPerformance := Dictionary new.
+	
+	salesSemaphore := self semaphoreToWaitAfterForking: [totalSales := self totalSalesOf: anItem].
+	moneySemaphore := self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaisedBy: anItem].
+	
+	salesSemaphore wait.
+	moneySemaphore wait.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:43:30' prior: 50595118!
+semaphoreToWaitAfterForking: aClosure
+	| semaphore |
+	
+	semaphore := Semaphore new.
+	[aClosure value. semaphore signal] fork.
+	^semaphore.	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:49:03' prior: 50595167!
+storePerformance
+
+	| totalMoney totalSales performance moneySemaphore |
+	
+	performance := Dictionary new.
+	
+	self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaised].
+
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:51:47' prior: 50595290!
+bookPerformance: anItem
+
+	| bookPerformance totalMoney totalSales salesSemaphore |
+	
+	bookPerformance := Dictionary new.
+	
+	salesSemaphore := self semaphoreToWaitAfterForking: [totalSales := self totalSalesOf: anItem].
+	totalMoney := self totalMoneyRaisedBy: anItem.
+	
+	salesSemaphore wait.
+	
+	bookPerformance at: 'quantity' put: totalSales.
+	bookPerformance at: 'total' put: totalMoney.
+	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^bookPerformance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:52:06' prior: 50595322!
+storePerformance
+
+	| totalMoney totalSales performance moneySemaphore |
+	
+	performance := Dictionary new.
+	
+	self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	totalMoney := self totalMoneyRaised.
+
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:49:03' prior: 50595363!
+storePerformance
+
+	| totalMoney totalSales performance moneySemaphore |
+	
+	performance := Dictionary new.
+	
+	self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaised].
+
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:52:18' prior: 50595382!
+storePerformance
+
+	| totalMoney totalSales performance |
+	
+	performance := Dictionary new.
+	
+	self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	totalMoney := self totalMoneyRaised.
+	
+	
+
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:49:03' prior: 50595402!
+storePerformance
+
+	| totalMoney totalSales performance moneySemaphore |
+	
+	performance := Dictionary new.
+	
+	self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaised].
+
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:45:20' prior: 50595420!
+storePerformance
+
+	| totalMoney totalSales performance moneySemaphore salesSemaphore |
+	
+	performance := Dictionary new.
+	
+	salesSemaphore := self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	moneySemaphore := self semaphoreToWaitAfterForking: [totalMoney := self totalMoneyRaised].
+	
+	salesSemaphore wait.
+	moneySemaphore wait.
+	
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:52:53' prior: 50595440!
+storePerformance
+
+	| totalMoney totalSales performance salesSemaphore |
+	
+	performance := Dictionary new.
+	
+	salesSemaphore := self semaphoreToWaitAfterForking: [totalSales := self totalSales].
+	totalMoney := self totalMoneyRaised.
+	
+	salesSemaphore wait.
+	
+	performance at: 'quantity' put: totalSales.
+	performance at: 'total' put: totalMoney.
+	performance at: 'summary' put: 'The store selled a total of ',totalSales asString, ' books and raised a total amount of money equal to: ', totalMoney asString.
+	
+	^performance
+	
+
+! !
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CheckOutReturnsTransactionIdAndImpactsCustomerPurchases stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10_1_CanNotCheckoutAnAlreadyCheckedOutCart stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'TD 11/7/2022 21:53:04'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:53:05'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'TD 11/7/2022 21:53:06'!
+PASSED!
+
+----QUIT----(7 November 2022 21:53:24) CuisUniversity-5510.image priorSource: 7155150!

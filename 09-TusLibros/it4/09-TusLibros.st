@@ -578,7 +578,7 @@ of: aCollectionOfLineItems
 
 !classDefinition: #TusLibrosSystemFacade category: 'TusLibros-Model'!
 Object subclass: #TusLibrosSystemFacade
-	instanceVariableNames: 'validUsersAndPasswords catalog lastId merchantProcessor salesBook clock cartSessions'
+	instanceVariableNames: 'validUsersAndPasswords catalog lastId merchantProcessor salesBook clock cartSessions asynchronousExecuter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros-Model'!
@@ -753,17 +753,15 @@ salesBook
 	^ salesBook! !
 
 
-!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:51:47'!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/9/2022 16:58:13'!
 bookPerformance: anItem
 
-	| bookPerformance totalMoney totalSales salesSemaphore |
+	| bookPerformance totalMoney totalSales |
 	
 	bookPerformance := Dictionary new.
 	
-	salesSemaphore := self semaphoreToWaitAfterForking: [totalSales := self totalSalesOf: anItem].
-	totalMoney := self totalMoneyRaisedBy: anItem.
-	
-	salesSemaphore wait.
+	asynchronousExecuter runAsynchronously: [totalSales := self totalSalesOf: anItem] 
+					   andInTheMeantimeRun: [totalMoney := self totalMoneyRaisedBy: anItem].
 	
 	bookPerformance at: 'quantity' put: totalSales.
 	bookPerformance at: 'total' put: totalMoney.
@@ -789,27 +787,16 @@ salesDoneBy: aUser
 	"Esto es un indicio de que por ahi conviene empezar a pensar en modelar un SaleBook - Hernan"
 	^ salesBook select: [ :aSale | aSale wasDoneBy: aUser ]! !
 
-!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:43:30'!
-semaphoreToWaitAfterForking: aClosure
-	| semaphore |
-	
-	semaphore := Semaphore new.
-	[aClosure value. semaphore signal] fork.
-	^semaphore.	
-
-! !
-
-!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/7/2022 21:52:53'!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'TD 11/9/2022 16:59:49'!
 storePerformance
 
-	| totalMoney totalSales performance salesSemaphore |
+	| totalMoney totalSales performance |
 	
 	performance := Dictionary new.
 	
-	salesSemaphore := self semaphoreToWaitAfterForking: [totalSales := self totalSales].
-	totalMoney := self totalMoneyRaised.
-	
-	salesSemaphore wait.
+	asynchronousExecuter 
+		runAsynchronously: [totalSales := self totalSales] 
+		andInTheMeantimeRun: [totalMoney := self totalMoneyRaised.].
 	
 	performance at: 'quantity' put: totalSales.
 	performance at: 'total' put: totalMoney.
@@ -866,7 +853,7 @@ totalSalesOf: anItem
 ! !
 
 
-!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'HernanWilkinson 6/22/2013 14:17'!
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'TD 11/9/2022 16:55:56'!
 initializeAuthenticatingWith: aValidUsersAndPasswords 
 	acceptingItemsOf: aCatalog 
 	registeringOn: aSalesBook 
@@ -880,7 +867,9 @@ initializeAuthenticatingWith: aValidUsersAndPasswords
 	clock := aClock.
 	
 	cartSessions := Dictionary new.
-	lastId := 0.! !
+	lastId := 0.
+	
+	asynchronousExecuter := AsynchronousExecution new.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 

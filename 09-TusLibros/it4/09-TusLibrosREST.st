@@ -195,43 +195,40 @@ open
 	^self new initializeWith: 'TusLibros Client Test Window'.! !
 
 
-!classDefinition: #RealTimeClock category: 'TusLibrosREST'!
-Clock subclass: #RealTimeClock
-	instanceVariableNames: ''
+!classDefinition: #AsynchronousExecution category: 'TusLibrosREST'!
+Object subclass: #AsynchronousExecution
+	instanceVariableNames: 'cartsOnQueue'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibrosREST'!
 
-!RealTimeClock methodsFor: 'time' stamp: 'HAW 5/5/2020 17:07:39'!
-now
+!AsynchronousExecution methodsFor: 'async execution' stamp: 'TD 11/9/2022 17:05:02'!
+execute: aBlock for: aCartId
+	|cartSemaphore|
+	cartSemaphore := cartsOnQueue at: aCartId ifAbsentPut: [(Semaphore new) signal; yourself].
+	"Quiero que el closure me devuelva el Semaphore new, no el return del signal"
+	
+	self runAsynchronously: [cartSemaphore wait. aBlock value. cartSemaphore signal].! !
 
-	^DateAndTime now! !
+!AsynchronousExecution methodsFor: 'async execution' stamp: 'TD 11/9/2022 16:52:34'!
+runAsynchronously: aBlock
+	[aBlock value] fork.! !
 
-!RealTimeClock methodsFor: 'time' stamp: 'HAW 5/5/2020 17:07:48'!
-today
-
-	^Date today! !
-
-
-!classDefinition: #DefaultMerchantProcessor category: 'TusLibrosREST'!
-MerchantProcessor subclass: #DefaultMerchantProcessor
-	instanceVariableNames: 'transactionId'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibrosREST'!
-
-!DefaultMerchantProcessor methodsFor: 'debit' stamp: 'HAW 5/5/2020 17:13:16'!
-debit: anAmount from: aCreditCard 
-
-	transactionId := transactionId + 1.
-	^transactionId! !
+!AsynchronousExecution methodsFor: 'async execution' stamp: 'TD 11/9/2022 17:04:42'!
+runAsynchronously: aBlock andInTheMeantimeRun: anotherBlock 
+	|firstBlockSemaphore|
+	firstBlockSemaphore := Semaphore new.
+	self runAsynchronously: [aBlock value. firstBlockSemaphore signal.].
+	
+	anotherBlock value.
+	firstBlockSemaphore wait.
+	
+	"Esto solo lo estariamos usando para el caso de los tests de performance"! !
 
 
-!DefaultMerchantProcessor methodsFor: 'initialization' stamp: 'HAW 5/5/2020 17:13:31'!
+!AsynchronousExecution methodsFor: 'initialization' stamp: 'TD 11/9/2022 16:53:52'!
 initialize
-
-	super initialize.
-	transactionId := 0! !
+	cartsOnQueue := Dictionary new.! !
 
 
 !classDefinition: #TusLibrosClientRestInterface category: 'TusLibrosREST'!
@@ -294,7 +291,7 @@ url
 
 !classDefinition: #TusLibrosClientTestWindowModel category: 'TusLibrosREST'!
 Object subclass: #TusLibrosClientTestWindowModel
-	instanceVariableNames: 'cartIds selectedCartIdsIndex selectedBookCatalogIndex currentSelectedCartContent restInterface'
+	instanceVariableNames: 'cartIds selectedCartIdsIndex selectedBookCatalogIndex currentSelectedCartContent restInterface asynchronousExecuter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibrosREST'!
@@ -360,35 +357,43 @@ cartIdsIndex: anIndex
 	! !
 
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NR 6/13/2022 07:07:36'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'TD 11/9/2022 16:53:13'!
 addToCart
 
 	| cartId bookIsbn |
 
-	(self areCartIdAndBookSelected) ifTrue:[
+	asynchronousExecuter runAsynchronously: [(self areCartIdAndBookSelected) ifTrue:[ 
 		cartId := self selectedCartId.
 		bookIsbn := self selectedBook.
-		restInterface add: 1 of: bookIsbn toCartIdentifiedAs: cartId.
-		self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)]! !
+		
+		asynchronousExecuter execute: [restInterface add: 1 of: bookIsbn toCartIdentifiedAs: cartId] for: cartId.
+		"Aprovechamos que cartId es unico, entonces el ejecutor se va a encargar de lo que respecta a sincronización"
+				
+		self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)]]! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NR 6/9/2022 08:13:07'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'TD 11/9/2022 16:45:23'!
 createCart
 
 	| newCartId |
 	
-	newCartId := restInterface createCartFor: 'hernan' password: 'smalltalk'.
-	cartIds add: newCartId.
-	self triggerEvent: #newCartIdArrived! !
+	asynchronousExecuter runAsynchronously: 
+		[newCartId := restInterface createCartFor: 'hernan' password: 'smalltalk'.
+		cartIds add: newCartId.
+		self triggerEvent: #newCartIdArrived.]! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NR 6/13/2022 07:08:06'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'TD 11/9/2022 16:52:53'!
 listCart
 
 	| cartId |
 	
 	(self isCartIdSelected) ifTrue:[
 		cartId := self selectedCartId.
-		currentSelectedCartContent := restInterface listCart: cartId.
-		self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId ].! !
+		
+		asynchronousExecuter execute: 
+			[currentSelectedCartContent := restInterface listCart: cartId.
+			 self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId] 
+			for: cartId.
+	]! !
 
 
 !TusLibrosClientTestWindowModel methodsFor: 'initialization' stamp: 'NR 6/9/2022 08:13:11'!
@@ -400,14 +405,15 @@ defaultCatalog
 		at: 'MartinFierro' put: 350*peso;
 		yourself! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'initialization' stamp: 'NR 6/9/2022 08:13:15'!
+!TusLibrosClientTestWindowModel methodsFor: 'initialization' stamp: 'TD 11/9/2022 16:41:07'!
 initialize
 
 	cartIds := OrderedCollection new.
 	currentSelectedCartContent := OrderedCollection new.
 	selectedCartIdsIndex := 0.
 	selectedBookCatalogIndex := 0.
-	restInterface := TusLibrosClientRestInterface new.! !
+	restInterface := TusLibrosClientRestInterface new.
+	asynchronousExecuter := AsynchronousExecution new.! !
 
 
 !classDefinition: #TusLibrosServerRestInterface category: 'TusLibrosREST'!
@@ -591,7 +597,7 @@ defaultMerchantProcessor
 	
 	^DefaultMerchantProcessor new! !
 
-!TusLibrosServerRestInterface class methodsFor: 'default objects' stamp: 'HAW 5/5/2020 17:13:46'!
+!TusLibrosServerRestInterface class methodsFor: 'default objects' stamp: 'TD 11/9/2022 15:13:53'!
 defaultSystem
 
 	| clock systemFacade |
@@ -600,10 +606,10 @@ defaultSystem
 	systemFacade := TusLibrosSystemFacade 
 		authenticatingWith: self validUsersAndPasswords 
 		acceptingItemsOf: self defaultCatalog 
-		registeringOn: self createSalesBook
+		registeringOn: self createSalesBook 
 		debitingThrought: self defaultMerchantProcessor 
 		measuringTimeWith: clock.
-
+		
 	^systemFacade ! !
 
 !TusLibrosServerRestInterface class methodsFor: 'default objects' stamp: 'HAW 5/5/2020 17:10:11'!
@@ -621,7 +627,7 @@ on: aTusLibrosSystemFacade
 	^self new initializeOn: aTusLibrosSystemFacade ! !
 
 
-!TusLibrosServerRestInterface class methodsFor: 'installation' stamp: 'HAW 7/24/2020 11:07:02'!
+!TusLibrosServerRestInterface class methodsFor: 'installation' stamp: 'TD 11/9/2022 15:30:25'!
 installForDefaultSystem
 
 	"self installForDefaultSystem"
@@ -641,7 +647,7 @@ installForDefaultSystem
 		action: [:request | interface createCart: request ].
 	server 
 		addService: '/addToCart' 
-		action: [:request | interface addToCart: request ].
+		action: [:request |			interface addToCart: request].
 	server
 		addService: '/listCart' 
 		action: [:request | interface listCart: request ].

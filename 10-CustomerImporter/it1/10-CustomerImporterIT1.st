@@ -96,9 +96,11 @@ assertPersistedCustomer: aCustomer hasFirstName: aName lastName: aLastName ident
 	
 	self assert: aNumberOfAddresses equals: (aCustomer numberOfAddresses)! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'TD 11/10/2022 18:47:39'!
+!ImportTest methodsFor: 'assertions' stamp: 'TD 11/14/2022 12:14:21'!
 assertThatGivenAnUnpersistedAddressThrowsErrorOnUser
-	self should: [self getCustomerJuanPerez fullAddressAt: 'Juncal' ] raise: Error withMessageText: 'invalid address'.
+	self should: [self getCustomerJuanPerez fullAddressAt: 'Juncal' ] 
+	raise: Error 
+	withMessageText: Customer invalidAddressErrorDescription .
 ! !
 
 !ImportTest methodsFor: 'assertions' stamp: 'TD 11/10/2022 18:42:01'!
@@ -215,9 +217,10 @@ addresses
 
 	^ addresses! !
 
-!Customer methodsFor: 'addresses' stamp: 'TD 11/10/2022 18:31:18'!
+!Customer methodsFor: 'addresses' stamp: 'TD 11/14/2022 12:13:55'!
 fullAddressAt: aStreetName  
-	^addresses detect: [:anAddress | anAddress isAt: aStreetName] ifNone: [self error: 'invalid address'].! !
+	^addresses detect: [:anAddress | anAddress isAt: aStreetName] ifNone: 
+	[self error: self class invalidAddressErrorDescription ].! !
 
 !Customer methodsFor: 'addresses' stamp: 'TD 11/10/2022 17:59:09'!
 numberOfAddresses
@@ -284,6 +287,16 @@ initialize
 
 	super initialize.
 	addresses := OrderedCollection new.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Customer class' category: 'CustomerImporter'!
+Customer class
+	instanceVariableNames: ''!
+
+!Customer class methodsFor: 'error handling' stamp: 'TD 11/14/2022 12:13:35'!
+invalidAddressErrorDescription
+	^'invalid address!!!!!!'! !
 
 
 !classDefinition: #CustomerImporter category: 'CustomerImporter'!

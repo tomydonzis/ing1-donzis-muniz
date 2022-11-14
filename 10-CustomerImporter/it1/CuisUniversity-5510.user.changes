@@ -3173,3 +3173,198 @@ assertJuanPerezWasPersistedCorrectly
 	andProvince: 'CABA'.! !
 
 ----QUIT----(10 November 2022 19:08:19) CuisUniversity-5510.image priorSource: 7270178!
+
+----STARTUP---- (14 November 2022 12:08:02) as C:\Users\tomas\Desktop\FACULTAD\Inge1\windows64\windows64\CuisUniversity-5510.image!
+
+
+----End fileIn of C:\Users\tomas\Desktop\FACULTAD\Inge1\windows64\windows64\10-CustomerImporterIT1.st----!
+
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'session customerT'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'TD 11/14/2022 12:09:34'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'session customerT'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'assertions' stamp: 'TD 11/14/2022 12:09:51' prior: 50609204!
+assertPepeSanchezWasPersistedCorrectly
+	
+	| customer |
+	customerT := self getCustomerPepeSanchez.
+
+	self assertPersistedCustomer: customerT 
+	hasFirstName: 'Pepe' 
+	lastName: 'Sanchez' 
+	identificationType: 'D'
+	identificationNumber: '22333444' 
+	andNumberOfAddresses: 2.
+	
+	self assertPersistedAddress: (customer fullAddressAt: 'San Martin')
+	hasStreetName: 'San Martin' 
+	streetNumber: 3322 
+	town: 'Olivos' 
+	zipCode: 1636 
+	andProvince: 'BsAs'.
+	
+	self assertPersistedAddress: (customer fullAddressAt: 'Maipu') 
+	hasStreetName: 'Maipu' 
+	streetNumber: 888 
+	town: 'Florida'  
+	zipCode: 1122 
+	andProvince: 'Buenos Aires'.! !
+!ImportTest methodsFor: 'assertions' stamp: 'TD 11/14/2022 12:10:07' prior: 50609619!
+assertPepeSanchezWasPersistedCorrectly
+	
+	
+	customerT := self getCustomerPepeSanchez.
+
+	self assertPersistedCustomer: customerT 
+	hasFirstName: 'Pepe' 
+	lastName: 'Sanchez' 
+	identificationType: 'D'
+	identificationNumber: '22333444' 
+	andNumberOfAddresses: 2.
+	
+	self assertPersistedAddress: (customerT fullAddressAt: 'San Martin')
+	hasStreetName: 'San Martin' 
+	streetNumber: 3322 
+	town: 'Olivos' 
+	zipCode: 1636 
+	andProvince: 'BsAs'.
+	
+	self assertPersistedAddress: (customerT fullAddressAt: 'Maipu') 
+	hasStreetName: 'Maipu' 
+	streetNumber: 888 
+	town: 'Florida'  
+	zipCode: 1122 
+	andProvince: 'Buenos Aires'.! !
+!ImportTest methodsFor: 'assertions' stamp: 'TD 11/14/2022 12:10:14' prior: 50609642!
+assertPepeSanchezWasPersistedCorrectly
+	
+	customerT := self getCustomerPepeSanchez.
+
+	self assertPersistedCustomer: customerT 
+	hasFirstName: 'Pepe' 
+	lastName: 'Sanchez' 
+	identificationType: 'D'
+	identificationNumber: '22333444' 
+	andNumberOfAddresses: 2.
+	
+	self assertPersistedAddress: (customerT fullAddressAt: 'San Martin')
+	hasStreetName: 'San Martin' 
+	streetNumber: 3322 
+	town: 'Olivos' 
+	zipCode: 1636 
+	andProvince: 'BsAs'.
+	
+	self assertPersistedAddress: (customerT fullAddressAt: 'Maipu') 
+	hasStreetName: 'Maipu' 
+	streetNumber: 888 
+	town: 'Florida'  
+	zipCode: 1122 
+	andProvince: 'Buenos Aires'.! !
+!ImportTest methodsFor: 'assertions' stamp: 'TD 11/14/2022 12:10:49' prior: 50609188!
+assertJuanPerezWasPersistedCorrectly
+	
+	customerT := self getCustomerJuanPerez.
+	
+	self assertPersistedCustomer: customerT 
+	hasFirstName: 'Juan' 
+	lastName: 'Perez' 
+	identificationType: 'C' 
+	identificationNumber: '23-25666777-9' 
+	andNumberOfAddresses: 1.
+	
+	self assertPersistedAddress: (customerT fullAddressAt: 'Alem') 
+	hasStreetName: 'Alem' 
+	streetNumber: 1122 
+	town: 'CABA'  
+	zipCode: 1001  
+	andProvince: 'CABA'.! !
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'TD 11/14/2022 12:10:56'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'session customer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'TD 11/14/2022 12:10:56' prior: 50609665!
+assertPepeSanchezWasPersistedCorrectly
+	
+	customer := self getCustomerPepeSanchez.
+
+	self assertPersistedCustomer: customer 
+	hasFirstName: 'Pepe' 
+	lastName: 'Sanchez' 
+	identificationType: 'D'
+	identificationNumber: '22333444' 
+	andNumberOfAddresses: 2.
+	
+	self assertPersistedAddress: (customer fullAddressAt: 'San Martin')
+	hasStreetName: 'San Martin' 
+	streetNumber: 3322 
+	town: 'Olivos' 
+	zipCode: 1636 
+	andProvince: 'BsAs'.
+	
+	self assertPersistedAddress: (customer fullAddressAt: 'Maipu') 
+	hasStreetName: 'Maipu' 
+	streetNumber: 888 
+	town: 'Florida'  
+	zipCode: 1122 
+	andProvince: 'Buenos Aires'.! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'TD 11/14/2022 12:10:56' prior: 50609687!
+assertJuanPerezWasPersistedCorrectly
+	
+	customer := self getCustomerJuanPerez.
+	
+	self assertPersistedCustomer: customer 
+	hasFirstName: 'Juan' 
+	lastName: 'Perez' 
+	identificationType: 'C' 
+	identificationNumber: '23-25666777-9' 
+	andNumberOfAddresses: 1.
+	
+	self assertPersistedAddress: (customer fullAddressAt: 'Alem') 
+	hasStreetName: 'Alem' 
+	streetNumber: 1122 
+	town: 'CABA'  
+	zipCode: 1001  
+	andProvince: 'CABA'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'TD 11/14/2022 12:11:00'!
+PASSED!
+
+----STARTUP---- (14 November 2022 12:11:51) as C:\Users\tomas\Desktop\FACULTAD\Inge1\windows64\windows64\CuisUniversity-5510.image!
+
+
+----End fileIn of C:\Users\tomas\Desktop\FACULTAD\Inge1\windows64\windows64\10-CustomerImporterIT1.st----!
+!Customer class methodsFor: 'no messages' stamp: 'TD 11/14/2022 12:13:35'!
+invalidAddressErrorDescription
+	^'invalid address!!!!!!'! !
+!Customer methodsFor: 'addresses' stamp: 'TD 11/14/2022 12:13:55' prior: 50609980!
+fullAddressAt: aStreetName  
+	^addresses detect: [:anAddress | anAddress isAt: aStreetName] ifNone: 
+	[self error: self class invalidAddressErrorDescription ].! !
+!ImportTest methodsFor: 'assertions' stamp: 'TD 11/14/2022 12:14:13' prior: 50609863!
+assertThatGivenAnUnpersistedAddressThrowsErrorOnUser
+	self should: [self getCustomerJuanPerez fullAddressAt: 'Juncal' ] 
+	raise: Error 
+	withMessageText: Customer invalidAddressErrorDescription .
+! !
+!ImportTest methodsFor: 'assertions' stamp: 'TD 11/14/2022 12:14:21' prior: 50610221!
+assertThatGivenAnUnpersistedAddressThrowsErrorOnUser
+	self should: [self getCustomerJuanPerez fullAddressAt: 'Juncal' ] 
+	raise: Error 
+	withMessageText: Customer invalidAddressErrorDescription .
+! !
+
+!testRun: #ImportTest #test01Import stamp: 'TD 11/14/2022 12:14:22'!
+PASSED!
+
+----SNAPSHOT----(14 November 2022 12:14:36) CuisUniversity-5510.image priorSource: 8879888!
